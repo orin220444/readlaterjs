@@ -1,0 +1,44 @@
+{
+  "name": "templatebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run eslint && npm run nodemon",
+    "start": "node index.js",
+    "nodemon": "npx nodemon index.js",
+    "eslint": "npx eslint --fix .",
+    "precommit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orin220444/templatebot.git"
+  },
+  "author": "orin220444",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orin220444/templatebot/issues"
+  },
+  "homepage": "https://github.com/orin220444/templatebot#readme",
+  "lint-staged": {
+    "*.{js}": [
+      "node_modules/.bin/eslint --fix --max-warnings=0"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "telegraf": "^3.37.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.6",
+    "nodemon": "^2.0.3"
+  }
+}
