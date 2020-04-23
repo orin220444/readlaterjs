@@ -1,7 +1,7 @@
 {
-  "name": "templatebot",
+  "name": "readlaterbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "bot that saves post to read later",
   "main": "index.js",
   "scripts": {
     "dev": "npm run eslint && npm run nodemon",
