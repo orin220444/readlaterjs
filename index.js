@@ -6,6 +6,7 @@ bot.on('message', async (ctx) => {
   console.log('test')
   await finder(ctx.message).then(url => {
     console.log(url)
+    await telegraph(url)
   })
 });
 bot.launch();
