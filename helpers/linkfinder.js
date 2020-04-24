@@ -1,3 +1,8 @@
+/**
+* finds links and urls in message
+* @param {any} message telegram message
+* @return {string} url from the message
+*/
 async function finder(message) {
   if (message.entities) {
     const entities = message.entities;
@@ -9,7 +14,7 @@ async function finder(message) {
       while (i < linkentity.length) {
         url = linkentity[i].url;
         i++;
-        return url
+        return url;
       }
     }
     if (urlentity) {
@@ -20,7 +25,7 @@ async function finder(message) {
         start = urlentity[i].offset;
         end = urlentity[i].offset + urlentity[i].length;
         url = text.substring(start, end);
-        return url
+        return url;
         i++;
       }
     } else {
@@ -37,7 +42,7 @@ async function finder(message) {
       while (i < linkentity.length) {
         url = linkentity[i].url;
         i++;
-        return url
+        return url;
       }
     }
     if (urlentity) {
@@ -48,7 +53,7 @@ async function finder(message) {
         start = urlentity[i].offset;
         end = urlentity[i].offset + urlentity[i].length;
         url = text.substring(start, end);
-        return url
+        return url;
         i++;
       }
     } else {
