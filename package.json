@@ -34,6 +34,7 @@
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
+    "mongoose": "^5.9.10",
     "telegraf": "^3.37.0"
   },
   "devDependencies": {
