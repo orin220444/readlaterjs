@@ -1,7 +1,7 @@
 const Post = require('../database/models');
 /**
 * saves url in the database
-* @param url - url to save
+* @param {any} url - url to save
 */
 async function saveToDB(url) {
   const post = await Post.findOne({originalURL: url});

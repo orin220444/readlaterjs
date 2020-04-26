@@ -35,22 +35,23 @@ async function finder(message) {
     }
   }
   if (message.photo) {
-console.log(message)
+    console.log(message);
     const entities = await message.caption_entities;
-console.log("entities", typeof entities)
-    const linkentity = []//entities.filter((item) => item.type == 'text_link');
-    for (i in entities)
-    if ([i].type == 'text_link')
-    {
-      linkentity.push([i])
-    }
-    const urlentity = []
-    for ([i] in entities){
-      if([i].type == 'url'){
-        urlentity.push([i])
+    console.log('entities', typeof entities);
+    const linkentity = [];
+    // entities.filter((item) => item.type == 'text_link');
+    for (i in entities) {
+      if ([i].type == 'text_link') {
+        linkentity.push([i]);
       }
-    }    //entities.filter((item) => item.type == 'url');
-    let urls = []
+    }
+    const urlentity = [];
+    for ([i] in entities) {
+      if ([i].type == 'url') {
+        urlentity.push([i]);
+      }
+    } // entities.filter((item) => item.type == 'url');
+    const urls = [];
     if (linkentity) {
       let i = 0;
       let url = ' ';
