@@ -35,7 +35,9 @@ async function finder(message) {
     }
   }
   if (message.photo) {
+console.log(message)
     const entities = message.caption_entities;
+console.log("entities",entities)
     const linkentity = entities.filter((item) => item.type == 'text_link');
     const urlentity = entities.filter((item) => item.type == 'url');
     let urls = []

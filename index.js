@@ -6,16 +6,24 @@ const parse = require('./helpers/parse');
 const saveToDB = require('./helpers/saveToDB')
 bot.on('message', async (ctx) => {
   const message = ctx.message.message_id
-  console.log(ctx.message.caption_entities);
-  await finder(ctx.message).then((urls) => {
+  //console.log(ctx.message.caption_entities);
+  await finder(ctx.message).then( async(urls) => {
     let i = 0
     for (i in urls){
     const url = urls[i]
     console.log(url);
-    saveToDB(url)
+  try{ 
+await saveToDB(url)
+}catch(error){
+console.log(error)
+}
     //parse(url);
   }
   });
+/*try{
   await ctx.deleteMessage(message)
+}catch(error){
+console.log(error)
+}*/
   });
 bot.launch();
