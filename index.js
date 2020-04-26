@@ -7,15 +7,22 @@ const saveToDB = require('./helpers/saveToDB')
 bot.on('message', async (ctx) => {
   const message = ctx.message.message_id
   //console.log(ctx.message.caption_entities);
+  ctx.reply('ишу ссылки')
   await finder(ctx.message).then( async(urls) => {
     let i = 0
+    console.log(urls)
     for (i in urls){
     const url = urls[i]
+    if(url == undefined){
+
+    }if(url == 'message.chat.id'){
+  }else{
     console.log(url);
-  try{ 
+  try{
 await saveToDB(url)
 }catch(error){
 console.log(error)
+}
 }
     //parse(url);
   }
