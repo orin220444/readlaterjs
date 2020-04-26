@@ -12,16 +12,18 @@ bot.on('message', async (ctx) => {
     let i = 0;
     console.log(urls);
     for (i in urls) {
-      const url = urls[i];
-      if (url == undefined) {
+      if ({}.hasOwnProperty.call(urls, i)) {
+        const url = urls[i];
+        if (url == undefined) {
 
-      } if (url == 'message.chat.id') {
-      } else {
-        console.log(url);
-        try {
-          await saveToDB(url);
-        } catch (error) {
-          console.log(error);
+        } if (url == 'message.chat.id') {
+        } else {
+          console.log(url);
+          try {
+            await saveToDB(url);
+          } catch (error) {
+            console.log(error);
+          }
         }
       }
     // parse(url);
