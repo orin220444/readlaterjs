@@ -24,8 +24,8 @@ async function finder(message) {
       const text = message.text;
       while (i < urlentity.length) {
         start = urlentity[i].offset;
-        end = urlentity[i].offset + urlentity[i].length;
-        url = text.substring(start, end);
+        length = urlentity[i].length;
+        url = text.substr(start, length);
         urls.push(url);
         i++;
       }
@@ -67,8 +67,8 @@ async function finder(message) {
       const text = message.caption;
       while (i < urlentity.length) {
         start = urlentity[i].offset;
-        end = urlentity[i].offset + urlentity[i].length;
-        url = text.substring(start, end);
+        length = urlentity[i].length;
+        url = text.substr(start, length);
         urls.push(url);
         i++;
       }
