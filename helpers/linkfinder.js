@@ -6,8 +6,8 @@
 async function finder(message) {
   if (message.entities) {
     const entities = message.entities;
-    const linkentity = entities.filter((item) => item.type == 'text_link');
-    const urlentity = entities.filter((item) => item.type == 'url');
+    const linkentity = filter(entities,'text_link');
+    const urlentity = filter(entities, 'url');
     const urls = [];
     if (linkentity) {
       let i = 0;
@@ -83,6 +83,32 @@ async function finder(message) {
     }
   }
 };
+function filter(entities, neededType){
+  console.log(neededType)
+  const filteredentities = [];
+  for (let i = 0; i < entities.length; i++)  {
+    if ([i].type == neededType) {
+      filteredentities.push([i]);
+    }
+    return filteredentities
+}
+}
+function url(urlentities){
+let urls = []
+  for (let i = 0; i < urlentities.length; i++) {
+    const url = message.text.substr(urlentities[i].offset, urlentities[i].length);
+    urls.push(url)
+  }
+  return urls
+}
+function text_link(linkentities){
+  let urls = []
+  for (let i = 0; i < linkentiites.length; i++) {
+    const url = linkentities[i].url
+    urls.push(url)
+  }
+  return urls
+}
 module.exports = finder;
 
 
