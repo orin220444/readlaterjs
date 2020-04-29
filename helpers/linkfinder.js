@@ -12,22 +12,24 @@ async function finder(message) {
     if (linkentity) {
       let i = 0;
       let url = ' ';
-      while (i < linkentity.length) {
-        url = linkentity[i].url;
-        urls.push(url);
-        i++;
+      for (i in linkentity) {
+        if ({}.hasOwnProperty.call(urls, [i])) {
+          url = linkentity[i].url;
+          urls.push(url);
+        }
       }
     }
     if (urlentity) {
       let i = 0;
       let url = ' ';
       const text = message.text;
-      while (i < urlentity.length) {
-        start = urlentity[i].offset;
-        length = urlentity[i].length;
-        url = text.substr(start, length);
-        urls.push(url);
-        i++;
+      for (i in urlentity) {
+        if ({}.hasOwnProperty.call(urls, [i])) {
+          start = urlentity[i].offset;
+          length = urlentity[i].length;
+          url = text.substr(start, length);
+          urls.push(url);
+        }
       }
       return urls;
     } else {
@@ -55,22 +57,24 @@ async function finder(message) {
     if (linkentity) {
       let i = 0;
       let url = ' ';
-      while (i < linkentity.length) {
-        url = linkentity[i].url;
-        i++;
-        urls.push(url);
+      for (i in linkentity) {
+        if ({}.hasOwnProperty.call(urls, [i])) {
+          url = linkentity[i].url;
+          urls.push(url);
+        }
       }
     }
     if (urlentity) {
       let i = 0;
       let url = ' ';
       const text = message.caption;
-      while (i < urlentity.length) {
-        start = urlentity[i].offset;
-        length = urlentity[i].length;
-        url = text.substr(start, length);
-        urls.push(url);
-        i++;
+      for (i in urlentity) {
+        if ({}.hasOwnProperty.call(urls, [i])) {
+          start = urlentity[i].offset;
+          length = urlentity[i].length;
+          url = text.substr(start, length);
+          urls.push(url);
+        }
       }
       console.log(urls);
       return urls;
