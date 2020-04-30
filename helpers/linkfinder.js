@@ -8,102 +8,65 @@ async function finder(message) {
     const entities = message.entities;
     const linkentity = filter(entities,'text_link');
     const urlentity = filter(entities, 'url');
-    const urls = [];
+    let urls = [];
     if (linkentity) {
-      let i = 0;
-      let url = ' ';
-      for (i in linkentity) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
-          url = linkentity[i].url;
-          urls.push(url);
-        }
-      }
+
+      urls.concat(text_link(linkentity))
+    console.log(urls)
+    //return urls
     }
     if (urlentity) {
-      let i = 0;
-      let url = ' ';
-      const text = message.text;
-      for (i in urlentity) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
-          start = urlentity[i].offset;
-          length = urlentity[i].length;
-          url = text.substr(start, length);
-          urls.push(url);
-        }
-      }
-      return urls;
-    } else {
-      return 'no urls!';
+    urls.concat(url(urlentity, message.text))
+    console.log(urls)
+    //return urls
     }
+    console.log(urls)
+    return urls
   }
-  if (message.photo) {
-    console.log(message);
+  if (message.caption_entities) {
     const entities = await message.caption_entities;
-    console.log('entities', typeof entities);
-    const linkentity = [];
-    // entities.filter((item) => item.type == 'text_link');
-    for (i in entities) {
-      if ([i].type == 'text_link') {
-        linkentity.push([i]);
-      }
-    }
-    const urlentity = [];
-    for ([i] in entities) {
-      if ([i].type == 'url') {
-        urlentity.push([i]);
-      }
-    } // entities.filter((item) => item.type == 'url');
+    const linkentity = filter(entities, 'text_link')
+    const urlentitiy = filter(entities, 'url')
+
     const urls = [];
     if (linkentity) {
-      let i = 0;
-      let url = ' ';
-      for (i in linkentity) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
-          url = linkentity[i].url;
-          urls.push(url);
-        }
-      }
-    }
-    if (urlentity) {
-      let i = 0;
-      let url = ' ';
-      const text = message.caption;
-      for (i in urlentity) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
-          start = urlentity[i].offset;
-          length = urlentity[i].length;
-          url = text.substr(start, length);
-          urls.push(url);
-        }
-      }
-      console.log(urls);
+    const urls = text_link(linkentity)
+    console.log(urls)
       return urls;
+    }  if (urlentitiy){
+      const urls = url(urlentitiy, message.caption)
+      console.log(urls)
+      return urls
+      }
     } else {
       return 'no urls!';
     }
   }
-};
+
 function filter(entities, neededType){
   console.log(neededType)
-  const filteredentities = [];
+  let filteredentities = [];
   for (let i = 0; i < entities.length; i++)  {
-    if ([i].type == neededType) {
-      filteredentities.push([i]);
+    console.log(entities[i].type)
+    if (entities[i].type == neededType) {
+      filteredentities.push(entities[i]);
+
     }
-    return filteredentities
 }
+return filteredentities
 }
-function url(urlentities){
+function url(urlentities, text){
+  console.log(text)
 let urls = []
   for (let i = 0; i < urlentities.length; i++) {
-    const url = message.text.substr(urlentities[i].offset, urlentities[i].length);
+    const url = text.substr(urlentities[i].offset, urlentities[i].length);
     urls.push(url)
   }
   return urls
 }
 function text_link(linkentities){
   let urls = []
-  for (let i = 0; i < linkentiites.length; i++) {
+  for (let i = 0; i < linkentities.length; i++) {
     const url = linkentities[i].url
     urls.push(url)
   }
