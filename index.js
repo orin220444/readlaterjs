@@ -18,8 +18,8 @@ bot.on('message', async (ctx) => {
           if (url == undefined) {
 
           } if (url == 'message.chat.id') {
-            if (url == 'no urls'){}
-            if (url == ''){}
+            if (url == 'no urls') {}
+            if (url == '') {}
           } else {
             console.log(url);
             try {
