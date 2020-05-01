@@ -18,7 +18,12 @@ async function finder(message) {
   }
 }
 
-
+/**
+* filters types of the entities
+* @param {array} entities - message.entities or message.caption_entities
+* @param {string} neededType - type to filter
+* @return {array} filtered entities
+*/
 function filter(entities, neededType) {
   // console.log(neededType);
   const filteredentities = [];
@@ -30,6 +35,12 @@ function filter(entities, neededType) {
   }
   return filteredentities;
 }
+/**
+* gets links in the "url" entities
+* @param {array} urlentities - url entities
+* @param {string} text - message.text or message.caption
+* @return {array} array of the urls
+*/
 function url(urlentities, text) {
   // console.log(text);
   const urls = [];
@@ -39,6 +50,11 @@ function url(urlentities, text) {
   }
   return urls;
 }
+/**
+* gets links in the "text_link" entities
+* @param {array} linkentities - text_link entities
+* @return {array} array of entities
+*/
 function textLink(linkentities) {
   const urls = [];
   for (let i = 0; i < linkentities.length; i++) {
@@ -47,6 +63,12 @@ function textLink(linkentities) {
   }
   return urls;
 }
+/**
+* finds urls in the entities field of the message
+* @param {array} entities - message entities
+* @param {string} text - message text
+* @return {array} array of the urls arrays
+*/
 function find(entities, text) {
   const linkentity = filter(entities, 'text_link');
   const urlentity = filter(entities, 'url');
