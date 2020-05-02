@@ -8,37 +8,33 @@ bot.on('message', async (ctx) => {
   // const message = await ctx.message.message_id;
   // console.log(ctx.message.caption_entities);
 //  ctx.reply('ишу ссылки');
-  try {
-    await finder(ctx.message).then( async (urls) => {
+    finder(ctx.message).then( async (urls) => {
       let i = 0;
       console.log(urls);
-      for (i in urls) {
-        if ({}.hasOwnProperty.call(urls, i)) {
-          const url = urls[i];
-          if (url == undefined) {
+const parsedurls = forurls(urls)      
+console.log(parsedurls)
 
-          } if (url == 'message.chat.id') {
-            if (url == 'no urls') {}
-            if (url == '') {}
-          } else {
-            console.log(url);
             try {
               await saveToDB(url);
             } catch (error) {
               console.log(error);
             }
-          }
-        }
-        // parse(url);
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
+          })
+        })
+        
 /* try{
   await ctx.deleteMessage(message)
 }catch(error){
 console.log(error)
 }*/
-});
 bot.launch();
+function forurls (array){
+for (let i = 0; i < array.length; i++){
+if ({}.hasOwnProperty.call(array, i)) {
+          if (url == 'message.chat.id') {}
+ if (url == 'no urls') {}
+          if (url == '') {}
+else return array[i]
+}
+}
+}
