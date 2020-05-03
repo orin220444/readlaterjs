@@ -4,11 +4,30 @@
 * @return {string} url from the message
 */
 async function finder(message) {
+  console.log(message);
   if (message.entities) {
     const entities = message.entities;
-    const linkentity = entities.filter((item) => item.type == 'text_link');
-    const urlentity = entities.filter((item) => item.type == 'url');
-    let urls = [];
+    console.log(entities);
+    const linkentity = [];
+    for (i in entities) {
+      if ({}.hasOwnProperty.call(urls, [i])) {
+        if (entities[i].type == 'text_link') {
+          linkentity.push(entities[i]);
+        }
+      }
+    }
+
+    const urlentity = [];
+    for (i in entities) {
+      if ({}.hasOwnProperty.call(urls, [i])) {
+        ;
+        if (entities[i].type == 'url') {
+          urlentity.push(entities[i]);
+        }
+      }
+    }
+    console.log(linkentity, urlentity);
+    const urls = [];
     if (linkentity) {
       let i = 0;
       let url = ' ';
@@ -36,24 +55,24 @@ async function finder(message) {
       return 'no urls!';
     }
   }
-  if (message.photo) {
+  if (message.caption_entities) {
     console.log(message);
     const entities = await message.caption_entities;
     console.log('entities', typeof entities);
-    let linkentity = [];
+    const linkentity = [];
     // entities.filter((item) => item.type == 'text_link');
     for (i in entities) {
-      if ([i].type == 'text_link') {
-        linkentity.push([i]);
+      if (entities[i].type == 'text_link') {
+        linkentity.push(entities[i]);
       }
     }
-    let urlentity = [];
-    for ([i] in entities) {
-      if ([i].type == 'url') {
-        urlentity.push([i]);
+    const urlentity = [];
+    for (i in entities) {
+      if (entities[i].type == 'url') {
+        urlentity.push(entities[i]);
       }
     } // entities.filter((item) => item.type == 'url');
-    let urls = [];
+    const urls = [];
     if (linkentity) {
       let i = 0;
       let url = ' ';
@@ -83,6 +102,7 @@ async function finder(message) {
     }
   }
 };
+
 module.exports = finder;
 
 
