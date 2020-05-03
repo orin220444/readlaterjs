@@ -10,7 +10,7 @@ async function finder(message) {
     console.log(entities);
     const linkentity = [];
     for (i in entities) {
-      if ({}.hasOwnProperty.call(urls, [i])) {
+      if ({}.hasOwnProperty.call(entities, [i])) {
         if (entities[i].type == 'text_link') {
           linkentity.push(entities[i]);
         }
@@ -19,7 +19,7 @@ async function finder(message) {
 
     const urlentity = [];
     for (i in entities) {
-      if ({}.hasOwnProperty.call(urls, [i])) {
+      if ({}.hasOwnProperty.call(entities, [i])) {
         ;
         if (entities[i].type == 'url') {
           urlentity.push(entities[i]);
@@ -32,7 +32,7 @@ async function finder(message) {
       let i = 0;
       let url = ' ';
       for (i in linkentity) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
+        if ({}.hasOwnProperty.call(linkentity, [i])) {
           url = linkentity[i].url;
           urls.push(url);
         }
@@ -43,7 +43,7 @@ async function finder(message) {
       let url = ' ';
       const text = message.text;
       for (i in urlentity) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
+        if ({}.hasOwnProperty.call(urlentity, [i])) {
           start = urlentity[i].offset;
           length = urlentity[i].length;
           url = text.substr(start, length);
