@@ -8,7 +8,7 @@ async function finder(message) {
     const entities = message.entities;
     const linkentity = entities.filter((item) => item.type == 'text_link');
     const urlentity = entities.filter((item) => item.type == 'url');
-    const urls = [];
+    let urls = [];
     if (linkentity) {
       let i = 0;
       let url = ' ';
@@ -40,20 +40,20 @@ async function finder(message) {
     console.log(message);
     const entities = await message.caption_entities;
     console.log('entities', typeof entities);
-    const linkentity = [];
+    let linkentity = [];
     // entities.filter((item) => item.type == 'text_link');
     for (i in entities) {
       if ([i].type == 'text_link') {
         linkentity.push([i]);
       }
     }
-    const urlentity = [];
+    let urlentity = [];
     for ([i] in entities) {
       if ([i].type == 'url') {
         urlentity.push([i]);
       }
     } // entities.filter((item) => item.type == 'url');
-    const urls = [];
+    let urls = [];
     if (linkentity) {
       let i = 0;
       let url = ' ';
