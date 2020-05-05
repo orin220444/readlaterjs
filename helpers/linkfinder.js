@@ -22,13 +22,12 @@ async function finder(message) {
       let url = ' ';
       const text = message.text;
       for (i=0; i<urlentity.length; i++) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
-          start = urlentity[i].offset;
-          length = urlentity[i].length;
-          url = text.substr(start, length);
-          urls.push(url);
-        }
+        start = urlentity[i].offset;
+        length = urlentity[i].length;
+        url = text.substr(start, length);
+        urls.push(url);
       }
+
       return urls;
     } else {
       return 'no urls!';
@@ -36,7 +35,7 @@ async function finder(message) {
   }
   if (message.photo) {
     console.log(message);
-    const entities = await message.caption_entities;
+    const entities = message.caption_entities;
     console.log('entities', typeof entities);
     const linkentity = [];
     // entities.filter((item) => item.type == 'text_link');
@@ -56,29 +55,26 @@ async function finder(message) {
       let i = 0;
       let url = ' ';
       for (i=0; i<linkentity.length; i++) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
-          url = linkentity[i].url;
-          urls.push(url);
-        }
+        url = linkentity[i].url;
+        urls.push(url);
       }
     }
+
     if (urlentity) {
       let i = 0;
       let url = ' ';
       const text = message.caption;
       for (i=0; i<urlentity.length; i++) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
-          start = urlentity[i].offset;
-          length = urlentity[i].length;
-          url = text.substr(start, length);
-          urls.push(url);
-        }
+        start = urlentity[i].offset;
+        length = urlentity[i].length;
+        url = text.substr(start, length);
+        urls.push(url);
       }
-      console.log(urls);
-      return urls;
-    } else {
-      return 'no urls!';
     }
+    console.log(urls);
+    return urls;
+  } else {
+    return 'no urls!';
   }
 };
 module.exports = finder;
