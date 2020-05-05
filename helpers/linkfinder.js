@@ -90,9 +90,14 @@ async function finder(message) {
       }
     }
     console.log(urls);
-    return urls;
-  } else {
-    return 'no urls!';
+    if (urls) {
+      return urls;
+      //      } else {
+      //      return 'no urls!';
+    }
+  }
+  if (message.reply_markup) {
+    console.log(message.reply_markup);
   }
 };
 
