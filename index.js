@@ -14,22 +14,24 @@ bot.on('message', async (ctx) => {
     await finder(ctx.message).then( async (urls) => {
       let i = 0;
       console.log(urls);
-      for (i in urls) {
-        if ({}.hasOwnProperty.call(urls, i)) {
-          const url = urls[i];
-          if (url == undefined) {
+      if (urls === 'no urls!') {} else {
+        for (i in urls) {
+          if ({}.hasOwnProperty.call(urls, i)) {
+            const url = urls[i];
+            if (url == undefined) {
 
-          } if (url == 'message.chat.id') {
-          } else {
-            console.log(url);
-            try {
-              await saveToDB(url);
-            } catch (error) {
-              console.log(error);
+            } if (url == 'message.chat.id') {
+            } else {
+              console.log(url);
+              try {
+                await saveToDB(url);
+              } catch (error) {
+                console.log(error);
+              }
             }
           }
-        }
         // parse(url);
+        }
       }
     });
   } catch (error) {
