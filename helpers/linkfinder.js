@@ -4,10 +4,29 @@
 * @return {string} url from the message
 */
 async function finder(message) {
+  console.log(message);
   if (message.entities) {
     const entities = message.entities;
-    const linkentity = entities.filter((item) => item.type == 'text_link');
-    const urlentity = entities.filter((item) => item.type == 'url');
+    console.log(entities);
+    const linkentity = [];
+    for (i in entities) {
+      if ({}.hasOwnProperty.call(entities, [i])) {
+        if (entities[i].type == 'text_link') {
+          linkentity.push(entities[i]);
+        }
+      }
+    }
+
+    const urlentity = [];
+    for (i in entities) {
+      if ({}.hasOwnProperty.call(entities, [i])) {
+        ;
+        if (entities[i].type == 'url') {
+          urlentity.push(entities[i]);
+        }
+      }
+    }
+    console.log(linkentity, urlentity);
     const urls = [];
     if (linkentity) {
       let i = 0;
@@ -76,6 +95,7 @@ async function finder(message) {
     return 'no urls!';
   }
 };
+
 module.exports = finder;
 
 
