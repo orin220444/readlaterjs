@@ -1,2 +1,6 @@
 const handleRandom = require('./random');
-module.exports = handleRandom;
+const handleAdd = require('./add')
+module.exports = {
+handleRandom,
+handleAdd
+}
