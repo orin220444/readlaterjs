@@ -12,18 +12,16 @@ async function finder(message) {
     if (linkentity) {
       let i = 0;
       let url = ' ';
-      for (i in linkentity) {
-        if ({}.hasOwnProperty.call(urls, [i])) {
-          url = linkentity[i].url;
-          urls.push(url);
-        }
+      for (i = 0; i < linkentity.length; i++) {
+        url = linkentity[i].url;
+        urls.push(url);
       }
     }
     if (urlentity) {
       let i = 0;
       let url = ' ';
       const text = message.text;
-      for (i in urlentity) {
+      for (i=0; i<urlentity.length; i++) {
         if ({}.hasOwnProperty.call(urls, [i])) {
           start = urlentity[i].offset;
           length = urlentity[i].length;
@@ -42,13 +40,13 @@ async function finder(message) {
     console.log('entities', typeof entities);
     const linkentity = [];
     // entities.filter((item) => item.type == 'text_link');
-    for (i in entities) {
+    for (i=0; i< entities.length; i++) {
       if ([i].type == 'text_link') {
         linkentity.push([i]);
       }
     }
     const urlentity = [];
-    for ([i] in entities) {
+    for (i=0; i< entities.length; i++) {
       if ([i].type == 'url') {
         urlentity.push([i]);
       }
@@ -57,7 +55,7 @@ async function finder(message) {
     if (linkentity) {
       let i = 0;
       let url = ' ';
-      for (i in linkentity) {
+      for (i=0; i<linkentity.length; i++) {
         if ({}.hasOwnProperty.call(urls, [i])) {
           url = linkentity[i].url;
           urls.push(url);
@@ -68,7 +66,7 @@ async function finder(message) {
       let i = 0;
       let url = ' ';
       const text = message.caption;
-      for (i in urlentity) {
+      for (i=0; i<urlentity.length; i++) {
         if ({}.hasOwnProperty.call(urls, [i])) {
           start = urlentity[i].offset;
           length = urlentity[i].length;
