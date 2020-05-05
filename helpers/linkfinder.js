@@ -39,14 +39,14 @@ async function finder(message) {
     console.log('entities', typeof entities);
     const linkentity = [];
     for (i=0; i< entities.length; i++) {
-      if ([i].type == 'text_link') {
-        linkentity.push([i]);
+      if (entities[i].type == 'text_link') {
+        linkentity.push(entitites[i]);
       }
     }
     const urlentity = [];
     for (i=0; i< entities.length; i++) {
-      if ([i].type == 'url') {
-        urlentity.push([i]);
+      if (entities[i].type == 'url') {
+        urlentity.push(entities[i]);
       }
     }
     const urls = [];
