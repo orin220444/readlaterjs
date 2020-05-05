@@ -33,12 +33,11 @@ async function finder(message) {
       return 'no urls!';
     }
   }
-  if (message.photo) {
+  if (message.caption) {
     console.log(message);
     const entities = message.caption_entities;
     console.log('entities', typeof entities);
     const linkentity = [];
-    // entities.filter((item) => item.type == 'text_link');
     for (i=0; i< entities.length; i++) {
       if ([i].type == 'text_link') {
         linkentity.push([i]);
@@ -49,7 +48,7 @@ async function finder(message) {
       if ([i].type == 'url') {
         urlentity.push([i]);
       }
-    } // entities.filter((item) => item.type == 'url');
+    }
     const urls = [];
     if (linkentity) {
       let i = 0;
