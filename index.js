@@ -2,8 +2,10 @@ require('dotenv').config({path: './.env'});
 const Telegraf = require('telegraf');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const finder = require('./helpers/linkfinder');
+const handleRandom = require('./handlers');
 // const parse = require('./helpers/parse');
 const saveToDB = require('./helpers/saveToDB');
+bot.command('random', handleRandom);
 bot.on('message', async (ctx) => {
   // const message = await ctx.message.message_id;
   // console.log(ctx.message.caption_entities);
