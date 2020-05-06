@@ -1,15 +1,17 @@
 const finder = require('../helpers/linkfinder');
 // const parse = require('../helpers/parse');
 const saveToDB = require('../helpers/saveToDB');
-module.exports = async(ctx) => {
+module.exports = async (ctx) => {
   // const message = await ctx.message.message_id;
   // console.log(ctx.message.caption_entities);
-//  ctx.reply('ишу ссылки');
+  const answer = await ctx.reply('ишу ссылки');
   try {
     await finder(ctx.message).then( async (urls) => {
       let i = 0;
       console.log(urls);
-      if (urls === 'no urls!') {} else {
+      if (urls === 'no urls!') {
+        ctx.deleteMessage(answer.message_id);
+      } else {
         for (i in urls) {
           if ({}.hasOwnProperty.call(urls, i)) {
             const url = urls[i];
@@ -19,6 +21,8 @@ module.exports = async(ctx) => {
             } else {
               console.log(url);
               try {
+                // ctx.telegram.editMessageText(ctx.chat.id, answer.message_id,
+                // 'отправляю ссылки на сервер');
                 await saveToDB(url);
               } catch (error) {
                 console.log(error);
@@ -31,5 +35,5 @@ module.exports = async(ctx) => {
     });
   } catch (error) {
     console.log(error);
-}
-}
+  }
+};
