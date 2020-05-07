@@ -59,7 +59,7 @@ async function finder(message) {
     const linkentity = [];
     for (i=0; i< entities.length; i++) {
       if (entities[i].type == 'text_link') {
-        linkentity.push(entitites[i]);
+        linkentity.push(entities[i]);
       }
     }
     const urlentity = [];
