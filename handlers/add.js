@@ -1,5 +1,5 @@
 const finder = require('../helpers/linkfinder');
-// const parse = require('../helpers/parse');
+ const parse = require('../helpers/parse');
 const saveToDB = require('../helpers/saveToDB');
 module.exports = async (ctx) => {
   // const message = await ctx.message.message_id;
@@ -23,13 +23,14 @@ module.exports = async (ctx) => {
               try {
                 // ctx.telegram.editMessageText(ctx.chat.id, answer.message_id,
                 // 'отправляю ссылки на сервер');
-                await saveToDB(url);
+parse(url)                
+await saveToDB(url);
               } catch (error) {
                 console.log(error);
               }
             }
           }
-        // parse(url);
+         
         }
       }
     });
