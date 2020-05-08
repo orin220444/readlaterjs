@@ -4,10 +4,8 @@
 * @return {string} url from the message
 */
 async function finder(message) {
-  console.log(message);
   if (message.entities) {
     const entities = message.entities;
-    console.log(entities);
     const linkentity = [];
     for (i in entities) {
       if ({}.hasOwnProperty.call(entities, [i])) {
@@ -26,7 +24,6 @@ async function finder(message) {
         }
       }
     }
-    console.log(linkentity, urlentity);
     const urls = [];
     if (linkentity) {
       let i = 0;
@@ -46,16 +43,14 @@ async function finder(message) {
         url = text.substr(start, length);
         urls.push(url);
       }
-
+console.log(urls)
       return urls;
     } else {
       return 'no urls!';
     }
   }
   if (message.caption) {
-    console.log(message);
     const entities = message.caption_entities;
-    console.log('entities', typeof entities);
     const linkentity = [];
     for (i=0; i< entities.length; i++) {
       if (entities[i].type == 'text_link') {

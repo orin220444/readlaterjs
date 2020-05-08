@@ -8,7 +8,6 @@ module.exports = async (ctx) => {
   try {
     await finder(ctx.message).then( async (urls) => {
       let i = 0;
-      console.log(urls);
       if (urls === 'no urls!') {
         //        ctx.deleteMessage(answer.message_id);
       } else {
@@ -23,6 +22,7 @@ module.exports = async (ctx) => {
               try {
                 // ctx.telegram.editMessageText(ctx.chat.id, answer.message_id,
                 // 'отправляю ссылки на сервер');
+console.log('sending url to the db') 
                 await saveToDB(url);
               } catch (error) {
                 console.log(error);
