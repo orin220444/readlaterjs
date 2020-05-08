@@ -1,4 +1,5 @@
 const Post = require('../database/models');
+const bot = require('../bot')
 // const Extra = require('telegraf/extra')
 const Markup = require('telegraf/markup');
 module.exports = async (ctx) => {
@@ -12,8 +13,8 @@ module.exports = async (ctx) => {
     Markup.callbackButton('Archive', 'Readed'),
   ]).extra(),
   );
-/* bot.on('callback_quiery', (ctx) => {
+ bot.on('callback_quiery', (ctx) => {
   console.log(ctx.callbackQuiery)
 })
-*/
+
 };
