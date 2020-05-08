@@ -20,4 +20,4 @@ async function saveToDB(url, page) {
   }
 }
 module.exports = saveToDB;
-// FIXME: сохраняет оригинальные и сокращенные ссылки
+
