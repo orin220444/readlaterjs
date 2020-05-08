@@ -14,6 +14,13 @@ const postSchema = new Schema({
     type: String,
     default: '',
   },
+  title: {
+    type: String,
+  },
+  content: {
+    type: String,
+
+  },
 });
 const Post = mongoose.model('Post', postSchema);
 module.exports = Post;

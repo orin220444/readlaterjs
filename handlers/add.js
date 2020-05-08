@@ -25,7 +25,7 @@ module.exports = async (ctx) => {
                 // 'отправляю ссылки на сервер');
                 const page = await parse(url);
                 console.log(page);
-                await saveToDB(url);
+                await saveToDB(url, page);
               } catch (error) {
                 console.log(error);
               }
