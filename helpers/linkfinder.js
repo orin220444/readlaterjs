@@ -43,7 +43,7 @@ async function finder(message) {
         url = text.substr(start, length);
         urls.push(url);
       }
-console.log(urls)
+      console.log(urls);
       return urls;
     } else {
       return 'no urls!';

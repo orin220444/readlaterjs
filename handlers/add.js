@@ -22,7 +22,7 @@ module.exports = async (ctx) => {
               try {
                 // ctx.telegram.editMessageText(ctx.chat.id, answer.message_id,
                 // 'отправляю ссылки на сервер');
-console.log('sending url to the db') 
+                console.log('sending url to the db');
                 await saveToDB(url);
               } catch (error) {
                 console.log(error);
