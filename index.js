@@ -4,7 +4,9 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 const {
   handleRandom,
   handleAdd,
+  handleMaintenance,
 } = require('./handlers');
 bot.command('random', handleRandom);
+bot.command('maintenance', handleMaintenance);
 bot.on('message', handleAdd);
 bot.launch();
