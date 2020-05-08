@@ -24,7 +24,7 @@ module.exports = async (ctx) => {
                 // ctx.telegram.editMessageText(ctx.chat.id, answer.message_id,
                 // 'отправляю ссылки на сервер');
                 const page = await parse(url);
-                console.log(page)
+                console.log(page);
                 await saveToDB(url);
               } catch (error) {
                 console.log(error);

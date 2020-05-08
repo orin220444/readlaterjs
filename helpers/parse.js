@@ -5,10 +5,11 @@ const Mercury = require('@postlight/mercury-parser');
 * @return {object} web page title and web page content
 */
 async function parse(url) {
-  const page = await Mercury.parse(url, {contentType: 'text'}).then((result) => {
-    console.log(result.content);
-    return {title: result.title, content: result.content};
-  });
+  const page = await Mercury.parse(url, {contentType: 'text'})
+      .then((result) => {
+        console.log(result.content);
+        return {title: result.title, content: result.content};
+      });
   return page;
 }
 module.exports = parse;
