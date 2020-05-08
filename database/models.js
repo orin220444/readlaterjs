@@ -14,6 +14,10 @@ const postSchema = new Schema({
     type: String,
     default: '',
   },
+  asReaded: {
+    type: Boolean,
+    default: false,
+  },
 });
 const Post = mongoose.model('Post', postSchema);
 module.exports = Post;
