@@ -1,5 +1,5 @@
 require('dotenv').config({path: './.env'});
-const bot = require('./bot')
+const bot = require('./bot');
 const {
   handleRandom,
   handleAdd,
