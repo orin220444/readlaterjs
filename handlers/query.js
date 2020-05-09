@@ -1,6 +1,5 @@
 const Post = require('../database/models')
 module.exports = async (ctx) => {
-    console.log(ctx.callbackQuery);
     if (ctx.callbackQuery.data === 'Readed') {
       console.log('archiving');
       await archive(ctx.callbackQuery.message.text);
