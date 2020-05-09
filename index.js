@@ -1,6 +1,5 @@
 require('dotenv').config({path: './.env'});
-const Telegraf = require('telegraf');
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = require('./bot');
 const {
   handleRandom,
   handleAdd,
