@@ -19,6 +19,7 @@ module.exports = async (ctx) => {
     if (ctx.callbackQuery.data === 'Readed') {
       console.log('archiving');
       await archive(ctx.callbackQuery.message.text);
+ctx.reply('archived!')
     }
   });
   /**
