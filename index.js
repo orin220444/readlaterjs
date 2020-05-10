@@ -3,7 +3,7 @@ const bot = require('./bot');
 const {
   handleRandom,
   handleAdd,
-handleQuery
+  handleQuery,
 } = require('./handlers');
 bot.command('random', handleRandom);
 bot.on('callback_query', handleQuery);

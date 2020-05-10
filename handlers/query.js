@@ -1,10 +1,10 @@
-const Post = require('../database/models')
+const Post = require('../database/models');
 module.exports = async (ctx) => {
-    if (ctx.callbackQuery.data === 'Readed') {
-      console.log('archiving');
-      await archive(ctx.callbackQuery.message.text);
-      ctx.reply('archived!');
-    }
+  if (ctx.callbackQuery.data === 'Readed') {
+    console.log('archiving');
+    await archive(ctx.callbackQuery.message.text);
+    ctx.reply('archived!');
+  }
 
   /**
    * set asReaded = true in the db to the page
