@@ -25,7 +25,9 @@ async function checkForDuplicates(post) {
           await Post.findOneAndDelete({originalURL: post.originalURL});
           console.log('duplicate is deleted!');
         } else {
-          await Post.create({originalURL: realUrl});
+          console.log('updating url');
+          post.originalURL = await realUrl;
+          await post.save();
         }
       }
     }
