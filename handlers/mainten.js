@@ -20,9 +20,13 @@ async function checkForDuplicates(post) {
     if (realUrl !== post.originalURL) {
       const original = Post.findOne({originalURL: realUrl});
       if (original !== undefined) {
-        console.log('finded a duplicate!');
-        await Post.findOneAndDelete({originalURL: post.originalURL});
-        console.log('duplicate is deleted!');
+        if (original === post) {
+          console.log('finded a duplicate!');
+          await Post.findOneAndDelete({originalURL: post.originalURL});
+          console.log('duplicate is deleted!');
+        } else {
+          await Post.create({originalURL: realUrl});
+        }
       }
     }
   }
