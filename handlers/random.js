@@ -9,6 +9,7 @@ console.log(randompost.originalURL)
   ctx.reply(
       randompost.originalURL, Markup.inlineKeyboard([
         Markup.callbackButton('Archive', 'Readed'),
+Markup.callbackButton('Delete', 'Delete')
       ]).extra(),
   );
 };
