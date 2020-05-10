@@ -25,11 +25,16 @@ module.exports = async (ctx) => {
             } else {
               console.log(url);
               try {
-                const realURL = await getRealURL(url);
-                // ctx.telegram.editMessageText(ctx.chat.id, answer.message_id,
-                // 'отправляю ссылки на сервер');
-                console.log('sending url to the db');
-                await saveToDB(realURL);
+                setTimeout( async (url) => {
+                  console.log(url);
+                  const realURL = await getRealURL(url);
+
+                  // ctx.telegram.editMessageText(
+                  // ctx.chat.id, answer.message_id)
+                  // 'отправляю ссылки на сервер');
+                  console.log('sending url to the db');
+                  await saveToDB(realURL);
+                }, 5*1000, url);
               } catch (error) {
                 console.log(error);
               }
