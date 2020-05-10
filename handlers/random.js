@@ -5,11 +5,11 @@ module.exports = async (ctx) => {
   const randompost = posts[
       Math.floor(Math.random()*posts.length)
   ];
-console.log(randompost.originalURL)
+  console.log(randompost.originalURL);
   ctx.reply(
       randompost.originalURL, Markup.inlineKeyboard([
         Markup.callbackButton('Archive', 'Readed'),
-Markup.callbackButton('Delete', 'Delete')
+        Markup.callbackButton('Delete', 'Delete'),
       ]).extra(),
   );
 };
