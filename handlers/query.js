@@ -14,7 +14,7 @@ module.exports = async (ctx) => {
    * @param {string} url originalUrl of the web page
    */
   async function archive(url) {
-    const post = await Post.update({originalURL: url},
+    const post = await Post.updateOne({originalURL: url},
         {asReaded: true},
     );
     console.log('posts modified', post.nModified);
