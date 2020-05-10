@@ -19,9 +19,9 @@ module.exports = async (ctx) => {
         for (i in urls) {
           if ({}.hasOwnProperty.call(urls, i)) {
             const url = urls[i];
-            if (url == undefined) {
+            if (url === undefined) {
 
-            } if (url == 'message.chat.id') {
+            } if (url === 'message.chat.id') {
             } else {
               console.log(url);
               try {
