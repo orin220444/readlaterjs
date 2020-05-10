@@ -11,6 +11,7 @@ module.exports = async (ctx) => {
   ctx.reply(
       randompost.originalURL, Markup.inlineKeyboard([
         Markup.callbackButton('Archive', 'Readed'),
+Markup.callbackButton('Delete', 'Delete')
       ]).extra(),
   );
   bot.on('callback_query', async (ctx) => {
