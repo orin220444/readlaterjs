@@ -1,3 +1,8 @@
 const finder = require('./linkfinder');
-
-module.exports = finder;
+const saveToDB = require('./saveToDB');
+const getRealURL = require('./getRealUrl');
+module.exports = {
+  finder,
+  saveToDB,
+  getRealURL,
+};

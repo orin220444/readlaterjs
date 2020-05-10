@@ -1,7 +1,11 @@
-const finder = require('../helpers/linkfinder');
+const {
+  finder,
+  saveToDB,
+  getRealURL,
+} = require('../helpers');
 // const parse = require('../helpers/parse');
-const saveToDB = require('../helpers/saveToDB');
-const getRealURL = require('../helpers/getRealUrl');
+
+
 module.exports = async (ctx) => {
   // const message = await ctx.message.message_id;
   // console.log(ctx.message.caption_entities);
