@@ -19,6 +19,10 @@ module.exports = async (ctx) => {
     );
     console.log('posts modified', post.nModified);
   }
+  /**
+   * deletes document from the db
+   * @param {string} url Original url of document to delete
+   */
   async function deletePost(url) {
     await Post.findOneAndDelete({originalUrl: url});
   }
