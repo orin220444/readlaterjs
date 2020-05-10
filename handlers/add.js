@@ -1,6 +1,7 @@
 const finder = require('../helpers/linkfinder');
 // const parse = require('../helpers/parse');
 const saveToDB = require('../helpers/saveToDB');
+const getRealURL = require('../helpers/getRealUrl');
 module.exports = async (ctx) => {
   // const message = await ctx.message.message_id;
   // console.log(ctx.message.caption_entities);
@@ -20,10 +21,11 @@ module.exports = async (ctx) => {
             } else {
               console.log(url);
               try {
+                const realURL = await getRealURL(url);
                 // ctx.telegram.editMessageText(ctx.chat.id, answer.message_id,
                 // 'отправляю ссылки на сервер');
                 console.log('sending url to the db');
-                await saveToDB(url);
+                await saveToDB(realURL);
               } catch (error) {
                 console.log(error);
               }
