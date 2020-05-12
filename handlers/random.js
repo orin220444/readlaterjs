@@ -1,7 +1,7 @@
-const Post = require('../database/models');
+const dataBase = require('../database.json');
 const Markup = require('telegraf/markup');
 module.exports = async (ctx) => {
-  const posts = await Post.find(/* {asReaded: false}*/);
+  const posts = nonReadedPosts(dataBase);
   const randompost = posts[
       Math.floor(Math.random()*posts.length)
   ];
@@ -12,4 +12,22 @@ module.exports = async (ctx) => {
         Markup.callbackButton('Delete', 'Delete'),
       ]).extra(),
   );
+  /**
+   * filters non readed posts
+   * @param {object} data data from database
+   * @return {object} non readed posts
+   */
+  function nonReadedPosts(data) {
+    const posts = [];
+    for (let i = 0; i < data.length; i++) {
+      const post = data[i];
+      if (post.asReaded === false) {
+        posts.push(post);
+      }
+      if (!post.asReaded) {
+        posts.push(post);
+      }
+    }
+    return posts;
+  }
 };
