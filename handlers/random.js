@@ -1,6 +1,7 @@
-const dataBase = require('../database.json');
+
 const Markup = require('telegraf/markup');
 module.exports = async (ctx) => {
+  const dataBase = require('../database.json');
   const posts = nonReadedPosts(dataBase);
   const randompost = posts[
       Math.floor(Math.random()*posts.length)
