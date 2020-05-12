@@ -3,11 +3,14 @@ module.exports = async (ctx) => {
   if (ctx.callbackQuery.data === 'Readed') {
     console.log('archiving');
     await archive(ctx.callbackQuery.message.text);
-    ctx.reply('archived!');
+    console.log(ctx.callbackQuery.message);
+    ctx.reply('archived!',
+        {reply_to_message_id: ctx.callbackQuery.message.message_id});
   } else if (ctx.callbackQuery.data === 'Delete') {
     console.log('deleting');
     await deletePost(ctx.callbackQuery.message.text);
-    ctx.reply('deleted');
+    ctx.reply('deleted',
+        {reply_to_message_id: ctx.callbackQuery.message.message_id});
   }
   /**
    * set asReaded = true in the db to the page
