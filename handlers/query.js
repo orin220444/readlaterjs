@@ -1,4 +1,4 @@
-const Post = require('../database/models');
+const Post = require('../database/models.js');
 module.exports = async (ctx) => {
   if (ctx.callbackQuery.data === 'Readed') {
     console.log('archiving');

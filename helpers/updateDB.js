@@ -1,4 +1,4 @@
-const Post = require('../database/models');
+const Post = require('../database/models.js');
 const fs = require('fs');
 /**
  * saves local cache of the db to disk
