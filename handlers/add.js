@@ -13,16 +13,12 @@ module.exports = async (ctx) => {
   try {
     await finder(ctx.message).then( async (urls) => {
       let i = 0;
-      if (urls === 'no urls!') {
+      if (urls !== 'no urls!') {
         //        ctx.deleteMessage(answer.message_id);
-      } else {
         for (i in urls) {
           if ({}.hasOwnProperty.call(urls, i)) {
             const url = urls[i];
-            if (url === undefined) {
-
-            } if (url === 'message.chat.id') {
-            } else {
+            if (url !== 'message.chat.id') {
               console.log(url);
               try {
                 const x = Math.random()*15 + 1;
