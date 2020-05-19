@@ -19,49 +19,23 @@ async function finder(message) {
 }
 
 /**
-* filters types of the entities
-* @param {array} entities - message.entities or message.caption_entities
-* @param {string} neededType - type to filter
-* @return {array} filtered entities
-*/
-function filter(entities, neededType) {
-  // console.log(neededType);
-  const filteredentities = [];
-  for (let i = 0; i < entities.length; i++) {
-    // console.log(entities[i].type);
-    if (entities[i].type == neededType) {
-      filteredentities.push(entities[i]);
-    }
-  }
-  return filteredentities;
-}
-/**
 * gets links in the "url" entities
-* @param {array} urlentities - url entities
+* @param {object} entity - url entity
 * @param {string} text - message.text or message.caption
-* @return {array} array of the urls
+* @return {string} url
 */
-function url(urlentities, text) {
-  // console.log(text);
-  const urls = [];
-  for (let i = 0; i < urlentities.length; i++) {
-    const url = text.substr(urlentities[i].offset, urlentities[i].length);
-    urls.push(url);
-  }
-  return urls;
+function url(entity, text) {
+  const url = text.substr(entity.offset, entity.length);
+  return url;
 }
 /**
 * gets links in the "text_link" entities
-* @param {array} linkentities - text_link entities
-* @return {array} array of entities
+* @param {object} entity - text_link entity
+* @return {string} url
 */
-function textLink(linkentities) {
-  const urls = [];
-  for (let i = 0; i < linkentities.length; i++) {
-    const url = linkentities[i].url;
-    urls.push(url);
-  }
-  return urls;
+function textLink(entity) {
+  const url = entity.url;
+  return url;
 }
 /**
 * finds urls in the entities field of the message
@@ -70,11 +44,17 @@ function textLink(linkentities) {
 * @return {array} array of the urls arrays
 */
 function find(entities, text) {
-  const linkentity = filter(entities, 'text_link');
-  const urlentity = filter(entities, 'url');
-  const linkurls = textLink(linkentity);
-  const urlurls = url(urlentity, text);
-  return [linkurls, urlurls];
+  const urls = [];
+  for (let i = 0; i < entities.length; i++) {
+    const entity = entities[i];
+    if (entity.type == 'text_link') {
+      urls.push(textLink(entity));
+    }
+    if (entity.type == 'url') {
+      urls.push(url(entity, text));
+    }
+    return urls;
+  }
 }
 module.exports = finder;
 
