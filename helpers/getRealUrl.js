@@ -5,12 +5,16 @@ const axios = require('axios');
  * @return {string} real url
  */
 async function getRealURL(url) {
-  const realURL = await axios.get(url)
-      .then(function(response) {
-        console.log(`Original url: ${url},
+  try {
+    const realURL = await axios.get(url)
+        .then(function(response) {
+          console.log(`Original url: ${url},
 real url ${response.request.res.responseUrl}`);
-        return response.request.res.responseUrl;
-      });
-  return realURL;
+          return response.request.res.responseUrl;
+        });
+    return realURL;
+  } catch (error) {
+    console.log(error);
+  };
 }
 module.exports = getRealURL;
