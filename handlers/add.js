@@ -25,8 +25,9 @@ module.exports = async (ctx) => {
                 const x = Math.random()*15 + 1;
                 console.log(`x = ${x}`);
                 setTimeout( async (url) => {
-                  await axios(url).then(async (realURL) => {
-                    await parse(realURL);
+                  await axios(url).then(async (realURL, page) => {
+                    console.log(realURL);
+                    await parse(realURL, page);
                     console.log('sending url to the db');
                     await saveToDB(realURL);
                   });
