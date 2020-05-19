@@ -12,11 +12,25 @@ async function finder(message) {
     const urls = find(message.caption_entities, message.caption);
     console.log(urls);
     return urls;
+  } else if (message.reply_markup) {
+    console.log(ctx.message.reply_markup.inline_keyboard);
+    const urls = markup(message.reply_markup);
+    return urls;
   } else {
     return 'no urls!';
   }
 }
-
+/**
+ * finds urls in inline keyboard
+ * @param {object} keyboard - inline keyboard
+ * //@return {array} urls
+ */
+function markup(keyboard) {
+  console.log(keyboard);
+  if (keyboard.inline_keyboard) {
+    console.log(keyboard.inline_keyboard);
+  }
+}
 /**
 * gets links in the "url" entities
 * @param {object} entity - url entity

@@ -10,6 +10,7 @@ module.exports = async (ctx) => {
   // const message = await ctx.message.message_id;
   // console.log(ctx.message.caption_entities);
 //  const answer = await ctx.reply('ишу ссылки');
+
   try {
     await finder(ctx.message).then( async (urls) => {
       if (urls !== 'no urls!') {
