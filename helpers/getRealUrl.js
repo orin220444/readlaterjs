@@ -8,7 +8,7 @@ async function getRealURL(url) {
   const realURL = await axios.get(url)
       .then(function(response) {
         console.log(`Original url: ${url},
-real url ${response.request.res.responseUrl}`);
+Real url: ${response.request.res.responseUrl}`);
         return response.request.res.responseUrl;
       });
   return realURL;
