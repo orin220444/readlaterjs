@@ -12,7 +12,6 @@ const postSchema = new Schema({
   },
   parsedURL: {
     type: String,
-    default: '',
   },
   asReaded: {
     type: Boolean,
