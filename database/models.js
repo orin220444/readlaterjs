@@ -14,6 +14,14 @@ const postSchema = new Schema({
     type: String,
     default: '',
   },
+  asReaded: {
+    type: Boolean,
+    default: false,
+  },
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 const Post = mongoose.model('Post', postSchema);
 module.exports = Post;

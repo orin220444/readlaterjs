@@ -8,8 +8,7 @@ async function finder(message) {
     const urls = find(message.entities, message.text);
     console.log(urls);
     return urls;
-  }
-  if (message.caption_entities) {
+  } else if (message.caption_entities) {
     const urls = find(message.caption_entities, message.caption);
     console.log(urls);
     return urls;
@@ -41,7 +40,7 @@ function textLink(entity) {
 * finds urls in the entities field of the message
 * @param {array} entities - message entities
 * @param {string} text - message text
-* @return {array} array of the urls arrays
+* @return {array} array of the urls
 */
 function find(entities, text) {
   const urls = [];
@@ -53,8 +52,8 @@ function find(entities, text) {
     if (entity.type == 'url') {
       urls.push(url(entity, text));
     }
-    return urls;
   }
+  return urls;
 }
 module.exports = finder;
 
