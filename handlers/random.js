@@ -1,4 +1,4 @@
-const Markup = require('telegraf/markup');
+const Markup = require('telegraf/markup.js');
 module.exports = async (ctx) => {
   const dataBase = require('../database.json');
   const posts = nonReadedPosts(dataBase);

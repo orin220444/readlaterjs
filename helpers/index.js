@@ -1,6 +1,6 @@
-const finder = require('./linkfinder');
-const saveToDB = require('./saveToDB');
-const axios = require('./axios');
+const axios = require('./axios.js');
+const finder = require('./linkfinder.js');
+const saveToDB = require('./saveToDB.js');
 module.exports = {
   finder,
   saveToDB,

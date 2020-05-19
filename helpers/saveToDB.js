@@ -1,4 +1,4 @@
-const Post = require('../database/models');
+const Post = require('../database/models.js');
 /**
 * saves url in the database
 * @param {any} url - url to save
