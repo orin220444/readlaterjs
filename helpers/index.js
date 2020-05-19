@@ -1,10 +1,10 @@
 const finder = require('./linkfinder');
 const saveToDB = require('./saveToDB');
-const getRealURL = require('./getRealUrl');
-const parse = require('./parse')
+const parse = require('./parse');
+const axios = require('./axios');
 module.exports = {
   finder,
   saveToDB,
-  getRealURL,
+  axios,
   parse,
 };

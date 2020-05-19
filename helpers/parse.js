@@ -5,16 +5,20 @@ const cheerio = require('cheerio');
 * @param {string} url url of web page to parse
 */
 async function parse(url) {
-  console.log('test');
-  axios.get(url).then(async function(response) {
+  try {
+    console.log('test');
+    axios.get(url).then(async function(response) {
     // console.log(response);
-    const $ = await cheerio.load(response);
-    console.log($);
-    const body = await $('body').text();
-    console.log(body);
-  })
-      .catch(function(error) {
-        console.log('error:', error);
-      });
+      const $ = await cheerio.load(response);
+      console.log(typeof $);
+      const body = await $('body').text();
+      console.log(body);
+    })
+        .catch(function(error) {
+          console.log('error:', error);
+        });
+  } catch (error) {
+    console.log(error);
+  }
 }
 module.exports = parse;

@@ -1,7 +1,7 @@
 const {
   finder,
   saveToDB,
-  getRealURL,
+  axios,
   parse,
 } = require('../helpers');
 // const parse = require('../helpers/parse');
@@ -14,28 +14,26 @@ module.exports = async (ctx) => {
   try {
     await finder(ctx.message).then( async (urls) => {
       let i = 0;
-      if (urls === 'no urls!') {
+      if (urls !== 'no urls!') {
         //        ctx.deleteMessage(answer.message_id);
-      } else {
         for (i in urls) {
           if ({}.hasOwnProperty.call(urls, i)) {
             const url = urls[i];
-            if (url === undefined) {
-
-            } if (url === 'message.chat.id') {
-            } else {
+            if (url !== 'message.chat.id') {
               console.log(url);
               try {
                 const x = Math.random()*15 + 1;
                 console.log(`x = ${x}`);
                 setTimeout( async (url) => {
-                  const realURL = await getRealURL(url);
-                  await parse(realURL);
+                  await axios(url).then(async (realURL) => {
+                    await parse(realURL);
+                    console.log('sending url to the db');
+                    await saveToDB(realURL);
+                  });
+
                   // ctx.telegram.editMessageText(
                   // ctx.chat.id, answer.message_id)
                   // 'отправляю ссылки на сервер');
-                  console.log('sending url to the db');
-                  await saveToDB(realURL);
                 }, x, url);
               } catch (error) {
                 console.log(error);
