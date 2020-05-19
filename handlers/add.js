@@ -1,7 +1,7 @@
 const {
   finder,
   saveToDB,
-  getRealURL,
+  axios,
 } = require('../helpers');
 // const parse = require('../helpers/parse');
 
@@ -28,13 +28,14 @@ module.exports = async (ctx) => {
                 const x = Math.random()*15 + 1;
                 console.log(`x = ${x}`);
                 setTimeout( async (url) => {
-                  const realURL = await getRealURL(url);
+                  await axios(url).then(async (realURL) => {
+                    console.log('sending url to the db');
+                    await saveToDB(realURL);
+                  });
 
                   // ctx.telegram.editMessageText(
                   // ctx.chat.id, answer.message_id)
                   // 'отправляю ссылки на сервер');
-                  console.log('sending url to the db');
-                  await saveToDB(realURL);
                 }, x, url);
               } catch (error) {
                 console.log(error);

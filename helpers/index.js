@@ -1,8 +1,8 @@
 const finder = require('./linkfinder');
 const saveToDB = require('./saveToDB');
-const getRealURL = require('./getRealUrl');
+const axios = require('./axios');
 module.exports = {
   finder,
   saveToDB,
-  getRealURL,
+  axios,
 };

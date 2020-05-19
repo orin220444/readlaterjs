@@ -1,20 +1,19 @@
-const axios = require('axios');
+const get = require('axios').get;
 /**
  * takes url and gets real url
  * @param {string} url - url to check
  * @return {string} real url
  */
-async function getRealURL(url) {
+async function axios(url) {
   try {
-    const realURL = await axios.get(url)
+    return await get(url)
         .then(function(response) {
           console.log(`Original url: ${url},
 real url ${response.request.res.responseUrl}`);
           return response.request.res.responseUrl;
         });
-    return realURL;
   } catch (error) {
     console.log(error);
   };
 }
-module.exports = getRealURL;
+module.exports = axios;
