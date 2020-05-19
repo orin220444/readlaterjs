@@ -2,6 +2,7 @@ const {
   finder,
   saveToDB,
   getRealURL,
+  parse,
 } = require('../helpers');
 // const parse = require('../helpers/parse');
 
@@ -29,7 +30,7 @@ module.exports = async (ctx) => {
                 console.log(`x = ${x}`);
                 setTimeout( async (url) => {
                   const realURL = await getRealURL(url);
-
+                  await parse(realURL);
                   // ctx.telegram.editMessageText(
                   // ctx.chat.id, answer.message_id)
                   // 'отправляю ссылки на сервер');

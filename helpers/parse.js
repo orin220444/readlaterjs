@@ -9,7 +9,7 @@ async function parse(url) {
   axios.get(url).then(async function(response) {
     // console.log(response);
     const $ = await cheerio.load(response);
-    console.log(typeof $);
+    console.log($);
     const body = await $('body').text();
     console.log(body);
   })
