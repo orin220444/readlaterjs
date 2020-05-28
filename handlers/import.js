@@ -10,9 +10,11 @@ module.exports = async (ctx) => {
     axios.get(file)
         .then(function(response) {
           console.log(typeof response.data);
-          fs.writeFileSync(
+          fs.writeFile(
               `import${new Date().getSeconds()}.html`,
-              response.data);
+              response.data, function(err) {
+                if (err) console.log(`error while importing: ${err}`);
+              });
         });
   });
 };
