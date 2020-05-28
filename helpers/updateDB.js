@@ -6,10 +6,9 @@ const fs = require('fs');
 async function updateDb() {
   let posts = await Post.find();
   posts = JSON.stringify(posts);
-  fs.writeFile('database.json', String(posts), function(err){
-    if (err) console.log(`update db error: ${err}`)
+  fs.writeFile('database.json', String(posts), function(err) {
+    if (err) console.log(`update db error: ${err}`);
     else console.log('local cache updated!');
   });
-
 }
 module.exports = updateDb;
