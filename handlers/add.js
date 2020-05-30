@@ -6,7 +6,7 @@ const {
 
 module.exports = async (ctx) => {
   try {
-    await finder(ctx.message).then( async (urls) => {
+    const urls = await finder(ctx.message);
       if (urls !== 'no urls!') {
         for (let i = 0; i < urls.length; i++) {
           const url = urls[i];
@@ -26,8 +26,7 @@ module.exports = async (ctx) => {
             }
           }
         }
-      }
-    });
+    };
   } catch (error) {
     console.log(error);
   }
