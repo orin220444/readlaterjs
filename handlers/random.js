@@ -1,4 +1,4 @@
-const Markup = require('telegraf/markup.js');
+const keyboard = require('../helpers/keyboard.js');
 module.exports = async (ctx) => {
   const dataBase = require('../database.json');
   const posts = nonReadedPosts(dataBase);
@@ -7,11 +7,7 @@ module.exports = async (ctx) => {
   ];
   console.log(randompost.originalURL);
   ctx.reply(
-      randompost.originalURL, Markup.inlineKeyboard([
-        Markup.callbackButton('Archive', 'Readed'),
-        Markup.callbackButton('Delete', 'Delete'),
-      ]).extra(),
-  );
+      randompost.originalURL, keyboard);
   /**
    * filters non readed posts
    * @param {object} data data from database
