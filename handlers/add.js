@@ -25,7 +25,8 @@ module.exports = async (ctx) => {
             console.log(error);
           }
         }
-        ctx.reply(url, keyboard);
+        ctx.reply(url, keyboard,
+            {reply_to_message_id: ctx.message.message_id});
       }
     };
   } catch (error) {

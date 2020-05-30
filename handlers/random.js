@@ -7,7 +7,8 @@ module.exports = async (ctx) => {
   ];
   console.log(randompost.originalURL);
   ctx.reply(
-      randompost.originalURL, keyboard);
+      randompost.originalURL, keyboard,
+      {reply_to_message_id: ctx.message.message_id});
   /**
    * filters non readed posts
    * @param {object} data data from database
