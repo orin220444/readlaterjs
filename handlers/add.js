@@ -2,9 +2,8 @@ const {
   finder,
   saveToDB,
   axios,
-  parse,
 } = require('../helpers');
-// const parse = require('../helpers/parse');
+const parse = require('../parse');
 
 
 module.exports = async (ctx) => {
