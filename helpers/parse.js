@@ -7,9 +7,9 @@ const cheerio = require('cheerio');
 async function parse(url, page) {
   try {
     console.log('test');
-    const $ = await cheerio.load(page);
+    const $ = cheerio.load(page);
     console.log(typeof $);
-    const body = await $('body').text();
+    const body = $('body').text();
     console.log(body);
   } catch (error) {
     console.log(error);
