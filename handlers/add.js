@@ -2,8 +2,8 @@ const {
   finder,
   saveToDB,
   axios,
+  keyboard,
 } = require('../helpers');
-const keyboard = require('../helpers/keyboard.js');
 module.exports = async (ctx) => {
   try {
     const urls = await finder(ctx.message);
