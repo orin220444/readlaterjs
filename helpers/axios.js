@@ -15,7 +15,7 @@ real url ${realURL}`);
           callback(realURL);
         });
   } catch (error) {
-    console.log(error);
+    console.log(`axios error: ${error}, ${error.code}, ${error.config.url}`);
   };
 }
 module.exports = axios;
