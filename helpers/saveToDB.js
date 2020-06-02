@@ -4,13 +4,35 @@ const Post = require('../database/models.js');
 * @param {any} url - url to save
 */
 async function saveToDB(url) {
+  findDuplicates(url, function() {
+    save(url);
+  });
+}
+/**
+ * save to db
+ * @param {string} url url to save
+ */
+async function save(url) {
+  try {
+    const post = await Post.create({
+      originalURL: url,
+    });
+    await post.save();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+/**
+ * checks for duplicates
+ * @param {string} url url to check
+ */
+async function findDuplicates(url) {
   try {
     const post = await Post.findOne({originalURL: url});
     if (!post) {
-      const post = await Post.create({
-        originalURL: url,
-      });
-      await post.save();
+      callback();
     }
   } catch (error) {
     console.log(error);
