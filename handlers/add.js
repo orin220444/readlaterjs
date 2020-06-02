@@ -5,7 +5,9 @@ const {
   keyboard,
 } = require('../helpers');
 module.exports = async (ctx) => {
-  await finder(ctx.message, getUrl(urls));
+  await finder(ctx.message, function(urls) {
+    getUrl(urls);
+  });
 
   /**
 * check urls array for errors
