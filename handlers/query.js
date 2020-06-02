@@ -13,7 +13,7 @@ module.exports = async (ctx) => {
         {reply_to_message_id: ctx.callbackQuery.message.message_id});
   }
   /**
-   * set asReaded = true in the db to the page
+   * set asRead = true in the db to the page
    * @param {string} url originalUrl of the web page
    */
   async function archive(url) {
