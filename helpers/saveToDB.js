@@ -19,7 +19,7 @@ async function save(url) {
     });
     await post.save();
   } catch (error) {
-    console.log(error);
+    console.log(`error while saving to db: ${error}, ${url}`);
   }
 }
 
@@ -35,7 +35,7 @@ async function findDuplicates(url) {
       callback();
     }
   } catch (error) {
-    console.log(error);
+    console.log(`error while checking for duplicates: ${error}, ${url}`);
   }
 }
 module.exports = saveToDB;
