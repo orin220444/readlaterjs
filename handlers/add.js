@@ -8,7 +8,7 @@ module.exports = async (ctx) => {
   await finder(ctx.message, function(urls) {
     getUrl(urls);
   });
-
+  const message = ctx.message.message_id;
   /**
 * check urls array for errors
 * @param {array} urls array of parsed urls
@@ -48,7 +48,9 @@ module.exports = async (ctx) => {
 * @param {string} realURL url to log
 */
   function logSuccess(realURL) {
-    ctx.reply(realURL, keyboard,
-        {reply_to_message_id: ctx.message.message_id});
+    setTimeout( async (realURL) => {
+      ctx.reply(realURL, keyboard,
+          {reply_to_message_id: message});
+    }, Math.random()*15 + 1, realURL);
   };
 };
