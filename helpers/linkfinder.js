@@ -1,19 +1,20 @@
 /**
 * finds links and urls in message
 * @param {any} message telegram message
-* @return {string} url from the message
+* @callback
+* @param {string} callback url from the message
 */
-async function finder(message) {
+async function finder(message, callback) {
   if (message.entities) {
     const urls = find(message.entities, message.text);
     console.log(urls);
-    return urls;
+    callback(urls);
   } else if (message.caption_entities) {
     const urls = find(message.caption_entities, message.caption);
     console.log(urls);
-    return urls;
+    callback(urls);
   } else {
-    return 'no urls!';
+    callback('no urls!');
   }
 }
 
