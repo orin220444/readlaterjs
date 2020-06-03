@@ -51,6 +51,6 @@ module.exports = async (ctx) => {
     setTimeout( async (realURL) => {
       ctx.reply(realURL, keyboard,
           {reply_to_message_id: message});
-    }, Math.random()*15 + 1, realURL);
+    }, Math.random()*30 + 1, realURL);
   };
 };
