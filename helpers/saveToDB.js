@@ -4,7 +4,7 @@ const Post = require('../database/models.js');
 * @param {any} url - url to save
 */
 async function saveToDB(url) {
-  findDuplicates(url, function() {
+  findDuplicates(url, function(url) {
     save(url);
   });
 }
@@ -18,6 +18,7 @@ async function save(url) {
       originalURL: url,
     });
     await post.save();
+    console.log(`${url} saved!`);
   } catch (error) {
     console.log(`error while saving to db: ${error}, ${url}`);
   }
@@ -26,13 +27,15 @@ async function save(url) {
 
 /**
  * checks for duplicates
- * @param {string} url url to check
+ * @param {string} url url to save to db
+ * @callback
+ * @param {string} callback return url
  */
-async function findDuplicates(url) {
+async function findDuplicates(url, callback) {
   try {
     const post = await Post.findOne({originalURL: url});
     if (!post) {
-      callback();
+      callback(url);
     }
   } catch (error) {
     console.log(`error while checking for duplicates: ${error}, ${url}`);
