@@ -1,4 +1,4 @@
-import {finder, saveToDB, axios, keyboard} from '../helpers/index.js';
+import {finder, saveToDB, urlCheck, keyboard} from '../helpers/index.js';
 
 export default async (ctx) => {
   await finder(ctx.message, function(urls) {
@@ -30,7 +30,7 @@ export default async (ctx) => {
       const x = Math.random()*15 + 1;
       console.log(`x = ${x}`);
       setTimeout( async (url) => {
-        await axios(url, async function(realURL) {
+        await urlCheck(url, async function(realURL) {
           console.log('sending url to the db');
           await saveToDB(realURL).then( logSuccess(realURL));
         });

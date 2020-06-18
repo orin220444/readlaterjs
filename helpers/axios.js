@@ -1,13 +1,13 @@
-import {axios as get} from 'axios';
+import axios from 'axios';
 /**
  * takes url and gets real url
  * @param {string} url - url to check
  * @callback
  * @param {string} callback real url
  */
-async function axios(url, callback) {
+async function urlCheck(url, callback) {
   try {
-    return await get(url)
+    return await axios.get(url)
         .then(function(response) {
           const realURL = response.request.res.responseUrl;
           console.log(`Original url: ${url},
@@ -18,4 +18,4 @@ real url ${realURL}`);
     console.log(`axios error: ${error}, ${error.code}, ${error.config.url}`);
   };
 }
-export default axios;
+export default urlCheck;
