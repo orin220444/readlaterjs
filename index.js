@@ -1,4 +1,5 @@
-require('dotenv').config({path: './.env'});
+import dotenv from 'dotenv/config.js';
+dotenv;
 import bot from './bot.js';
 import {handleRandom, handleAdd, handleQuery} from './handlers/index.js';
 import updateLocaldb from './helpers/updateDB.js';
