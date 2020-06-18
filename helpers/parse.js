@@ -1,5 +1,5 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
+import axios from 'axios';
+import cheerio from 'cheerio';
 /**
 * parses web page to text
 * @param {string} url url of web page to parse
@@ -21,4 +21,4 @@ async function parse(url) {
     console.log(error);
   }
 }
-module.exports = parse;
+export default parse;

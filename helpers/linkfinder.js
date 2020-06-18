@@ -56,7 +56,8 @@ function find(entities, text) {
   }
   return urls;
 }
-module.exports = finder;
+
+export default finder;
 
 
 // TODO: delete user messages

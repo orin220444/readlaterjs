@@ -1,7 +1,8 @@
-const handleRandom = require('./random.js');
-const handleAdd = require('./add.js');
-const handleQuery = require('./query.js');
-module.exports = {
+import handleRandom from './random.js';
+import handleAdd from './add.js';
+import handleQuery from './query.js';
+
+export default {
   handleRandom,
   handleAdd,
   handleQuery,

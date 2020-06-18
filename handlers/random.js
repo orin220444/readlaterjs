@@ -1,5 +1,6 @@
-const keyboard = require('../helpers/keyboard.js');
-module.exports = async (ctx) => {
+import keyboard from '../helpers/keyboard.js';
+
+export default async (ctx) => {
   const randomPost = getPost();
   console.log(`Random post: ${randomPost.originalURL}`);
   ctx.reply(

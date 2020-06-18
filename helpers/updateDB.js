@@ -1,5 +1,5 @@
-const Post = require('../database/models.js');
-const fs = require('fs');
+import Post from '../database/models.js';
+import fs from 'fs';
 /**
  * saves local cache of the db to disk
  */
@@ -11,4 +11,4 @@ async function updateDb() {
     else console.log('local cache updated!');
   });
 }
-module.exports = updateDb;
+export default updateDb;

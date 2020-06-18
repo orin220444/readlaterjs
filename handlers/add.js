@@ -1,10 +1,6 @@
-const {
-  finder,
-  saveToDB,
-  axios,
-  keyboard,
-} = require('../helpers');
-module.exports = async (ctx) => {
+import {finder, saveToDB, axios, keyboard} from '../helpers/index.js';
+
+export default async (ctx) => {
   await finder(ctx.message, function(urls) {
     getUrl(urls);
   });

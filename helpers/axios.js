@@ -1,4 +1,4 @@
-const get = require('axios').get;
+import {axios as get} from 'axios';
 /**
  * takes url and gets real url
  * @param {string} url - url to check
@@ -18,4 +18,4 @@ real url ${realURL}`);
     console.log(`axios error: ${error}, ${error.code}, ${error.config.url}`);
   };
 }
-module.exports = axios;
+export default axios;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -23,4 +23,4 @@ const postSchema = new Schema({
   },
 });
 const Post = mongoose.model('Post', postSchema);
-module.exports = Post;
+export default Post;
