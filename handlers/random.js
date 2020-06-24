@@ -1,5 +1,5 @@
 import keyboard from '../helpers/keyboard.js';
-
+import Post from '../database/models.js'
 export default async (ctx) => {
   const randomPost = getPost();
   console.log(`Random post: ${randomPost.originalURL}`);
@@ -28,9 +28,10 @@ export default async (ctx) => {
    * send random non read post to user
    * @return {object} post from the db
    */
-  function getPost() {
-    const dataBase = require('../database.json');
-    const posts = nonReadPosts(dataBase);
+async  function getPost() {
+    const data  = await Post.find();
+console.log(data)
+    const posts = nonReadPosts(data);
     const randomPost = posts[
         Math.floor(Math.random()*posts.length)
     ];
