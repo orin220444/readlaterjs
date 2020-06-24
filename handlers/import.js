@@ -6,7 +6,6 @@ module.exports = async (ctx) => {
   bot.on('message', async (ctx) => {
     console.log(ctx.message);
     const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
-    console.log(file);
     axios.get(file)
         .then(function(response) {
           console.log(typeof response.data);
