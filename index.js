@@ -1,5 +1,4 @@
-import dotenv from 'dotenv/config.js';
-dotenv;
+import 'dotenv/config.js';
 import bot from './bot.js';
 import {handleRandom, handleAdd, handleQuery} from './handlers/index.js';
 import updateLocaldb from './helpers/updateDB.js';
