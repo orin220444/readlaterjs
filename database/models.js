@@ -13,7 +13,7 @@ const postSchema = new Schema({
   parsedURL: {
     type: String,
   },
-  asReaded: {
+  read: {
     type: Boolean,
     default: false,
   },

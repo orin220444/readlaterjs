@@ -15,10 +15,10 @@ export default async (ctx) => {
     const posts = [];
     for (let i = 0; i < data.length; i++) {
       const post = data[i];
-      if (post.asReaded === false) {
+      if (post.read === false) {
         posts.push(post);
       }
-      if (!post.asReaded) {
+      if (!post.read) {
         posts.push(post);
       }
     }
