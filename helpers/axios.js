@@ -9,10 +9,10 @@ async function urlCheck(url, callback) {
   try {
     return await axios.get(url)
         .then(function(response) {
-          const realURL = response.request.res.responseUrl;
+          const realUrl = response.request.res.responseUrl;
           console.log(`Original url: ${url},
-real url ${realURL}`);
-          callback(realURL);
+real url ${realUrl}`);
+          callback(realUrl);
         });
   } catch (error) {
     console.log(`axios error: ${error}, ${error.code}, ${error.config.url}`);

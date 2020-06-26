@@ -30,9 +30,9 @@ export default async (ctx) => {
       const x = Math.random()*15 + 1;
       console.log(`x = ${x}`);
       setTimeout( async (url) => {
-        await urlCheck(url, async function(realURL) {
+        await urlCheck(url, async function(realUrl) {
           console.log('sending url to the db');
-          await saveToDB(realURL).then( logSuccess(realURL));
+          await saveToDB(realUrl).then( logSuccess(realUrl));
         });
       }, x, url);
     } catch (error) {
@@ -41,12 +41,12 @@ export default async (ctx) => {
   }
   /**
 * logs to user if success saving url
-* @param {string} realURL url to log
+* @param {string} realUrl url to log
 */
-  function logSuccess(realURL) {
-    setTimeout( async (realURL) => {
-      ctx.reply(realURL, keyboard,
+  function logSuccess(realUrl) {
+    setTimeout( async (realUrl) => {
+      ctx.reply(realUrl, keyboard,
           {reply_to_message_id: message});
-    }, Math.random()*30 + 1, realURL);
+    }, Math.random()*30 + 1, realUrl);
   };
 };
