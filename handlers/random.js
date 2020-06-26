@@ -1,8 +1,8 @@
 import keyboard from '../helpers/keyboard.js';
-
+import {sendLog} from '../src/log.js';
 export default async (ctx) => {
   const randomPost = getPost();
-  console.log(`Random post: ${randomPost.originalURL}`);
+  sendLog(`Random post: ${randomPost.originalURL}`);
   ctx.reply(
       randomPost.originalURL, keyboard,
       {reply_to_message_id: ctx.message.message_id});

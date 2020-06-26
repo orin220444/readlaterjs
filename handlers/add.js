@@ -1,5 +1,5 @@
 import {finder, saveToDB, urlCheck, keyboard} from '../helpers/index.js';
-
+import {sendLog} from '../src/log.js';
 export default async (ctx) => {
   await finder(ctx.message, function(urls) {
     getUrl(urls);
@@ -14,7 +14,7 @@ export default async (ctx) => {
       for (let i = 0; i < urls.length; i++) {
         const url = urls[i];
         if (url !== 'message.chat.id') {
-          console.log(url);
+          sendLog(url);
           saveUrl(url);
         }
       }
@@ -31,7 +31,7 @@ export default async (ctx) => {
       console.log(`x = ${x}`);
       setTimeout( async (url) => {
         await urlCheck(url, async function(realURL) {
-          console.log('sending url to the db');
+          sendLog('sending url to the db');
           await saveToDB(realURL).then( logSuccess(realURL));
         });
       }, x, url);

@@ -1,14 +1,14 @@
 import Post from '../database/models.js';
-
+import {sendLog} from '../src/log.js';
 export default async (ctx) => {
   if (ctx.callbackQuery.data === 'Readed') {
-    console.log('archiving');
+    sendLog('archiving');
     await archive(ctx.callbackQuery.message.text);
-    console.log(ctx.callbackQuery.message);
+    sendLog(ctx.callbackQuery.message);
     ctx.reply('archived!',
         {reply_to_message_id: ctx.callbackQuery.message.message_id});
   } else if (ctx.callbackQuery.data === 'Delete') {
-    console.log('deleting');
+    sendLog('deleting');
     await deletePost(ctx.callbackQuery.message.text);
     ctx.reply('deleted',
         {reply_to_message_id: ctx.callbackQuery.message.message_id});
@@ -21,7 +21,7 @@ export default async (ctx) => {
     const post = await Post.updateOne({originalURL: url},
         {asReaded: true},
     );
-    console.log('posts modified', post.nModified);
+    sendLog(`posts modified: ${post.nModified}`);
   }
   /**
    * deletes document from the db
