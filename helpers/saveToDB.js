@@ -15,7 +15,7 @@ async function saveToDB(url) {
 async function save(url) {
   try {
     const post = await Post.create({
-      originalURL: url,
+      originalUrl: url,
     });
     await post.save();
     console.log(`${url} saved!`);
@@ -33,7 +33,7 @@ async function save(url) {
  */
 async function findDuplicates(url, callback) {
   try {
-    const post = await Post.findOne({originalURL: url});
+    const post = await Post.findOne({originalUrl: url});
     if (!post) {
       callback(url);
     }

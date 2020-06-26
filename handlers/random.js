@@ -2,9 +2,9 @@ import keyboard from '../helpers/keyboard.js';
 
 export default async (ctx) => {
   const randomPost = getPost();
-  console.log(`Random post: ${randomPost.originalURL}`);
+  console.log(`Random post: ${randomPost.originalUrl}`);
   ctx.reply(
-      randomPost.originalURL, keyboard,
+      randomPost.originalUrl, keyboard,
       {reply_to_message_id: ctx.message.message_id});
   /**
    * filters non read posts

@@ -5,7 +5,7 @@ mongoose.connect(process.env.MONGODB_URL, {
 });
 const Schema = mongoose.Schema;
 const postSchema = new Schema({
-  originalURL: {
+  originalUrl: {
     unique: true,
     type: String,
     required: true,

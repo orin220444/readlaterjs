@@ -18,14 +18,14 @@ export default async (ctx) => {
    * @param {string} url originalUrl of the web page
    */
   async function archive(url) {
-    const post = await Post.updateOne({originalURL: url},
+    const post = await Post.updateOne({originalUrl: url},
         {asReaded: true},
     );
     console.log('posts modified', post.nModified);
   }
   /**
    * deletes document from the db
-   * @param {string} url OriginalUrl of document to delete
+   * @param {string} url originalUrl of document to delete
    */
   async function deletePost(url) {
     await Post.findOneAndDelete({originalUrl: url});
