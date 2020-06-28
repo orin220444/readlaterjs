@@ -22,5 +22,14 @@ const postSchema = new Schema({
     default: Date.now(),
   },
 });
+const userSchema = new Schema({
+id: {
+unique: true,
+type: Number,
+required: true}
+username: {
+type: String}
+})
 const Post = mongoose.model('Post', postSchema);
-export default Post;
+const User = mongoose.model('User', userSchema)
+export {Post, User};
