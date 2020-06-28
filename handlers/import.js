@@ -1,26 +1,32 @@
 const bot = require('../bot');
 const axios = require('axios');
-const fs = require('fs');
-const html2Json = require('html2json')
-async function getFile(ctx){
+const cheerio = require('cheerio');
+/**
+ * get file from telegram
+ * @param {any} ctx telegraf context
+ */
+async function getFile(ctx) {
   ctx.reply('send a file');
   bot.on('message', async (ctx) => {
     const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
     axios.get(file)
         .then(function(response) {
-exportPosts(response.data)/*
-        fs.writeFile(
-              `import${new Date().getSeconds()}.html`,
-              response.data, function(err) {
-                if (err) console.log(`error while importing: ${err}`);
-else exportPosts()
-              });*/
+          parseLinks(response.data);
         });
   });
-};
-
-function exportPosts(exportHTML){
-const export = html2json(exportHTML)
-console.log(export)
 }
-module.exports(getFile)
+/**
+ * parses links from pocket export file
+ * @param {string} exportHTML HTML page
+ */
+function parseLinks(exportHTML) {
+  const $ = cheerio.load(exportHTML);
+  const links = [];
+  $('a').each(function(index, element) {
+    console.log(element.namespace/* , element*/);
+    const link = $('this').text();
+    links.push(link);
+  });
+  console.log(links);
+}
+module.exports = getFile;
