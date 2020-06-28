@@ -35,7 +35,7 @@ module.exports = async (ctx) => {
    * @param {string} csv
    */
   function sendToUser(csv) {
-    ctx.replyWithDocument({source:'export.csv'}
+    ctx.replyWithDocument({source: 'export.csv'},
     );
   }
 };
