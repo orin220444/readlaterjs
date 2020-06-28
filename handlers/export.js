@@ -35,8 +35,7 @@ module.exports = async (ctx) => {
    * @param {string} csv
    */
   function sendToUser(csv) {
-    ctx.telegram.sendDocument(
-        ctx.chat.id, 'export.csv',
+    ctx.replyWithDocument({source:'export.csv'}
     );
   }
 };
