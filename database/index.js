@@ -3,6 +3,11 @@ import Post from './models.js';
  * @param {string} url of post to find
 */
 async function search(url) {
-  return await Post.find(url);
+const data = await Post.find(url)
+  callback(data);
 }
-export {search};
+async function getAllPosts(){
+const data = await Post.find
+callback(data)
+}
+export {search, getAllPosts};
