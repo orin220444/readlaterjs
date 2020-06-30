@@ -1,5 +1,6 @@
 import keyboard from '../helpers/keyboard.js';
 import Post from '../database/models.js'
+console.log(Post)
 export default async (ctx) => {
   const randomPost = getPost();
   console.log(`Random post: ${randomPost.originalURL}`);
