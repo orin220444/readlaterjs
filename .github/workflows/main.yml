@@ -1,7 +1,7 @@
 name: Lint Code Base
 on:
   push:
-    branches-ignore:
+    branches:
       - 'master'
 jobs:
   linter:
@@ -9,3 +9,10 @@ jobs:
     steps:
         - uses: actions/checkout@v2
         - uses: docker://github/super-linter:v2.1.0
+    env:
+      VALIDATE_JAVASCRIPT_STANDARD: false
+      VALIDATE_ALL_CODEBASE: true
+      VALIDATE_YAML: true
+      VALIDATE_JSON: true
+      VALIDATE_JAVASCRIPT_ES: true
+      JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.yml

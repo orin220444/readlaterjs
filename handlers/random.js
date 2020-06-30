@@ -1,9 +1,9 @@
 import keyboard from '../helpers/keyboard.js';
-import Post from '../database/models.js'
-console.log(Post)
+import {sendLog} from '../src/log.js';
+import {getAllPosts} from '../database/index.js'
 export default async (ctx) => {
   const randomPost = getPost();
-  console.log(`Random post: ${randomPost.originalURL}`);
+  sendLog(`Random post: ${randomPost.originalURL}`);
   ctx.reply(
       randomPost.originalURL, keyboard,
       {reply_to_message_id: ctx.message.message_id});
@@ -30,12 +30,10 @@ export default async (ctx) => {
    * @return {object} post from the db
    */
 async  function getPost() {
-    const data  = await Post.find();
-console.log(data)
-    const posts = nonReadPosts(data);
-    const randomPost = posts[
-        Math.floor(Math.random()*posts.length)
-    ];
-    return randomPost;
+    getAllPosts(function(data){
+const posts = nonReadPosts(data)
+const randomPost = posts[Math.floor(Math.random() * posts.length)]
+return randomPost
+})
   }
 };
