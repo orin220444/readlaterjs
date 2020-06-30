@@ -1,4 +1,4 @@
-import Post from '../database/models.js';
+import {Post} from '../database/models.js';
 import {sendLog} from '../src/log.js';
 export default async (ctx) => {
   if (ctx.callbackQuery.data === 'Readed') {

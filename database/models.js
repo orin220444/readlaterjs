@@ -26,7 +26,7 @@ const userSchema = new Schema({
 id: {
 unique: true,
 type: Number,
-required: true}
+required: true },
 username: {
 type: String}
 })

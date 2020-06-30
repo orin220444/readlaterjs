@@ -1,4 +1,4 @@
-import Post from '../database/models.js';
+import {Post} from '../database/models.js';
 /**
 * saves url in the database
 * @param {any} url - url to save

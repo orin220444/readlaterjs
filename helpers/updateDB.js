@@ -1,4 +1,4 @@
-import Post from '../database/models.js';
+import {Post} from '../database/models.js';
 import fs from 'fs';
 /**
  * saves local cache of the db to disk
