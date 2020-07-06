@@ -23,13 +23,13 @@ const postSchema = new Schema({
   },
 });
 const userSchema = new Schema({
-id: {
-unique: true,
-type: Number,
-required: true },
-username: {
-type: String}
-})
+  id: {
+    unique: true,
+    type: Number,
+    required: true},
+  username: {
+    type: String},
+});
 const Post = mongoose.model('Post', postSchema);
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 export {Post, User};
