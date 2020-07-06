@@ -30,10 +30,10 @@ export default async (ctx) => {
   /**
    * send random non read post to user
    * @return {object} post from the db
+   * @param {callback} callback
    */
   async function getPost(callback) {
     getAllPosts(function(data) {
-      console.log(data);
       const posts = nonReadPosts(data);
       const randomPost = posts[Math.floor(Math.random() * posts.length)];
       callback( randomPost);
