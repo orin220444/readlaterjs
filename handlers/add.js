@@ -3,7 +3,7 @@ import {sendLog} from '../src/log.js';
 export default async (ctx) => {
   await finder(ctx.message, function(urls) {
     getUrl(urls);
-  })
+  });
   const message = ctx.message.message_id;
   /**
 * check urls array for errors
