@@ -14,8 +14,8 @@ export default async (ctx) => {
       for (let i = 0; i < urls.length; i++) {
         const url = urls[i];
         if (url !== 'message.chat.id') {
-          sendLog(url);
           saveUrl(url);
+          sendLog(url);
         }
       }
     }
