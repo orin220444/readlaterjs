@@ -27,13 +27,10 @@ export default async (ctx) => {
 */
   async function saveUrl(url) {
     try {
-      const x = Math.random() * 15 + 1;
-      setTimeout( async (url) => {
-        await urlCheck(url, async function(realURL) {
-          sendLog('sending url to the db');
-          await saveToDB(realURL).then( logSuccess(realURL));
-        });
-      }, x, url);
+      await urlCheck(url, async function(realURL) {
+        sendLog('sending url to the db');
+        await saveToDB(realURL).then( logSuccess(realURL));
+      });
     } catch (error) {
       console.log(error);
     }
@@ -43,9 +40,7 @@ export default async (ctx) => {
 * @param {string} realURL url to log
 */
   function logSuccess(realURL) {
-    setTimeout( async (realURL) => {
-      ctx.reply(realURL, keyboard,
-          {reply_to_message_id: message});
-    }, Math.random() * 30 + 1, realURL);
+    ctx.reply(realURL, keyboard,
+        {reply_to_message_id: message});
   };
 };
