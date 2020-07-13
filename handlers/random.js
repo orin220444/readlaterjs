@@ -1,4 +1,5 @@
 import keyboard from '../helpers/keyboard.js';
+import random from '../helpers/random.js';
 import {sendLog} from '../src/log.js';
 import {getAllPosts} from '../database/index.js';
 export default async (ctx) => {
@@ -35,7 +36,7 @@ export default async (ctx) => {
   async function getPost(callback) {
     getAllPosts(function(data) {
       const posts = nonReadPosts(data);
-      const randomPost = posts[Math.floor(Math.random() * posts.length)];
+      const randomPost = random(posts);
       callback( randomPost);
     });
   }
