@@ -1,8 +1,11 @@
 import 'dotenv/config.js';
 import {sendLog} from './src/index.js';
 import bot from './bot.js';
-import {handleRandom, handleAdd, handleQuery} from './handlers/index.js';
+import {
+  handleRandom, handleAdd, handleQuery, handleExport,
+} from './handlers/index.js';
 bot.command('random', handleRandom);
+bot.command('export', handleExport);
 bot.on('callback_query', handleQuery);
 bot.on('message', handleAdd);
 
