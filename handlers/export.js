@@ -27,7 +27,7 @@ export default async (ctx) => {
     else {
       fs.writeFile('export.csv', csv, (err) => {
         if (err) console.log(err);
-        sendToUser(csv);
+        sendToUser();
       });
     }
   });
