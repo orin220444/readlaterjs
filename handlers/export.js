@@ -33,9 +33,8 @@ export default async (ctx) => {
   });
   /**
    * send document to user
-   * @param {string} csv
    */
-  function sendToUser(csv) {
+  function sendToUser() {
     ctx.replyWithDocument({source: 'export.csv'},
     );
   }
