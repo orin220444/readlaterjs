@@ -45,8 +45,7 @@ function textLink(entity) {
 */
 function find(entities, text) {
   const urls = [];
-  for (let i = 0; i < entities.length; i++) {
-    const entity = entities[i];
+  for (const entity of entities) {
     if (entity.type == 'text_link') {
       urls.push(textLink(entity));
     }
