@@ -25,8 +25,7 @@ function finder(message) {
 * @return {string} url
 */
 function url(entity, text) {
-  const url = text.substr(entity.offset, entity.length);
-  return url;
+  return text.substr(entity.offset, entity.length);
 }
 /**
 * gets links in the "text_link" entities
@@ -34,8 +33,7 @@ function url(entity, text) {
 * @return {string} url
 */
 function textLink(entity) {
-  const url = entity.url;
-  return url;
+  return entity.url;
 }
 /**
 * finds urls in the entities field of the message
