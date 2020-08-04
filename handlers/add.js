@@ -9,8 +9,7 @@ export default async (ctx) => {
 */
   async function getUrl(urls) {
     if (urls !== 'no urls!') {
-      for (let i = 0; i < urls.length; i++) {
-        const url = urls[i];
+      for (const url of urls) {
         if (url !== 'message.chat.id') {
           saveUrl(url);
           sendLog(url);
