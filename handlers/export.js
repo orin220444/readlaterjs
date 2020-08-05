@@ -1,7 +1,9 @@
 import {Post} from '../database/models.js';
 import jsoncsv from 'json-csv';
-const buffered = jsoncsv.buffered;
-import fs from 'fs';
+import {promisify} from 'util';
+const buffered = promisify(jsoncsv.buffered);
+import {writeFile} from 'fs';
+const createFile = promisify(writeFile);
 export default async (ctx) => {
   console.log('getting posts to export');
   const posts = await Post.find();
@@ -22,15 +24,11 @@ export default async (ctx) => {
         label: 'created',
       },
     ]};
-  buffered(posts, options, (err, csv) => {
-    if (err) console.log(err);
-    else {
-      fs.writeFile('export.csv', csv, (err) => {
-        if (err) console.log(err);
-        sendToUser();
-      });
-    }
-  });
+  buffered(posts, options).then((csv) => createFile('export.csv', csv)
+      .then(sendToUser()),
+  );
+
+
   /**
    * send document to user
    */
