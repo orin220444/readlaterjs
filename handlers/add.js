@@ -24,7 +24,7 @@ export default async (ctx) => {
 */
   async function saveUrl(url) {
     try {
-      await urlCheck(url, async function(realURL) {
+      await urlCheck(url) .then(async function(realURL) {
         sendLog('sending url to the db');
         await saveToDB(realURL).then( logSuccess(realURL));
       });

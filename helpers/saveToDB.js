@@ -4,7 +4,7 @@ import {Post} from '../database/models.js';
 * @param {any} url - url to save
 */
 async function saveToDB(url) {
-  findDuplicates(url, function(url) {
+  findDuplicates(url) .then(function(url) {
     save(url);
   });
 }
@@ -28,17 +28,21 @@ async function save(url) {
 /**
  * checks for duplicates
  * @param {string} url url to save to db
- * @callback
- * @param {string} callback return url
+ *
+ * @return {Promise} url
  */
-async function findDuplicates(url, callback) {
-  try {
-    const post = await Post.findOne({originalURL: url});
-    if (!post) {
-      callback(url);
+async function findDuplicates(url) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const post = await Post.findOne({originalURL: url});
+      if (!post) {
+        resolve(url);
+      }
+    } catch (error) {
+      reject(
+          new Error(
+              `error while checking for duplicates: ${error}, ${url}`));
     }
-  } catch (error) {
-    console.log(`error while checking for duplicates: ${error}, ${url}`);
-  }
+  });
 }
 export default saveToDB;
