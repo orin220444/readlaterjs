@@ -58,4 +58,4 @@ async function findDuplicates(url) {
     }
   });
 }
-export default saveToDB;
+export saveToDB;
