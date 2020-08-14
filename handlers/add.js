@@ -1,4 +1,4 @@
-import {finder, saveToDB, urlCheck, keyboard} from '../helpers/index.js';
+import {finder, saveToDB, urlCheck, startKeyboard} from '../helpers/index.js';
 import {sendLog} from '../src/log.js';
 export default async (ctx) => {
   getUrl(finder(ctx.message));
@@ -37,7 +37,7 @@ export default async (ctx) => {
 * @param {string} realURL url to log
 */
   function logSuccess(realURL) {
-    ctx.reply(realURL, keyboard,
+    ctx.reply(realURL, startKeyboard,
         {reply_to_message_id: message});
   };
 };
