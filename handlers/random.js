@@ -2,7 +2,7 @@ import keyboard from '../helpers/keyboard.js';
 import random from '../helpers/random.js';
 import {sendLog} from '../src/log.js';
 import {getAllPosts} from '../database/index.js';
-export default async (ctx) => {
+export const handleRandom = async (ctx) => {
   getPost(function(randomPost) {
     sendLog(`Random post: ${randomPost.originalURL}`);
     ctx.reply(
