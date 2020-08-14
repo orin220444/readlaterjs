@@ -1,5 +1,5 @@
-import keyboard from '../helpers/keyboard.js';
-import random from '../helpers/random.js';
+import {keyboard} from '../helpers/keyboard.js';
+import {random} from '../helpers/random.js';
 import {sendLog} from '../src/log.js';
 import {getAllPosts} from '../database/index.js';
 export const handleRandom = async (ctx) => {
