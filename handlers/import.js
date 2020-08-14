@@ -22,11 +22,9 @@ async function getFile(ctx) {
 function parseLinks(exportHTML) {
   const $ = cheerio.load(exportHTML);
   const links = [];
-  $('a').each(function(index, element) {
-    console.log(element.namespace/* , element*/);
-    const link = $('this').text();
+  $('a').each(function() {
+    const link = $(this).attr('href');
     links.push(link);
   });
-  console.log(links);
 }
 module.exports = getFile;
