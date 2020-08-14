@@ -4,7 +4,7 @@ import {promisify} from 'util';
 const buffered = promisify(jsoncsv.buffered);
 import {writeFile} from 'fs';
 const createFile = promisify(writeFile);
-export default async (ctx) => {
+export const handleExport = async (ctx) => {
   console.log('getting posts to export');
   const posts = await Post.find();
   console.log('converting');

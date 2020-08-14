@@ -25,4 +25,4 @@ real url ${realURL}`);
   );
 }
 
-export default urlCheck;
+export {urlCheck};
