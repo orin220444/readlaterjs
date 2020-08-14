@@ -21,4 +21,4 @@ async function parse(url) {
     console.log(error);
   }
 }
-export parse;
+export {parse};
