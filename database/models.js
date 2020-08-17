@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import random from 'mongoose-random'
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -30,6 +31,7 @@ const userSchema = new Schema({
   username: {
     type: String},
 });
+postSchema.plugin(random)
 const Post = mongoose.model('Post', postSchema);
 const User = mongoose.model('User', userSchema);
 export {Post, User};

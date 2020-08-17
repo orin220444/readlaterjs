@@ -14,4 +14,8 @@ async function getAllPosts(callback) {
   const data = await Post.find();
   callback(data);
 }
-export {search, getAllPosts};
+async function getRandomPost(){
+const post = await Post.findRandom({asReaded:false})
+return post
+}
+export {search, getAllPosts, getRandomPost};

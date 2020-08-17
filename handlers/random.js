@@ -1,14 +1,14 @@
 import {keyboard} from '../helpers/keyboard.js';
 import {random} from '../helpers/random.js';
 import {sendLog} from '../src/log.js';
-import {getAllPosts} from '../database/index.js';
+import {getRandomPost} from '../database/index.js';
 export const handleRandom = async (ctx) => {
-  getPost(function(randomPost) {
+  const randomPost = await getPost()
     sendLog(`Random post: ${randomPost.originalURL}`);
     ctx.reply(
         randomPost.originalURL, keyboard,
         {reply_to_message_id: ctx.message.message_id});
-  });
+}  
 
   /**
    * filters non read posts
@@ -33,11 +33,8 @@ export const handleRandom = async (ctx) => {
    * @return {object} post from the db
    * @param {callback} callback
    */
-  async function getPost(callback) {
-    getAllPosts(function(data) {
-      const posts = nonReadPosts(data);
-      const randomPost = random(posts);
-      callback( randomPost);
-    });
-  }
-};
+  async function getPost() {
+    const randomPost = await getRandomPost()
+return randomPost
+    };
+  
