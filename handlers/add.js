@@ -1,9 +1,7 @@
 import {finder, saveToDB, urlCheck, keyboard} from '../helpers/index.js';
-
-export default async (ctx) => {
-  await finder(ctx.message, function(urls) {
-    getUrl(urls);
-  });
+import {sendLog} from '../src/log.js';
+export const handleAdd = async(ctx) => {
+  getUrl(finder(ctx.message));
   const message = ctx.message.message_id;
   /**
 * check urls array for errors
@@ -11,11 +9,10 @@ export default async (ctx) => {
 */
   async function getUrl(urls) {
     if (urls !== 'no urls!') {
-      for (let i = 0; i < urls.length; i++) {
-        const url = urls[i];
+      for (const url of urls) {
         if (url !== 'message.chat.id') {
-          console.log(url);
           saveUrl(url);
+          sendLog(url);
         }
       }
     }
@@ -27,14 +24,10 @@ export default async (ctx) => {
 */
   async function saveUrl(url) {
     try {
-      const x = Math.random()*15 + 1;
-      console.log(`x = ${x}`);
-      setTimeout( async (url) => {
-        await urlCheck(url, async function(realUrl) {
-          console.log('sending url to the db');
-          await saveToDB(realUrl).then( logSuccess(realUrl));
-        });
-      }, x, url);
+      await urlCheck(url) .then(async function(realURL) {
+        sendLog('sending url to the db');
+        await saveToDB(realURL).then( logSuccess(realURL));
+      });
     } catch (error) {
       console.log(error);
     }
@@ -44,9 +37,7 @@ export default async (ctx) => {
 * @param {string} realUrl url to log
 */
   function logSuccess(realUrl) {
-    setTimeout( async (realUrl) => {
-      ctx.reply(realUrl, keyboard,
-          {reply_to_message_id: message});
-    }, Math.random()*30 + 1, realUrl);
+    ctx.reply(realUrl, keyboard,
+        {reply_to_message_id: message});
   };
 };

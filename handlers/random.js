@@ -1,39 +1,21 @@
-import keyboard from '../helpers/keyboard.js';
-
-export default async (ctx) => {
-  const randomPost = getPost();
-  console.log(`Random post: ${randomPost.originalUrl}`);
+import {keyboard} from '../helpers/keyboard.js';
+import {sendLog} from '../src/log.js';
+import {getRandomPost} from '../database/index.js';
+export const handleRandom = async (ctx) => {
+  const randomPost = await getPost();
+  sendLog(`Random post: ${randomPost.originalUrl}`);
   ctx.reply(
       randomPost.originalUrl, keyboard,
       {reply_to_message_id: ctx.message.message_id});
-  /**
-   * filters non read posts
-   * @param {object} data data from database
-   * @return {object} non read posts
-   */
-  function nonReadPosts(data) {
-    const posts = [];
-    for (let i = 0; i < data.length; i++) {
-      const post = data[i];
-      if (post.read === false) {
-        posts.push(post);
-      }
-      if (!post.read) {
-        posts.push(post);
-      }
-    }
-    return posts;
-  }
-  /**
+};
+
+
+/**
    * send random non read post to user
    * @return {object} post from the db
+   * @param {callback} callback
    */
-  function getPost() {
-    const dataBase = require('../database.json');
-    const posts = nonReadPosts(dataBase);
-    const randomPost = posts[
-        Math.floor(Math.random()*posts.length)
-    ];
-    return randomPost;
-  }
+async function getPost() {
+  const randomPost = await getRandomPost();
+  return randomPost;
 };
