@@ -1,6 +1,6 @@
 import {finder, saveToDB, urlCheck, keyboard} from '../helpers/index.js';
 import {sendLog} from '../src/log.js';
-export const handleAdd = async(ctx) => {
+export const handleAdd = async (ctx) => {
   getUrl(finder(ctx.message));
   const message = ctx.message.message_id;
   /**
