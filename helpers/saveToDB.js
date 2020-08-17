@@ -21,7 +21,6 @@ function saveToDB(url) {
  * @param {string} url url to save
  * @return {Promise} saves url
  */
-
 function save(url) {
   return new Promise(async (resolve, reject) => {
     try {
