@@ -6,6 +6,7 @@ import {
 } from './handlers/index.js';
 bot.command('random', handleRandom);
 bot.command('export', handleExport);
+bot.command('search', handleSearch);
 bot.on('callback_query', handleQuery);
 // bot.on('message', handleAdd);
 

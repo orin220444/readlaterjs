@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import random from 'mongoose-random';
+import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -32,6 +33,7 @@ const userSchema = new Schema({
     type: String},
 });
 postSchema.plugin(random);
+postSchema.plugin(mongooseFuzzySearching, {fields: ['originalUrl']});
 const Post = mongoose.model('Post', postSchema);
 const User = mongoose.model('User', userSchema);
 export {Post, User};
