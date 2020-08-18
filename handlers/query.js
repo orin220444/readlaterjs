@@ -10,8 +10,17 @@ export const handleQuery = async (ctx) => {
   } else if (ctx.callbackQuery.data === 'Delete') {
     sendLog('deleting');
     await deletePost(ctx.callbackQuery.message.text);
-    ctx.reply('deleted',
+    const botMessage = await ctx.reply('deleted',
         {reply_to_message_id: ctx.callbackQuery.message.message_id});
+    console.log(botMessage, ctx.callbackQuery);
+    setTimeout(() => {
+      try {
+        ctx.deleteMessage(ctx.callbackQuery.message.message_id);
+        ctx.deleteMessage(botMessage.message_id);
+      } catch (error) {
+        sendLog(error);
+      }
+    }, 5 * 1000);
   } else if (ctx.callbackQuery.data === 'Unarchive') {
     await unArchive(ctx.callbackQuery.message.text);
     sendLog('Unarchiving');
