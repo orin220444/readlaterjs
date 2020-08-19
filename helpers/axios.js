@@ -11,10 +11,10 @@ async function urlCheck(url) {
     try {
       axios.get(url)
           .then(function(response) {
-            const realURL = response.request.res.responseUrl;
+            const realUrl = response.request.res.responseUrl;
             sendLog(`Original url: ${url},
-real url ${realURL}`);
-            resolve(realURL);
+real url ${realUrl}`);
+            resolve(realUrl);
           });
     } catch (error) {
       reject(
