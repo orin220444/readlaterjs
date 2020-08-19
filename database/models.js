@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import moment from 'moment'
 import random from 'mongoose-random';
 import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
 mongoose.connect(process.env.MONGODB_URL, {
@@ -21,7 +22,7 @@ const postSchema = new Schema({
   },
   created: {
     type: Date,
-    default: Date.now(),
+    default: moment(),
   },
 });
 const userSchema = new Schema({
