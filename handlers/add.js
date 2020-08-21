@@ -22,15 +22,9 @@ export const handleAdd = async (ctx) => {
 * saves url
 * @param {string} url url to save
 */
-  async function saveUrl(url) {
-    try {
-      await urlCheck(url) .then(async function(realURL) {
-        sendLog('sending url to the db');
-        await saveToDB(realURL).then( logSuccess(realURL));
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  function saveUrl(url) {
+    urlCheck(url) .then((realURL) => saveToDB(realURL).then( logSuccess(realURL)))
+        .catch((error) => console.log(error));
   }
   /**
 * logs to user if success saving url
