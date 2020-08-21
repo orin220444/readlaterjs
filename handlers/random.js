@@ -7,9 +7,11 @@ export const handleRandom = async (ctx) => {
     sendLog(`Random post: ${randomPost.originalURL}`);
     try {
       ctx.reply(
-        randomPost.originalURL, keyboard,
-        {reply_to_message_id: ctx.message.message_id});
-    }catch (error) {sendLog(error)}
+          randomPost.originalURL, keyboard,
+          {reply_to_message_id: ctx.message.message_id});
+    } catch (error) {
+      sendLog(error);
+    }
   });
 
   /**
