@@ -35,7 +35,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "json-csv": "^3.0.1",
-    "mongoose": "^5.9.27",
+    "mongoose": "^5.10.0",
     "telegraf": "^3.38.0"
   },
   "devDependencies": {

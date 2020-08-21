@@ -5,9 +5,11 @@ import {getAllPosts} from '../database/index.js';
 export const handleRandom = async (ctx) => {
   getPost(function(randomPost) {
     sendLog(`Random post: ${randomPost.originalURL}`);
-    ctx.reply(
+    try {
+      ctx.reply(
         randomPost.originalURL, keyboard,
         {reply_to_message_id: ctx.message.message_id});
+    }catch (error) {sendLog(error)}
   });
 
   /**
