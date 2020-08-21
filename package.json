@@ -8,8 +8,7 @@
     "dev": "npm run eslint && npm run nodemon",
     "start": "node index.js",
     "nodemon": "npx nodemon index.js",
-    "eslint": "npx eslint --fix .",
-    "precommit": "lint-staged"
+    "eslint": "npx eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -24,7 +23,8 @@
   "lint-staged": {
     "*.{js}": [
       "node_modules/.bin/eslint --fix --max-warnings=0"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   },
   "husky": {
     "hooks": {
