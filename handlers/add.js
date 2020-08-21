@@ -23,7 +23,9 @@ export const handleAdd = async (ctx) => {
 * @param {string} url url to save
 */
   function saveUrl(url) {
-    urlCheck(url) .then((realURL) => saveToDB(realURL).then( logSuccess(realURL)))
+    urlCheck(url)
+        .then((realURL) => saveToDB(realURL)
+            .then( logSuccess(realURL)))
         .catch((error) => console.log(error));
   }
   /**

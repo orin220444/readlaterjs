@@ -5,20 +5,19 @@ import cheerio from 'cheerio';
 * @param {string} url url of web page to parse
 */
 async function parse(url) {
-  try {
-    console.log('test');
-    axios.get(url).then(async function(response) {
-    // console.log(response);
-      const $ = await cheerio.load(response);
-      console.log(typeof $);
-      const body = await $('body').text();
-      console.log(body);
-    })
-        .catch(function(error) {
-          console.log('error:', error);
-        });
-  } catch (error) {
-    console.log(error);
-  }
+  axios.get(url).then(async function(response) {
+    // console.log(response.data);
+    const $ = await cheerio.load(response.data);
+    const data = [];
+    $('html').each((i, elem)=> {
+      data.push({
+
+      });
+    });
+    console.log(data);
+  })
+      .catch(function(error) {
+        console.log('error:', error);
+      });
 }
 export {parse};
