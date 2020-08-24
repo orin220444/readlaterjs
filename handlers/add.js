@@ -32,8 +32,12 @@ export const handleAdd = async (ctx) => {
 * logs to user if success saving url
 * @param {string} realURL url to log
 */
-  function logSuccess(realURL) {
-    ctx.reply(realURL, keyboard,
-        {reply_to_message_id: message});
+  async function logSuccess(realURL) {
+    try {
+      await ctx.reply(realURL, keyboard,
+          {reply_to_message_id: message});
+    } catch (error) {
+      sendLog(error);
+    }
   };
 };
