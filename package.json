@@ -31,7 +31,7 @@
     }
   },
   "dependencies": {
-    "@postlight/mercury-parser": "^2.2.0",
+    "@postlight/mercury-parser": "orin220444/mercury-parser",
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
