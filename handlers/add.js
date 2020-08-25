@@ -1,51 +1,43 @@
-const {
-  finder,
-  saveToDB,
-  getRealURL,
-} = require('../helpers');
-// const parse = require('../helpers/parse');
-
-
-module.exports = async (ctx) => {
-  // const message = await ctx.message.message_id;
-  // console.log(ctx.message.caption_entities);
-//  const answer = await ctx.reply('ишу ссылки');
-  try {
-    await finder(ctx.message).then( async (urls) => {
-      let i = 0;
-      if (urls === 'no urls!') {
-        //        ctx.deleteMessage(answer.message_id);
-      } else {
-        for (i in urls) {
-          if ({}.hasOwnProperty.call(urls, i)) {
-            const url = urls[i];
-            if (url === undefined) {
-
-            } if (url === 'message.chat.id') {
-            } else {
-              console.log(url);
-              try {
-                const x = Math.random()*15 + 1;
-                console.log(`x = ${x}`);
-                setTimeout( async (url) => {
-                  const realURL = await getRealURL(url);
-
-                  // ctx.telegram.editMessageText(
-                  // ctx.chat.id, answer.message_id)
-                  // 'отправляю ссылки на сервер');
-                  console.log('sending url to the db');
-                  await saveToDB(realURL);
-                }, x, url);
-              } catch (error) {
-                console.log(error);
-              }
-            }
-          }
-        // parse(url);
+import {finder, saveToDB, urlCheck, keyboard} from '../helpers/index.js';
+import {sendLog} from '../src/log.js';
+export const handleAdd = async (ctx) => {
+  getUrl(finder(ctx.message));
+  const message = ctx.message.message_id;
+  /**
+* check urls array for errors
+* @param {array} urls array of parsed urls
+*/
+  async function getUrl(urls) {
+    if (urls !== 'no urls!') {
+      for (const url of urls) {
+        if (url !== 'message.chat.id') {
+          saveUrl(url);
+          sendLog(url);
         }
       }
-    });
-  } catch (error) {
-    console.log(error);
+    }
   }
+
+  /**
+* saves url
+* @param {string} url url to save
+*/
+  function saveUrl(url) {
+    urlCheck(url)
+        .then((realURL) => saveToDB(realURL)
+            .then( logSuccess(realURL)))
+        .catch((error) => console.log(error));
+  }
+  /**
+* logs to user if success saving url
+* @param {string} realURL url to log
+*/
+  async function logSuccess(realURL) {
+    try {
+      await ctx.reply(realURL, keyboard,
+          {reply_to_message_id: message});
+    } catch (error) {
+      sendLog(error);
+    }
+  };
 };

@@ -1,8 +1,4 @@
-const finder = require('./linkfinder');
-const saveToDB = require('./saveToDB');
-const getRealURL = require('./getRealUrl');
-module.exports = {
-  finder,
-  saveToDB,
-  getRealURL,
-};
+export {urlCheck} from './axios.js';
+export {finder} from './linkfinder.js';
+export {saveToDB} from './saveToDB.js';
+export {keyboard} from './keyboard.js';

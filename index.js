@@ -1,17 +1,15 @@
-require('dotenv').config({path: './.env'});
-const bot = require('./bot');
-const {
-  handleRandom,
-  handleAdd,
-  handleQuery,
-  handleMainten,
-} = require('./handlers');
-const updateLocaldb = require('./helpers/updateDB');
-updateLocaldb();
-setInterval(() => updateLocaldb(), 900 *1000 );
+import 'dotenv/config.js';
+import {sendLog} from './src/index.js';
+import bot from './bot.js';
+import {
+  handleRandom, handleAdd, handleQuery, handleExport, handleMainten,
+} from './handlers/index.js';
 bot.command('random', handleRandom);
+bot.command('export', handleExport);
 bot.on('callback_query', handleQuery);
 bot.command('mainten', handleMainten);
 bot.on('message', handleAdd);
 
-bot.launch();
+bot.launch().then(
+    sendLog('bot started'),
+);

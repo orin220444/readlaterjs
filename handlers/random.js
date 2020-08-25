@@ -1,24 +1,25 @@
+import {keyboard} from '../helpers/keyboard.js';
+import {random} from '../helpers/random.js';
+import {sendLog} from '../src/log.js';
+import {getAllPosts} from '../database/index.js';
+export const handleRandom = async (ctx) => {
+  getPost(function(randomPost) {
+    sendLog(`Random post: ${randomPost.originalURL}`);
+    try {
+      ctx.reply(
+          randomPost.originalURL, keyboard,
+          {reply_to_message_id: ctx.message.message_id});
+    } catch (error) {
+      sendLog(error);
+    }
+  });
 
-const Markup = require('telegraf/markup');
-module.exports = async (ctx) => {
-  const dataBase = require('../database.json');
-  const posts = nonReadedPosts(dataBase);
-  const randompost = posts[
-      Math.floor(Math.random()*posts.length)
-  ];
-  console.log(randompost.originalURL);
-  ctx.reply(
-      randompost.originalURL, Markup.inlineKeyboard([
-        Markup.callbackButton('Archive', 'Readed'),
-        Markup.callbackButton('Delete', 'Delete'),
-      ]).extra(),
-  );
   /**
-   * filters non readed posts
+   * filters non read posts
    * @param {object} data data from database
-   * @return {object} non readed posts
+   * @return {object} non read posts
    */
-  function nonReadedPosts(data) {
+  function nonReadPosts(data) {
     const posts = [];
     for (let i = 0; i < data.length; i++) {
       const post = data[i];
@@ -30,5 +31,17 @@ module.exports = async (ctx) => {
       }
     }
     return posts;
+  }
+  /**
+   * send random non read post to user
+   * @return {object} post from the db
+   * @param {callback} callback
+   */
+  async function getPost(callback) {
+    getAllPosts(function(data) {
+      const posts = nonReadPosts(data);
+      const randomPost = random(posts);
+      callback( randomPost);
+    });
   }
 };
