@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -12,7 +12,6 @@ const postSchema = new Schema({
   },
   parsedURL: {
     type: String,
-    default: '',
   },
   asReaded: {
     type: Boolean,
@@ -23,5 +22,14 @@ const postSchema = new Schema({
     default: Date.now(),
   },
 });
+const userSchema = new Schema({
+  id: {
+    unique: true,
+    type: Number,
+    required: true},
+  username: {
+    type: String},
+});
 const Post = mongoose.model('Post', postSchema);
-module.exports = Post;
+const User = mongoose.model('User', userSchema);
+export {Post, User};

@@ -1,29 +1,14 @@
-require('dotenv').config({path: './.env'});
-<<<<<<< HEAD
-const Telegraf = require('telegraf');
-const bot = new Telegraf(process.env.BOT_TOKEN);
-const finder = require('./helpers/linkfinder');
-const telegraph = require('./helpers/telegraph')
-bot.on('message', async (ctx) => {
-  console.log('test')
-  await finder(ctx.message).then(url => {
-    console.log(url)
-    await telegraph(url)
-  })
-});
-=======
-const bot = require('./bot');
-const {
-  handleRandom,
-  handleAdd,
-  handleQuery,
-} = require('./handlers');
-const updateLocaldb = require('./helpers/updateDB');
-updateLocaldb();
-setInterval(() => updateLocaldb(), 900 *1000 );
+import 'dotenv/config.js';
+import {sendLog} from './src/index.js';
+import bot from './bot.js';
+import {
+  handleRandom, handleAdd, handleQuery, handleExport,
+} from './handlers/index.js';
 bot.command('random', handleRandom);
+bot.command('export', handleExport);
 bot.on('callback_query', handleQuery);
 bot.on('message', handleAdd);
+bot.launch().then(
+    sendLog('bot started'),
+);
 
->>>>>>> master
-bot.launch();
