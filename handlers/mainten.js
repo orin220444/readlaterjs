@@ -5,7 +5,7 @@ import {sendLog} from '../src/log';
 export const handleMainten = async () => {
   const posts = await Post.find();
   for (const post of posts) {
-    console.log(`checking for duplicates for post ${post.originalURL}`);
+    sendLog(`checking for duplicates for post ${post.originalURL}`);
     try {
       await checkForDuplicates(post, posts);
     } catch (error) {
@@ -19,25 +19,29 @@ export const handleMainten = async () => {
  * @param {object} posts posts from the db
  */
 async function checkForDuplicates(post, posts) {
-  const realUrl = await urlCheck(post.originalURL);
-  // TODO: add try ... catch
-  if (realUrl !== undefined) {
-    if (realUrl !== post.originalURL) {
+  try {
+    const realUrl = await urlCheck(post.originalURL);
+
+    if (realUrl !== undefined) {
+      if (realUrl !== post.originalURL) {
       // TODO: combine checks
-      const original = findOriginal(post.originalURL);
-      if (original !== undefined) {
-        if (original) {
-          sendLog('finded a duplicate!');
-          await Post.findOneAndDelete({originalURL: post.originalURL});
-          sendLog('duplicate is deleted!');
-        } else {
-          sendLog('updating url');
-          sendLog(post);
-          post.originalURL = await realUrl;
-          await post.save();
+        const original = findOriginal(post.originalURL);
+        if (original !== undefined) {
+          if (original) {
+            sendLog('finded a duplicate!');
+            await Post.findOneAndDelete({originalURL: post.originalURL});
+            sendLog('duplicate is deleted!');
+          } else {
+            sendLog('updating url');
+            sendLog(post);
+            post.originalURL = await realUrl;
+            await post.save();
+          }
         }
       }
     }
+  } catch (error) {
+    sendLog(error);
   }
   /**
    * checks is a current url in the db
