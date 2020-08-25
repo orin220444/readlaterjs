@@ -1,5 +1,6 @@
 import Post from '../database/models';
 import {urlCheck} from '../helpers/axios.js';
+import {sendLog} from '../src/log';
 
 export const handleMainten = async () => {
   const posts = await Post.find();
@@ -8,7 +9,7 @@ export const handleMainten = async () => {
     try {
       await checkForDuplicates(post, posts);
     } catch (error) {
-      console.log(error);
+      sendLog(error);
     }
   }
 };
@@ -26,12 +27,12 @@ async function checkForDuplicates(post, posts) {
       const original = findOriginal(post.originalURL);
       if (original !== undefined) {
         if (original) {
-          console.log('finded a duplicate!');
+          sendLog('finded a duplicate!');
           await Post.findOneAndDelete({originalURL: post.originalURL});
-          console.log('duplicate is deleted!');
+          sendLog('duplicate is deleted!');
         } else {
-          console.log('updating url');
-          console.log(post);
+          sendLog('updating url');
+          sendLog(post);
           post.originalURL = await realUrl;
           await post.save();
         }
