@@ -29,7 +29,7 @@ export const handleQuery = async (ctx) => {
   }
   /**
    * set asRead = true in the db to the page
-   * @param {string} url originalUrl of the web page
+   * @param {string} url - originalUrl of the web page
    */
   async function archive(url) {
     const post = await Post.updateOne({originalURL: url},
@@ -39,7 +39,7 @@ export const handleQuery = async (ctx) => {
   }
   /**
    * set asRead = false in the db to the page
-   * @param {string} url originalUrl of the web page
+   * @param {string} url - originalUrl of the web page
    */
   async function unArchive(url) {
     const post = await Post.updateOne({originalURL: url},
@@ -49,7 +49,7 @@ export const handleQuery = async (ctx) => {
   }
   /**
    * deletes document from the db
-   * @param {string} url OriginalUrl of document to delete
+   * @param {string} url - OriginalUrl of document to delete
    */
   async function deletePost(url) {
     await Post.findOneAndDelete({originalUrl: url});

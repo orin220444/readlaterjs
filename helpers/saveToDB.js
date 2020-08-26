@@ -15,7 +15,7 @@ async function saveToDB(url) {
 
 /**
  * save to db
- * @param {string} url url to save
+ * @param {string} url - url to save
  * @return {Promise} saves url
  */
 async function save(url) {
@@ -34,7 +34,7 @@ async function save(url) {
 
 /**
  * checks for duplicates
- * @param {string} url url to save to db
+ * @param {string} url - url to save to db
  *
  * @return {Promise} url
  */
