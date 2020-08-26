@@ -13,7 +13,7 @@ export class Post {
     try {
       await urlCheck(this.url) .then(async function(realURL) {
         sendLog('sending url to the db');
-        await saveToDB(realURL).then( logSuccess(realURL));
+        await saveToDB(realURL);
       });
     } catch (error) {
       sendLog(error);
