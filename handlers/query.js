@@ -32,8 +32,8 @@ export const handleQuery = async (ctx) => {
    * @param {string} url originalUrl of the web page
    */
   async function archive(url) {
-    const post = await Post.updateOne({originalURL: url},
-        {asReaded: true},
+    const post = await Post.updateOne({originalUrl: url},
+        {read: true},
     );
     sendLog(`posts modified: ${post.nModified}`);
   }
@@ -42,14 +42,14 @@ export const handleQuery = async (ctx) => {
    * @param {string} url originalUrl of the web page
    */
   async function unArchive(url) {
-    const post = await Post.updateOne({originalURL: url},
-        {asReaded: true},
+    const post = await Post.updateOne({originalUrl: url},
+        {read: true},
     );
     sendLog(`posts modified: ${post.nModified}`);
   }
   /**
    * deletes document from the db
-   * @param {string} url OriginalUrl of document to delete
+   * @param {string} url originalUrl of document to delete
    */
   async function deletePost(url) {
     await Post.findOneAndDelete({originalUrl: url});

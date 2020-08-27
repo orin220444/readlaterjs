@@ -1,11 +1,14 @@
 import mongoose from 'mongoose';
+import moment from 'moment';
+import random from 'mongoose-random';
+import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 const Schema = mongoose.Schema;
 const postSchema = new Schema({
-  originalURL: {
+  originalUrl: {
     unique: true,
     type: String,
     required: true,
@@ -14,16 +17,16 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-  parsedURL: {
+  parsedUrl: {
     type: String,
   },
-  asReaded: {
+  read: {
     type: Boolean,
     default: false,
   },
   created: {
     type: Date,
-    default: Date.now(),
+    default: moment(),
   },
 });
 const userSchema = new Schema({
@@ -34,6 +37,8 @@ const userSchema = new Schema({
   username: {
     type: String},
 });
+postSchema.plugin(random);
+postSchema.plugin(mongooseFuzzySearching, {fields: ['originalUrl']});
 const Post = mongoose.model('Post', postSchema);
 const User = mongoose.model('User', userSchema);
 export {Post, User};

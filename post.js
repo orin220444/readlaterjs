@@ -15,12 +15,12 @@ export class Post {
  */
   static async urlCheck(url) {
     try {
-      this.realURL = await axios.get(url)
+      this.realUrl = await axios.get(url)
           .then(function(response) {
-            const realURL = response.request.res.responseUrl;
+            const realUrl = response.request.res.responseUrl;
             sendLog(`Original url: ${url},
-  real url ${realURL}`);
-            return realURL;
+  real url ${realUrl}`);
+            return realUrl;
           });
     } catch (error) {
       throw new Error(
@@ -53,7 +53,7 @@ export class Post {
   static async findDuplicates(url) {
     return new Promise(async (resolve, reject) => {
       try {
-        const post = await PostModel.findOne({originalURL: url});
+        const post = await PostModel.findOne({originalUrl: url});
         if (!post) {
           resolve(url);
         }
@@ -67,14 +67,14 @@ export class Post {
   /**
  * save to db
  * @param {string} url - url from user with redirects
- * @param {string} realURL - url without redirects(may be broken)
+ * @param {string} realUrl - url without redirects(may be broken)
  * @return {Promise} saves url
  */
-  static save(url, realURL) {
+  static save(url, realUrl) {
     return new Promise(async (resolve, reject) => {
       try {
         const post = await PostModel.create({
-          originalURL: realURL,
+          originalUrl: realUrl,
           redirectUrl: url,
         });
         await post.save();
@@ -95,7 +95,7 @@ export class Post {
   async savePost() {
     try {
       Promise.all([urlCheck(this.url)])
-          .then( () => saveToDB(this.url, this.realURL))
+          .then( () => saveToDB(this.url, this.realUrl))
           .catch((error) => sendLog(error));
     } catch (error) {
       sendLog(error);

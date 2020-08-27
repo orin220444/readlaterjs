@@ -13,12 +13,12 @@ export const handleExport = async (ctx) => {
         const options = {
           fields: [
             {
-              name: 'originalURL',
+              name: 'originalUrl',
               label: 'URL',
               quoted: true,
             },
             {
-              name: 'asReaded',
+              name: 'read',
               label: 'Read',
             },
             {
