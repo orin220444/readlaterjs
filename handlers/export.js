@@ -3,6 +3,7 @@ import jsoncsv from 'json-csv';
 import {promisify} from 'util';
 const buffered = promisify(jsoncsv.buffered);
 import {writeFile} from 'fs';
+import {sendLog} from '../src/log.js';
 const createFile = promisify(writeFile);
 export const handleExport = async (ctx) => {
   console.log('getting posts to export');
@@ -24,9 +25,10 @@ export const handleExport = async (ctx) => {
         label: 'created',
       },
     ]};
-  buffered(posts, options).then((csv) => createFile('export.csv', csv)
-      .then(sendToUser()),
-  );
+  buffered(posts, options)
+      .then((csv) => createFile('export.csv', csv))
+      .then(() => sendToUser())
+      .catch((error) => sendLog(error));
 
 
   /**
