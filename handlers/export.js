@@ -30,9 +30,9 @@ export const handleExport = async (ctx) => {
       .then(() => sendToUser())
       .catch((error) => sendLog(error));
 
-
-  /**
-   * send document to user
+      });
+};
+/**
    */
   function sendToUser() {
     ctx.replyWithDocument({source: 'export.csv'},
