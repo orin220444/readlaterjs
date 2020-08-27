@@ -23,7 +23,7 @@ export class Post {
           .then(function(response) {
             const realUrl = response.request.res.responseUrl;
             sendLog(`Original url: ${url},
-  real url ${realUrl}`);
+  Real url: ${realUrl}`);
             return realUrl;
           });
     } catch (error) {
