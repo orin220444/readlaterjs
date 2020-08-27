@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import moment from 'moment'
+import moment from 'moment';
 import random from 'mongoose-random';
 import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
 mongoose.connect(process.env.MONGODB_URL, {
