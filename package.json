@@ -31,6 +31,7 @@
   "dependencies": {
     "@postlight/mercury-parser": "orin220444/mercury-parser",
     "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
     "telegraph-node": "^1.0.4",
     "json-csv": "^3.0.1",
