@@ -92,10 +92,9 @@ export class Post {
 */
   async savePost() {
     try {
-      await urlCheck(this.url) .then( async () => {
-        sendLog('sending url to the db');
-        await saveToDB(realURL);
-      });
+      Promise.all([urlCheck(this.url)])
+          .then( () => saveToDB(this.url, this.realURL))
+          .catch((error) => sendLog(error));
     } catch (error) {
       sendLog(error);
     }
