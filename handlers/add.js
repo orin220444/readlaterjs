@@ -1,4 +1,5 @@
-import {finder, saveToDB, urlCheck, keyboard} from '../helpers/index.js';
+import {Post} from '../post.js';
+import {finder, keyboard} from '../helpers/index.js';
 import {sendLog} from '../src/log.js';
 export const handleAdd = async (ctx) => {
   getUrl(finder(ctx.message));
@@ -11,22 +12,12 @@ export const handleAdd = async (ctx) => {
     if (urls !== 'no urls!') {
       for (const url of urls) {
         if (url !== 'message.chat.id') {
-          saveUrl(url);
-          sendLog(url);
+          const post = new Post(url);
+          post.savePost(url).then(logSuccess(url))
+              .catch((error) => sendLog(error));
         }
       }
     }
-  }
-
-  /**
-* saves url
-* @param {string} url url to save
-*/
-  function saveUrl(url) {
-    urlCheck(url)
-        .then((realURL) => saveToDB(realURL)
-            .then( logSuccess(realURL)))
-        .catch((error) => console.log(error));
   }
   /**
 * logs to user if success saving url
