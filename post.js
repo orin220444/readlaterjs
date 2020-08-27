@@ -54,10 +54,18 @@ export class Post {
             console.log(result.content);
             return {title: result.title, content: result.content};
           });
-      return page;
+      this.title = page.title;
+      this.content = page.content;
     } catch (error) {
       throw new Error(error);
     }
+  }
+  /**
+   * parses a web pase and creates a telegraph with this data
+   */
+  static createPage() {
+    this.parse.then(this.telegraph())
+        .catch((error)=> new Error(error));
   }
   /**
 * saves url in the database
@@ -126,7 +134,7 @@ export class Post {
 */
   async savePost() {
     try {
-      Promise.all([urlCheck(this.url)])
+      Promise.all([urlCheck(this.url), createPage()])
           .then( () => saveToDB(this.url, this.realUrl))
           .catch((error) => sendLog(error));
     } catch (error) {
