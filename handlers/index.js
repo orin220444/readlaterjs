@@ -3,4 +3,5 @@ export {handleAdd} from './add.js';
 export {handleQuery} from './query.js';
 export {handleExport} from './export.js';
 export {handleSearch} from './search.js';
-export {handleImport} from './import.js'
+export {handleImport} from './import.js';
+export {handleMainten} from './mainten.js';
