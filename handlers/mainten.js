@@ -1,11 +1,10 @@
-import Post from '../database/models';
-import {urlCheck} from '../helpers/axios.js';
+import {Post as PostModel} from '../database/models';
 import {sendLog} from '../src/log';
-
+import {Post} from '../post.js';
 export const handleMainten = async () => {
-  const posts = await Post.find();
+  const posts = await PostModel.find();
   for (const post of posts) {
-    sendLog(`checking for duplicates for post ${post.originalURL}`);
+    sendLog(`checking for duplicates for post ${post.originalUrl}`);
     try {
       await checkForDuplicates(post, posts);
     } catch (error) {
@@ -20,17 +19,18 @@ export const handleMainten = async () => {
  */
 async function checkForDuplicates(post, posts) {
   try {
-    const realUrl = await urlCheck(post.originalURL);
-    if (realUrl !== post.originalURL) {
-      const isOriginal = findOriginal(post.originalURL);
+    const post = new Post();
+    const realUrl = await post.urlCheck(post.originalUrl);
+    if (realUrl !== post.originalUrl) {
+      const isOriginal = findOriginal(post.originalUrl);
       if (isOriginal) {
         sendLog('finded a duplicate!');
-        await Post.findOneAndDelete({originalURL: post.originalURL});
+        await PostModel.findOneAndDelete({originalUrl: post.originalUrl});
         sendLog('duplicate is deleted!');
       } else {
         sendLog('updating url');
         sendLog(post);
-        post.originalURL = await realUrl;
+        post.originalUrl = await realUrl;
         await post.save();
       }
     }
@@ -44,7 +44,7 @@ async function checkForDuplicates(post, posts) {
    */
   function findOriginal(url) {
     for (const post of posts) {
-      const postURL = post.originalURL;
+      const postURL = post.originalUrl;
       if (postURL === url) return true;
     }
     return false;
