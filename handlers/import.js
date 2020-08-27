@@ -18,6 +18,7 @@ async function getFile(ctx) {
 /**
  * parses links from pocket export file
  * @param {string} exportHTML HTML page
+ * @return {Array} links
  */
 function parseLinks(exportHTML) {
   const $ = cheerio.load(exportHTML);
@@ -26,5 +27,6 @@ function parseLinks(exportHTML) {
     const link = $(this).attr('href');
     links.push(link);
   });
+  return links;
 }
 module.exports = getFile;
