@@ -1,6 +1,9 @@
 import {sendLog} from './src/log';
 import {axios} from 'axios';
 import {Post as PostModel} from './database/models.js';
+import Telegraph from 'telegraph-node';
+const ph = new Telegraph();
+const token = process.env.TELEGRAPH_TOKEN;
 /** @typedef Post */
 export class Post {
   /** @param {string} url - url of the page */
@@ -27,6 +30,17 @@ export class Post {
           `axios error: ${error}, ${error.code}, ${error.config.url}`);
     }
   }
+  /**
+ * save post as a telegraph page
+ * @param {string} title
+ * @param {string} content
+ */
+  static async telegraph(title, content) {
+    ph.createPage(token, title, content)
+        .then((result) => console.log(result))
+        .catch((error) => console.log(error));
+  }
+
   /**
 * saves url in the database
 * @param {any} url - url to save
