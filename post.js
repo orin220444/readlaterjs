@@ -2,6 +2,7 @@ import {sendLog} from './src/log';
 import {axios} from 'axios';
 import {Post as PostModel} from './database/models.js';
 import Telegraph from 'telegraph-node';
+import Mercury from '@postlight/mercury-parser';
 const ph = new Telegraph();
 const token = process.env.TELEGRAPH_TOKEN;
 /** @typedef Post */
@@ -40,7 +41,24 @@ export class Post {
         .then((result) => console.log(result))
         .catch((error) => console.log(error));
   }
-
+  /**
+* parses web page to text
+* @param {string} url url of web page to parse
+* @return {object} web page title and web page content
+*/
+  static async parse(url) {
+  // TODO: refactor
+    try {
+      const page = await Mercury.parse(url, {contentType: 'text'})
+          .then((result) => {
+            console.log(result.content);
+            return {title: result.title, content: result.content};
+          });
+      return page;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   /**
 * saves url in the database
 * @param {any} url - url to save
