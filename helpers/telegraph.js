@@ -10,6 +10,7 @@ const token = process.env.TELEGRAPH_TOKEN;
  * @param {string} content
  */
 export async function telegraph(title, content) {
-  ph.createPage(token, title, content).then((result) => console.log(result),
-  );
+  ph.createPage(token, title, content)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
 }
