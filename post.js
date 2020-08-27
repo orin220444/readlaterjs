@@ -66,14 +66,16 @@ export class Post {
   }
   /**
  * save to db
- * @param {string} url url to save
+ * @param {string} url - url from user with redirects
+ * @param {string} realURL - url without redirects(may be broken)
  * @return {Promise} saves url
  */
-  static save(url) {
+  static save(url, realURL) {
     return new Promise(async (resolve, reject) => {
       try {
         const post = await PostModel.create({
-          originalURL: url,
+          originalURL: realURL,
+          redirectUrl: url,
         });
         await post.save();
 
