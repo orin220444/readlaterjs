@@ -1,23 +1,20 @@
-import axios from 'axios';
-import cheerio from 'cheerio';
+const Mercury = require('@postlight/mercury-parser');
 /**
 * parses web page to text
 * @param {string} url url of web page to parse
+* @return {object} web page title and web page content
 */
 async function parse(url) {
-  axios.get(url).then(async function(response) {
-    // console.log(response.data);
-    const $ = await cheerio.load(response.data);
-    const data = [];
-    $('html').each((i, elem)=> {
-      data.push({
-
-      });
-    });
-    console.log(data);
-  })
-      .catch(function(error) {
-        console.log('error:', error);
-      });
+  // TODO: refactor
+  try {
+    const page = await Mercury.parse(url, {contentType: 'text'})
+        .then((result) => {
+          console.log(result.content);
+          return {title: result.title, content: result.content};
+        });
+    return page;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 export {parse};

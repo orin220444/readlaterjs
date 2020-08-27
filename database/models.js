@@ -24,6 +24,12 @@ const postSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  title: {
+    type: String,
+  },
+  content: {
+    type: String,
+  },
   created: {
     type: Date,
     default: moment(),
