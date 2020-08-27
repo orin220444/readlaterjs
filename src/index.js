@@ -1,2 +1,1 @@
-import {sendLog} from './log.js';
-export {sendLog};
+export {sendLog} from './log.js';
