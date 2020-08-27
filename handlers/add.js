@@ -1,5 +1,5 @@
 import {Post} from '../post.js';
-import {finder, saveToDB, urlCheck, keyboard} from '../helpers/index.js';
+import {finder, keyboard} from '../helpers/index.js';
 import {sendLog} from '../src/log.js';
 export const handleAdd = async (ctx) => {
   getUrl(finder(ctx.message));
