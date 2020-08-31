@@ -5,12 +5,6 @@ import Telegraph from 'telegraph-node';
 import Mercury from '@postlight/mercury-parser';
 const ph = new Telegraph();
 const token = process.env.TELEGRAPH_TOKEN;
-/** @typedef Post */
-export class Post {
-  /** @param {string} url - url of the page */
-  constructor(url) {
-    this.url = url;
-  }
   /**
  * takes url and gets real url
  * @param {string} url - url to check
@@ -132,10 +126,10 @@ export class Post {
 * saves url
 * @param {string} url url to save
 */
-  async savePost() {
+  async savePost(url) {
     try {
-      Promise.all([urlCheck(this.url), createPage()])
-          .then( () => saveToDB(this.url, this.realUrl))
+      Promise.all([urlCheck(url), createPage(url)])
+          .then( () => saveToDB(url, this.realUrl))
           .catch((error) => sendLog(error));
     } catch (error) {
       sendLog(error);
