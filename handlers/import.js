@@ -1,11 +1,18 @@
-import bot from '../bot';
+import bot from '../bot.js';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import {Post} from '../post';
+import {Post} from '../post.js';
 
 export const handleImport = async (ctx) => {
-  const data = await getFile(ctx);
-  saveLinks(parseLinks(data));
+  ctx.reply('send a file');
+  bot.on('message', async (ctx) => {
+    const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
+    const data = await axios.get(file)
+        .then(function(response) {
+          return response.data;
+        });
+    saveLinks(parseLinks(data));
+  });
 };
 /**
  * parses links from pocket export file
@@ -26,8 +33,9 @@ function parseLinks(exportHTML) {
  * @param {Array} links - parsed links
  */
 async function saveLinks(links) {
-  for (link of links) {
+  for (const link of links) {
     const post = new Post(link);
+    console.log(`saving ${link}`);
     await post.savePost();
   }
 }
@@ -36,14 +44,5 @@ async function saveLinks(links) {
  * @param {any} ctx telegraf context
  */
 async function getFile(ctx) {
-  ctx.reply('send a file');
-  const data = bot.on('message', async (ctx) => {
-    const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
-    const data = await axios.get(file)
-        .then(function(response) {
-          return response.data;
-        });
-    return data;
-  });
   return data;
 }
