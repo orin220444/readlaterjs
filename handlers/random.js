@@ -16,7 +16,7 @@ export const handleRandom = async (ctx) => {
 
   /**
    * filters non read posts
-   * @param {object} data data from database
+   * @param {object} data - data from database
    * @return {object} non read posts
    */
   function nonReadPosts(data) {

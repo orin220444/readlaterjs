@@ -2,7 +2,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 /**
 * parses web page to text
-* @param {string} url url of web page to parse
+* @param {string} url - url of web page to parse
 */
 async function parse(url) {
   axios.get(url).then(async function(response) {
