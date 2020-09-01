@@ -1,7 +1,7 @@
 import bot from '../bot.js';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import {Post} from '../post.js';
+import {savePost} from '../post.js';
 
 export const handleImport = async (ctx) => {
   ctx.reply('send a file');
@@ -34,9 +34,8 @@ function parseLinks(exportHTML) {
  */
 async function saveLinks(links) {
   for (const link of links) {
-    const post = new Post(link);
     console.log(`saving ${link}`);
-    await post.savePost();
+    await savePost(link);
   }
 }
 /**

@@ -1,4 +1,4 @@
-import {Post} from '../post.js';
+import {savePost} from '../post.js';
 import {finder, keyboard} from '../helpers/index.js';
 import {sendLog} from '../src/log.js';
 export const handleAdd = async (ctx) => {
@@ -12,8 +12,7 @@ export const handleAdd = async (ctx) => {
     if (urls !== 'no urls!') {
       for (const url of urls) {
         if (url !== 'message.chat.id') {
-          const post = new Post(url);
-          post.savePost(url).then(logSuccess(url))
+          savePost(url).then(logSuccess(url))
               .catch((error) => sendLog(error));
         }
       }

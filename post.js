@@ -20,7 +20,7 @@ async function urlCheck(url) {
   Real url: ${realUrl}`);
           return realUrl;
         });
-        return realUrl;
+    return realUrl;
   } catch (error) {
     throw new Error(
         `axios error: ${error}, ${error.code}, ${error.config.url}`);
@@ -31,10 +31,13 @@ async function urlCheck(url) {
  * @param {string} title
  * @param {string} content
  */
-async function telegraph(title, content) {
-  ph.createPage(token, title, content)
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
+async function telegraph(page) {
+  try {
+    const telegraphPage = await ph.createPage(token, page.title, page.content);
+    return telegraphPage;
+  } catch (error) {
+    console.log(error);
+  };
 }
 /**
 * parses web page to text
@@ -49,7 +52,7 @@ async function parse(url) {
           console.log(result.content);
           return {title: result.title, content: result.content};
         });
-    return page
+    return page;
   } catch (error) {
     throw new Error(error);
   }
@@ -57,9 +60,14 @@ async function parse(url) {
 /**
    * parses a web pase and creates a telegraph with this data
    */
-function createPage() {
-  parse.then(telegraph())
-      .catch((error)=> new Error(error));
+async function createPage(url) {
+  try {
+    const parsedData = await parse(url);
+    const pageUrl = await telegraph(parsedData);
+    return pageUrl;
+  } catch (error) {
+    console.log(error);
+  }
 }
 /**
 * saves url in the database
@@ -128,9 +136,9 @@ function save(url, realUrl) {
 */
 export async function savePost(url) {
   try {
-    Promise.all([urlCheck(url), createPage(url)])
-        .then( () => saveToDB(url, realUrl))
-        .catch((error) => sendLog(error));
+    const realUrl = await urlCheck(url);
+    const page = await createPage(url);
+    await saveToDB(url, realUrl, page);
   } catch (error) {
     sendLog(error);
   }

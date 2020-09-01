@@ -1,6 +1,6 @@
 import {Post as PostModel} from '../database/models.js';
 import {sendLog} from '../src/log.js';
-import {Post} from '../post.js';
+// import {Post} from '../post.js';
 export const handleMainten = async () => {
   const posts = await PostModel.find();
   for (const post of posts) {
