@@ -13,13 +13,14 @@ const token = process.env.TELEGRAPH_TOKEN;
  */
 async function urlCheck(url) {
   try {
-    this.realUrl = await axios.get(url)
+    const realUrl = await axios.get(url)
         .then(function(response) {
           const realUrl = response.request.res.responseUrl;
           sendLog(`Original url: ${url},
   Real url: ${realUrl}`);
           return realUrl;
         });
+        return realUrl;
   } catch (error) {
     throw new Error(
         `axios error: ${error}, ${error.code}, ${error.config.url}`);
@@ -48,8 +49,7 @@ async function parse(url) {
           console.log(result.content);
           return {title: result.title, content: result.content};
         });
-    this.title = page.title;
-    this.content = page.content;
+    return page
   } catch (error) {
     throw new Error(error);
   }
@@ -58,7 +58,7 @@ async function parse(url) {
    * parses a web pase and creates a telegraph with this data
    */
 function createPage() {
-  this.parse.then(this.telegraph())
+  parse.then(telegraph())
       .catch((error)=> new Error(error));
 }
 /**
@@ -126,10 +126,10 @@ function save(url, realUrl) {
 * saves url
 * @param {string} url url to save
 */
-async function savePost(url) {
+export async function savePost(url) {
   try {
     Promise.all([urlCheck(url), createPage(url)])
-        .then( () => saveToDB(url, this.realUrl))
+        .then( () => saveToDB(url, realUrl))
         .catch((error) => sendLog(error));
   } catch (error) {
     sendLog(error);
