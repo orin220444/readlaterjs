@@ -1,5 +1,5 @@
-import {sendLog} from './src/log';
-import {axios} from 'axios';
+import {sendLog} from './src/log.js';
+import axios from 'axios';
 import {Post as PostModel} from './database/models.js';
 import Telegraph from 'telegraph-node';
 import Mercury from '@postlight/mercury-parser';
@@ -17,7 +17,7 @@ export class Post {
  *
  * @return {Promise} real url
  */
-  static async urlCheck(url) {
+  async urlCheck(url) {
     try {
       this.realUrl = await axios.get(url)
           .then(function(response) {
@@ -36,7 +36,7 @@ export class Post {
  * @param {string} title
  * @param {string} content
  */
-  static async telegraph(title, content) {
+  async telegraph(title, content) {
     ph.createPage(token, title, content)
         .then((result) => console.log(result))
         .catch((error) => console.log(error));
@@ -46,7 +46,7 @@ export class Post {
 * @param {string} url url of web page to parse
 * @return {object} web page title and web page content
 */
-  static async parse(url) {
+  async parse(url) {
   // TODO: refactor
     try {
       const page = await Mercury.parse(url, {contentType: 'text'})
@@ -63,7 +63,7 @@ export class Post {
   /**
    * parses a web pase and creates a telegraph with this data
    */
-  static createPage() {
+  createPage() {
     this.parse.then(this.telegraph())
         .catch((error)=> new Error(error));
   }
@@ -72,7 +72,7 @@ export class Post {
 * @param {any} url - url to save
 * @return {Promise} saved post
 */
-  static saveToDB(url) {
+  saveToDB(url) {
     return new Promise((resolve, reject) => {
       try {
         findDuplicates(url) .then(function(url) {
@@ -90,7 +90,7 @@ export class Post {
  *
  * @return {Promise} url
  */
-  static async findDuplicates(url) {
+  async findDuplicates(url) {
     return new Promise(async (resolve, reject) => {
       try {
         const post = await PostModel.findOne({originalUrl: url});
@@ -110,7 +110,7 @@ export class Post {
  * @param {string} realUrl - url without redirects(may be broken)
  * @return {Promise} saves url
  */
-  static save(url, realUrl) {
+  save(url, realUrl) {
     return new Promise(async (resolve, reject) => {
       try {
         const post = await PostModel.create({
@@ -134,9 +134,7 @@ export class Post {
 */
   async savePost() {
     try {
-      Promise.all([urlCheck(this.url), createPage()])
-          .then( () => saveToDB(this.url, this.realUrl))
-          .catch((error) => sendLog(error));
+      console.log(this);
     } catch (error) {
       sendLog(error);
     }
