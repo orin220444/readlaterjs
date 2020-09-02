@@ -1,7 +1,7 @@
 import bot from '../bot.js';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import {savePost} from '../post.js';
+import {savePost} from '../post/index.js';
 
 export const handleImport = async (ctx) => {
   ctx.reply('send a file');

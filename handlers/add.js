@@ -1,4 +1,4 @@
-import {savePost} from '../post.js';
+import {savePost} from '../post/index.js';
 import {finder, keyboard} from '../helpers/index.js';
 import {sendLog} from '../src/log.js';
 export const handleAdd = async (ctx) => {
