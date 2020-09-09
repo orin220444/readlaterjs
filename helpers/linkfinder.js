@@ -1,6 +1,6 @@
 /**
 * finds links and urls in message
-* @param {any} message telegram message
+* @param {any} message - telegram message
 * @callback
 * @return {string} url from the message
 */

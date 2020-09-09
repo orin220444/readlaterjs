@@ -1,7 +1,7 @@
 import {writeFile} from 'fs';
 /**
  * logging
- * @param {string} message to log
+ * @param {string} message - message to log
  */
 export function sendLog(message) {
   console.log(message);

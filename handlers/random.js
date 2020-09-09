@@ -13,7 +13,6 @@ export const handleRandom = async (ctx) => {
     }
   });
 
-
   /**
    * send random non read post to user
    * @return {object} post from the db
