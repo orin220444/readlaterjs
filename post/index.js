@@ -11,7 +11,6 @@ import {urlCheck} from './urlCheck.js';
 export async function savePost(url) {
   try {
     const realUrl = await urlCheck(url);
-    const page = await createPage(url);
     const parsedData = await parse(url);
     const pageUrl = await telegraph(parsedData);
     await saveToDB(url, realUrl, page, parsedData, pageUrl);
