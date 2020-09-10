@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {sendLog} from '../src/log.js';
 /**
  * takes url and gets real url
  * @param {string} url - url to check
@@ -11,12 +12,12 @@ export async function urlCheck(url) {
         .then(function(response) {
           const realUrl = response.request.res.responseUrl;
           sendLog(`Original url: ${url},
-    Real url: ${realUrl}`);
+Real url: ${realUrl}`);
           return realUrl;
         });
     return realUrl;
   } catch (error) {
     throw new Error(
-        `axios error: ${error}, ${error.code}, ${error.config.url}`);
+        `axios error: ${error}, ${error.code}, ${error.config}`);
   }
 }
