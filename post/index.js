@@ -1,7 +1,7 @@
 import {sendLog} from '../src/log.js';
 import {parse} from './parse.js';
 import {saveToDB} from './saveToDb.js';
-import {telegraph} from './telegraph.js';
+// import {telegraph} from './telegraph.js';
 import {urlCheck} from './urlCheck.js';
 
 /**
@@ -12,8 +12,8 @@ export async function savePost(url) {
   try {
     const realUrl = await urlCheck(url);
     const parsedData = await parse(url);
-    const pageUrl = await telegraph(parsedData);
-    await saveToDB(url, realUrl, page, parsedData, pageUrl);
+    // const pageUrl = await telegraph(parsedData);
+    await saveToDB(url, realUrl, parsedData /* pageUrl*/);
   } catch (error) {
     sendLog(error);
   }
