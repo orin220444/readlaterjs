@@ -29,7 +29,7 @@
     }
   },
   "dependencies": {
-    "@postlight/mercury-parser": "github:orin220444/mercury-parser",
+    "@postlight/mercury-parser": "github:orin220444/mercury-parser#master",
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
