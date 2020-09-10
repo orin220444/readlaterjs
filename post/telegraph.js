@@ -13,6 +13,6 @@ export async function telegraph(page) {
     const telegraphPage = await ph.createPage(token, page.title, page.content);
     return telegraphPage;
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   };
 }
