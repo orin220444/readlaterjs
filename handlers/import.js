@@ -2,16 +2,21 @@ import bot from '../bot.js';
 import axios from 'axios';
 import cheerio from 'cheerio';
 import {savePost} from '../post/index.js';
+import {sendLog} from '../src/log.js';
 
 export const handleImport = async (ctx) => {
   ctx.reply('send a file');
   bot.on('message', async (ctx) => {
-    const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
-    const data = await axios.get(file)
-        .then(function(response) {
-          return response.data;
-        });
-    saveLinks(parseLinks(data));
+    try {
+      const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
+      const data = await axios.get(file)
+          .then(function(response) {
+            return response.data;
+          });
+      saveLinks(parseLinks(data));
+    } catch (error) {
+      sendLog(error);
+    }
   });
 };
 /**
@@ -42,6 +47,6 @@ async function saveLinks(links) {
  * get file from telegram
  * @param {any} ctx telegraf context
  */
-async function getFile(ctx) {
+/* async function getFile(ctx) {
   return data;
-}
+}*/

@@ -19,7 +19,11 @@ export const handleRandom = async (ctx) => {
    * @param {callback} callback
    */
   async function getPost() {
-    const randomPost = await getRandomPost();
-    return randomPost;
+    try {
+      const randomPost = await getRandomPost();
+      return randomPost;
+    } catch (error) {
+      throw new Error(`error while getting random post: ${error}`);
+    }
   }
 };
