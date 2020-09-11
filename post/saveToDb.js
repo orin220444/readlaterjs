@@ -6,11 +6,11 @@ import {Post as PostModel} from '../database/models.js';
 * @param {object} content - title + content
 * @return {Promise} saved post
 */
-export async function saveToDB(url, realUrl, content /* pageUrl*/) {
+export async function saveToDB(url, realUrl, content) {
   try {
     const isDuples = await findDuplicates(url);
     if (!isDuples) {
-      await save(url, realUrl, content /* pageUrl*/);
+      await save(url, realUrl, content);
     }
   } catch (error) {
     throw new Error(`error, not saving ${error}`);
@@ -39,14 +39,13 @@ async function findDuplicates(url) {
    * @param {object} content - title + content
    * @return {Promise} saves url
    */
-export async function save(url, realUrl, content /* telegraphUrl*/) {
+export async function save(url, realUrl, content) {
   try {
     const post = await PostModel.create({
       originalUrl: realUrl,
       redirectUrl: url,
       title: content.title,
       content: content.content,
-      /* parsedUrl: telegraphUrl,*/
     });
     await post.save();
 
