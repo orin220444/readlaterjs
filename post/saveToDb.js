@@ -51,6 +51,6 @@ export async function save(url, realUrl, content) {
 
     console.log(`${url} saved!`);
   } catch (error) {
-    reject(new Error(`error while saving to db: ${error}, ${url}`));
+    throw new Error(`error while saving to db: ${error}, ${url}`);
   }
 }
