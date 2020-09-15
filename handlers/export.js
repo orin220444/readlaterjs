@@ -15,8 +15,9 @@ export const handleExport = async (ctx) => {
       const post = item.toJSON();
       // console.log(post.originalUrl ? post.originalUrl: post.originalURL)
       const url = post.originalUrl ? post.originalUrl: post.originalURL;
+      const title = post.title ? post.title : url;
       $('#links').append(
-          `<li><a href="${url}">${url}</a></li>\n`,
+          `<li><a href="${url}">${title}</a></li>\n`,
       );
     });
 
