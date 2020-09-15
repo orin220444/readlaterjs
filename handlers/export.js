@@ -8,11 +8,11 @@ import {sendLog} from '../src/log.js';
 const createFile = promisify(writeFile);
 export const handleExport = async (ctx) => {
   console.log('getting posts to export');
-  Post.find().then((posts)=> {
+  Post.find().then((data)=> {
+    const posts = getPostsInJSON(data);
     const $ = cheerio.load(
         '<h1>Export from readlaterbot</h1>\n <ul id=links>\n');
-    posts.forEach(function(item) {
-      const post = item.toJSON();
+    posts.forEach(function(post) {
       // console.log(post.originalUrl ? post.originalUrl: post.originalURL)
       const url = post.originalUrl ? post.originalUrl: post.originalURL;
       const title = post.title ? post.title : url;
@@ -34,3 +34,8 @@ export const handleExport = async (ctx) => {
     }
   });
 };
+function getPostsInJSON(data) {
+  return data.map(function(item) {
+    return item.toJSON();
+  });
+}
