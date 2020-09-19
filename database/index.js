@@ -4,7 +4,7 @@ import {Post} from './models.js';
 */
 async function search(url) {
   const data = await Post.find(url, callback);
-  callback(data);
+  callback(getPostsInJson(data));
 }
 /**
  * get all posts from db
@@ -12,6 +12,11 @@ async function search(url) {
  */
 async function getAllPosts(callback) {
   const data = await Post.find();
-  callback(data);
+  callback(getPostsInJson(data));
+}
+function getPostsInJson(data) {
+  return data.map(function(item) {
+    return item.toJSON();
+  });
 }
 export {search, getAllPosts};
