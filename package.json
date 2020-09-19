@@ -34,6 +34,7 @@
     "dotenv": "^8.2.0",
     "json-csv": "^3.0.1",
     "mongoose": "^5.10.0",
+    "node-worker-threads-pool": "^1.4.2",
     "telegraf": "^3.38.0"
   },
   "devDependencies": {
