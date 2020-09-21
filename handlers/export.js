@@ -40,17 +40,26 @@ function getPostsInJson(data) {
  * @return {string} - html document to export
  */
 function exportToHtml(posts) {
+  const nameHtml = '<h1>Export from readlaterbot</h1>';
+  const unreadHtml = '<h1>Unread</h1>\n<ul id=Unread></ul>\n';
+  const readArchive = '<h1>Read Archive</h1>\n<ul id=links></ul>';
+  const startHtml =
+  `${nameHtml}\n ${unreadHtml} ${readArchive}\n`;
+
   const $ = cheerio.load(
-      '<h1>Export from readlaterbot</h1>\n <ul id=links>\n');
+      startHtml);
   posts.forEach(function(post) {
   // console.log(post.originalUrl ? post.originalUrl: post.originalURL)
     const url = post.originalUrl ? post.originalUrl: post.originalURL;
     const title = post.title ? post.title : url;
-    $('#links').append(
+    const listName =
+    (post.read = false) || (post.asReaded = false) ? '#Unread': '#links';
+
+    $(listName).append(
         `<li><a href="${url}">${title}</a></li>\n`,
     );
   });
-
+  // TODO: remove attributes
   const html = $.html();
   console.log(html);
   return html;
