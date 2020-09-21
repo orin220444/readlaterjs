@@ -5,14 +5,9 @@ import cheerio from 'cheerio';
  * @return {string} - html document to export
  */
 export function exportToHtml(posts) {
-  const nameHtml = '<h1>Export from readlaterbot</h1>';
-  const unreadHtml = '<h1>Unread</h1>\n<ul id=Unread></ul>\n';
-  const readArchive = '<h1>Read Archive</h1>\n<ul id=links></ul>';
-  const startHtml =
-    `${nameHtml}\n ${unreadHtml} ${readArchive}\n`;
-
+  const startHtmlpage = startHtml();
   const $ = cheerio.load(
-      startHtml);
+      startHtmlpage);
   posts.forEach(function(post) {
     // console.log(post.originalUrl ? post.originalUrl: post.originalURL)
     const url = post.originalUrl ? post.originalUrl: post.originalURL;
@@ -28,4 +23,14 @@ export function exportToHtml(posts) {
   const html = $.html();
   console.log(html);
   return html;
+}
+/**
+ * create start html page
+ * @return {string} html page
+ */
+function startHtml() {
+  const nameHtml = '<h1>Export from readlaterbot</h1>';
+  const unreadHtml = '<h1>Unread</h1>\n<ul id=Unread></ul>\n';
+  const readArchive = '<h1>Read Archive</h1>\n<ul id=links></ul>';
+  return `${nameHtml}\n ${unreadHtml} ${readArchive}\n`;
 }
