@@ -1,4 +1,4 @@
-import {Post} from '../../database/models.js';
+import {getAllPosts} from '../../database/index.js';
 // import jsonCsv from 'json-csv';
 import {promisify} from 'util';
 import {exportToHtml} from './exportToHtml.js';
@@ -8,8 +8,7 @@ import {sendLog} from '../../src/log.js';
 const createFile = promisify(writeFile);
 export const handleExport = async (ctx) => {
   console.log('getting posts to export');
-  Post.find().then((data)=> {
-    const posts = getPostsInJson(data);
+  getAllPosts().then((posts)=> {
     const exportData = exportToHtml(posts);
     const fileExt = '.html';
     createFile(`export${fileExt}`, exportData).then(() => sendToUser(fileExt))
@@ -24,13 +23,3 @@ export const handleExport = async (ctx) => {
     }
   });
 };
-/**
- * because mongoose returns data in document format needs to convert to object
- * @param {Array} data - mongoose documents
- * @return {Array} - mongoose data in json
- * */
-function getPostsInJson(data) {
-  return data.map(function(item) {
-    return item.toJSON();
-  });
-}
