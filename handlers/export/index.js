@@ -1,8 +1,7 @@
 import {getAllPosts} from '../../database/index.js';
-// import jsonCsv from 'json-csv';
 import {promisify} from 'util';
 import {exportToHtml} from './exportToHtml.js';
-// const buffered = promisify(jsonCsv.buffered);
+// import {exportToCsv} from './exportToCsv.js';
 import {writeFile} from 'fs';
 import {sendLog} from '../../src/log.js';
 const createFile = promisify(writeFile);
