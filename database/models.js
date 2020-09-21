@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import {DateTime} from 'luxon';
+import luxon from 'luxon';
 import random from 'mongoose-random';
 import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
 mongoose.connect(process.env.MONGODB_URL, {
@@ -32,7 +32,7 @@ const postSchema = new Schema({
   },
   created: {
     type: Date,
-    default: DateTime.local(),
+    default: luxon.DateTime.local(),
   },
 });
 const userSchema = new Schema({
