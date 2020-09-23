@@ -1,4 +1,9 @@
 import cheerio from 'cheerio'
+/**
+ * parses links from pocket export file
+ * @param {string} exportHTML HTML page
+ * @return {Array} links
+ */
 export function parseLinks(Html){
 
   const $ = cheerio.load(html);
