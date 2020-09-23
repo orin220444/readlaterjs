@@ -1,16 +1,15 @@
-import cheerio from 'cheerio'
+import cheerio from 'cheerio';
 /**
  * parses links from pocket export file
- * @param {string} exportHTML HTML page
+ * @param {string} Html HTML page
  * @return {Array} links
  */
-export function parseLinks(Html){
-
+export function parseLinks(Html) {
   const $ = cheerio.load(html);
   const links = [];
-  $('a').each(function(){
-    const link = $(this).attr('href')
-    links.push(link)
-})
-return links
+  $('a').each(function() {
+    const link = $(this).attr('href');
+    links.push(link);
+  });
+  return links;
 }

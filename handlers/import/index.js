@@ -1,5 +1,5 @@
 import axios from 'axios';
-import parseLinks from './parseLinks.js'
+import parseLinks from './parseLinks.js';
 import {savePost} from '../../post/index.js';
 import {sendLog} from '../../src/log.js';
 import Scene from 'telegraf/scenes/wizard/index.js';
