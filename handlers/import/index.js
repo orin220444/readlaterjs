@@ -1,8 +1,8 @@
 import axios from 'axios';
-import parseLinks from './parseLinks.js';
+import {parseLinks} from './parseLinks.js';
 import {savePost} from '../../post/index.js';
 import {sendLog} from '../../src/log.js';
-import Scene from 'telegraf/scenes/wizard/index.js';
+import WizardScene from 'telegraf/scenes/wizard/index.js';
 import Composer from 'telegraf/composer.js';
 const expectFile = new Composer();
 expectFile.on('message', async (ctx) => {
@@ -18,7 +18,7 @@ expectFile.on('message', async (ctx) => {
   }
   return ctx.wizard.next();
 });
-export const handleImport = new Scene('ImportScene',
+export const handleImport = new WizardScene('ImportScene',
     (ctx) => {
       ctx.reply('send a file');
       return ctx.wizard.next();
