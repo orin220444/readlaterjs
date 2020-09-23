@@ -26,7 +26,7 @@ async function partialSearch(request) {
  * gets all posts from db
  */
 async function getAllPosts() {
-  const data = await Posts.find();
+  const data = await Post.find();
   const posts = getPostsInJson(data);
   return posts;
 }
