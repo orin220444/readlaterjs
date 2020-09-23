@@ -1,7 +1,7 @@
 import axios from 'axios';
-import cheerio from 'cheerio';
-import {savePost} from '../post/index.js';
-import {sendLog} from '../src/log.js';
+import parseLinks from './parseLinks.js'
+import {savePost} from '../../post/index.js';
+import {sendLog} from '../../src/log.js';
 import Scene from 'telegraf/scenes/wizard/index.js';
 import Composer from 'telegraf/composer.js';
 const expectFile = new Composer();
@@ -25,20 +25,6 @@ export const handleImport = new Scene('ImportScene',
     },
     expectFile, (ctx) => ctx.wizard.leave());
 
-/**
- * parses links from pocket export file
- * @param {string} exportHTML HTML page
- * @return {Array} links
- */
-function parseLinks(exportHTML) {
-  const $ = cheerio.load(exportHTML);
-  const links = [];
-  $('a').each(function() {
-    const link = $(this).attr('href');
-    links.push(link);
-  });
-  return links;
-}
 /**
  * save posts in the db
  * @param {Array} links - parsed links
