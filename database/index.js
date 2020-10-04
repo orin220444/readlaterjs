@@ -27,7 +27,7 @@ async function partialSearch(request) {
  */
 async function getAllPosts() {
   const data = await Post.find();
-  const posts = getPostsInJson(data);
+  const posts = getDocsInJson(data);
   return posts;
 }
 /**
@@ -35,7 +35,7 @@ async function getAllPosts() {
  * @param {Array} data - mongoose documents
  * @return {Array} - mongoose data in json
  * */
-function getPostsInJson(data) {
+function getDocsInJson(data) {
   return data.map(function(item) {
     return item.toJSON();
   });
