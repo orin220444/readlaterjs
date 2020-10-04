@@ -9,9 +9,13 @@ import {urlCheck} from './urlCheck.js';
 */
 export async function savePost(url) {
   try {
-    const realUrl = await urlCheck(url);
+    const post = {};
+    post.url = url;
+    post.realUrl = await urlCheck(url);
     const parsedData = await parse(url);
-    await saveToDB(url, realUrl, parsedData);
+    post.title = await parsedData.title;
+    post.content = await parsedData.content;
+    await saveToDB(post);
   } catch (error) {
     sendLog(error);
   }
