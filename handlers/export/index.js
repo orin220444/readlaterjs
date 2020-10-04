@@ -4,9 +4,9 @@ import {exportToHtml} from './exportToHtml.js';
 import {exportToCsv} from './exportToCsv.js';
 import {writeFile} from 'fs';
 import {sendLog} from '../../src/log.js';
-import {WizardScene} from 'telegraf/scenes/wizard/index.js';
+import WizardScene from 'telegraf/scenes/wizard/index.js';
 import Markup from 'telegraf/markup.js';
-import Composer from 'telegraf/composer';
+import Composer from 'telegraf/composer.js';
 const createFile = promisify(writeFile);
 const formatSelector = new Composer();
 formatSelector.action('html', (ctx) => startExport('html'));
@@ -30,8 +30,9 @@ async function sendToUser(fileExt) {
 const startExport = (formatExport) => {
   console.log('getting posts to export');
   getAllPosts().then(async (posts)=> {
-    const exportData = formatExport = 'html' ? exportToHtml(posts): await exportToCsv(posts);
-    const fileExt = `.${formatExport}`
+    const exportData = formatExport = 'html' ?
+    exportToHtml(posts): await exportToCsv(posts);
+    const fileExt = `.${formatExport}`;
     createFile(`export${fileExt}`, exportData).then(() => sendToUser(fileExt))
         .catch((error) => sendLog(error));
   });
