@@ -1,9 +1,4 @@
-import handleRandom from './random.js';
-import handleAdd from './add.js';
-import handleQuery from './query.js';
-
-export {
-  handleRandom,
-  handleAdd,
-  handleQuery,
-};
+export {handleRandom} from './random.js';
+export {handleAdd} from './add.js';
+export {handleQuery} from './query.js';
+export {handleExport} from './export.js';

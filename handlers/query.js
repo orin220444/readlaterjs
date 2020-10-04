@@ -1,6 +1,6 @@
-import Post from '../database/models.js';
+import {Post} from '../database/models.js';
 import {sendLog} from '../src/log.js';
-export default async (ctx) => {
+export const handleQuery = async (ctx) => {
   if (ctx.callbackQuery.data === 'Readed') {
     sendLog('archiving');
     await archive(ctx.callbackQuery.message.text);
@@ -10,12 +10,26 @@ export default async (ctx) => {
   } else if (ctx.callbackQuery.data === 'Delete') {
     sendLog('deleting');
     await deletePost(ctx.callbackQuery.message.text);
-    ctx.reply('deleted',
+    const botMessage = await ctx.reply('deleted',
+        {reply_to_message_id: ctx.callbackQuery.message.message_id});
+    console.log(botMessage, ctx.callbackQuery);
+    setTimeout(() => {
+      try {
+        ctx.deleteMessage(ctx.callbackQuery.message.message_id);
+        ctx.deleteMessage(botMessage.message_id);
+      } catch (error) {
+        sendLog(error);
+      }
+    }, 5 * 1000);
+  } else if (ctx.callbackQuery.data === 'Unarchive') {
+    await unArchive(ctx.callbackQuery.message.text);
+    sendLog('Unarchiving');
+    ctx.reply('Unarchived',
         {reply_to_message_id: ctx.callbackQuery.message.message_id});
   }
   /**
    * set asRead = true in the db to the page
-   * @param {string} url originalUrl of the web page
+   * @param {string} url - originalUrl of the web page
    */
   async function archive(url) {
     const post = await Post.updateOne({originalURL: url},
@@ -24,8 +38,18 @@ export default async (ctx) => {
     sendLog(`posts modified: ${post.nModified}`);
   }
   /**
+   * set asRead = false in the db to the page
+   * @param {string} url - originalUrl of the web page
+   */
+  async function unArchive(url) {
+    const post = await Post.updateOne({originalURL: url},
+        {asReaded: true},
+    );
+    sendLog(`posts modified: ${post.nModified}`);
+  }
+  /**
    * deletes document from the db
-   * @param {string} url OriginalUrl of document to delete
+   * @param {string} url - OriginalUrl of document to delete
    */
   async function deletePost(url) {
     await Post.findOneAndDelete({originalUrl: url});

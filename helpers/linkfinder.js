@@ -1,20 +1,20 @@
 /**
 * finds links and urls in message
-* @param {any} message telegram message
+* @param {any} message - telegram message
 * @callback
-* @param {string} callback url from the message
+* @return {string} url from the message
 */
-async function finder(message, callback) {
+function finder(message) {
   if (message.entities) {
     const urls = find(message.entities, message.text);
     console.log(urls);
-    callback(urls);
+    return urls;
   } else if (message.caption_entities) {
     const urls = find(message.caption_entities, message.caption);
     console.log(urls);
-    callback(urls);
+    return urls;
   } else {
-    callback('no urls!');
+    return 'no urls!';
   }
 }
 
@@ -25,8 +25,7 @@ async function finder(message, callback) {
 * @return {string} url
 */
 function url(entity, text) {
-  const url = text.substr(entity.offset, entity.length);
-  return url;
+  return text.substr(entity.offset, entity.length);
 }
 /**
 * gets links in the "text_link" entities
@@ -34,8 +33,7 @@ function url(entity, text) {
 * @return {string} url
 */
 function textLink(entity) {
-  const url = entity.url;
-  return url;
+  return entity.url;
 }
 /**
 * finds urls in the entities field of the message
@@ -45,8 +43,7 @@ function textLink(entity) {
 */
 function find(entities, text) {
   const urls = [];
-  for (let i = 0; i < entities.length; i++) {
-    const entity = entities[i];
+  for (const entity of entities) {
     if (entity.type == 'text_link') {
       urls.push(textLink(entity));
     }
@@ -57,7 +54,7 @@ function find(entities, text) {
   return urls;
 }
 
-export default finder;
+export {finder};
 
 
 // TODO: delete user messages

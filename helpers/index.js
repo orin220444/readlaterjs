@@ -1,11 +1,4 @@
-import urlCheck from './axios.js';
-import finder from './linkfinder.js';
-import saveToDB from './saveToDB.js';
-import keyboard from './keyboard.js';
-
-export {
-  finder,
-  saveToDB,
-  urlCheck,
-  keyboard,
-};
+export {urlCheck} from './axios.js';
+export {finder} from './linkfinder.js';
+export {saveToDB} from './saveToDB.js';
+export {keyboard} from './keyboard.js';

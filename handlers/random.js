@@ -1,14 +1,22 @@
-import keyboard from '../helpers/keyboard.js';
+import {keyboard} from '../helpers/keyboard.js';
+import {random} from '../helpers/random.js';
 import {sendLog} from '../src/log.js';
-export default async (ctx) => {
-  const randomPost = getPost();
-  sendLog(`Random post: ${randomPost.originalURL}`);
-  ctx.reply(
-      randomPost.originalURL, keyboard,
-      {reply_to_message_id: ctx.message.message_id});
+import {getAllPosts} from '../database/index.js';
+export const handleRandom = async (ctx) => {
+  getPost(function(randomPost) {
+    sendLog(`Random post: ${randomPost.originalURL}`);
+    try {
+      ctx.reply(
+          randomPost.originalURL, keyboard,
+          {reply_to_message_id: ctx.message.message_id});
+    } catch (error) {
+      sendLog(error);
+    }
+  });
+
   /**
    * filters non read posts
-   * @param {object} data data from database
+   * @param {object} data - data from database
    * @return {object} non read posts
    */
   function nonReadPosts(data) {
@@ -27,13 +35,13 @@ export default async (ctx) => {
   /**
    * send random non read post to user
    * @return {object} post from the db
+   * @param {callback} callback
    */
-  function getPost() {
-    const dataBase = require('../database.json');
-    const posts = nonReadPosts(dataBase);
-    const randomPost = posts[
-        Math.floor(Math.random()*posts.length)
-    ];
-    return randomPost;
+  async function getPost(callback) {
+    getAllPosts(function(data) {
+      const posts = nonReadPosts(data);
+      const randomPost = random(posts);
+      callback( randomPost);
+    });
   }
 };

@@ -4,12 +4,12 @@
   "description": "bot that saves post to read later",
   "main": "index.js",
   "type": "module",
+  "private": "true",
   "scripts": {
     "dev": "npm run eslint && npm run nodemon",
     "start": "node index.js",
     "nodemon": "npx nodemon index.js",
-    "eslint": "npx eslint --fix .",
-    "precommit": "lint-staged"
+    "eslint": "npx eslint --cache --fix ."
   },
   "repository": {
     "type": "git",
@@ -22,9 +22,7 @@
   },
   "homepage": "https://github.com/orin220444/templatebot#readme",
   "lint-staged": {
-    "*.{js}": [
-      "node_modules/.bin/eslint --fix --max-warnings=0"
-    ]
+    "*.js": "eslint --cache --fix"
   },
   "husky": {
     "hooks": {
@@ -34,7 +32,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
-    "mongoose": "^5.9.20",
+    "json-csv": "^3.0.1",
+    "mongoose": "^5.10.0",
     "telegraf": "^3.38.0"
   },
   "devDependencies": {
