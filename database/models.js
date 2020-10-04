@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import luxon from 'luxon';
 import random from 'mongoose-random';
 import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
+import idAssigner from 'mongoose-id-assigner';
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -43,8 +44,15 @@ const userSchema = new Schema({
   username: {
     type: String},
 });
+const options = {
+  modelName: 'Post',
+  fields: {
+    id: '5555',
+  },
+};
 postSchema.plugin(random);
 postSchema.plugin(mongooseFuzzySearching, {fields: ['originalUrl']});
+postSchema.plugin(idAssigner.plugin(options));
 const Post = mongoose.model('Post', postSchema);
 const User = mongoose.model('User', userSchema);
 export {Post, User};
