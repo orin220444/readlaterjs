@@ -1,4 +1,4 @@
-import {Post} from './models.js';
+import {Post, User} from './models.js';
 /**
  * gets random post from the db
  * @return {object} random post
@@ -40,5 +40,20 @@ function getDocsInJson(data) {
     return item.toJSON();
   });
 }
-
-export {getRandomPost, partialSearch, getAllPosts};
+/**
+ * get data about user in db
+ * @param {number} userId Telegram id of a user
+ */
+async function getUser(userId) {
+  const data = await User.findOne({id: userId});
+  const userInJson = getDocsInJson([data]);
+  return userInJson[0];
+}
+/** parses user.posts
+  * @param {number} userId - Telegram id of a user
+ */
+async function getPostsFromUser(userId) {
+  const user = await getUser(userId);
+  return user.posts;
+}
+export {getRandomPost, partialSearch, getAllPosts, getUser, getPostsFromUser};
