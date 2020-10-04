@@ -41,7 +41,12 @@ const userSchema = new Schema({
     type: Number,
     required: true},
   username: {
-    type: String},
+    type: String,
+  },
+  posts: {
+    type: Array,
+    default: [],
+  },
 });
 postSchema.plugin(random);
 postSchema.plugin(mongooseFuzzySearching, {fields: ['originalUrl']});
