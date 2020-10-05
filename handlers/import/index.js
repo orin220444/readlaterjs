@@ -1,8 +1,8 @@
 import axios from 'axios';
-import parseLinks from './parseLinks.js'
+import {parseHtml} from './parseHtml.js';
 import {savePost} from '../../post/index.js';
 import {sendLog} from '../../src/log.js';
-import Scene from 'telegraf/scenes/wizard/index.js';
+import WizardScene from 'telegraf/scenes/wizard/index.js';
 import Composer from 'telegraf/composer.js';
 const expectFile = new Composer();
 expectFile.on('message', async (ctx) => {
@@ -12,13 +12,13 @@ expectFile.on('message', async (ctx) => {
         .then(function(response) {
           return response.data;
         });
-    saveLinks(parseLinks(data));
+    saveLinks(parseHtml(data));
   } catch (error) {
     sendLog(error);
   }
   return ctx.wizard.next();
 });
-export const handleImport = new Scene('ImportScene',
+export const handleImport = new WizardScene('ImportScene',
     (ctx) => {
       ctx.reply('send a file');
       return ctx.wizard.next();
@@ -27,12 +27,12 @@ export const handleImport = new Scene('ImportScene',
 
 /**
  * save posts in the db
- * @param {Array} links - parsed links
+ * @param {Array} posts - exported posts with timestaps and links
  */
-async function saveLinks(links) {
-  for (const link of links) {
-    console.log(`saving ${link}`);
-    await savePost(link);
+async function saveLinks(posts) {
+  for (const post of posts) {
+    console.log(`saving ${post.link}`);
+    await savePost(post.link);
   }
 }
 /**
