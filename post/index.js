@@ -7,7 +7,7 @@ import {urlCheck} from './urlCheck.js';
 * saves url
 * @param {string} url url to save
 */
-export async function savePost(url) {
+export async function savePost(url, timeAdded = undefined) {
   try {
     const post = {};
     post.url = url;
@@ -15,6 +15,7 @@ export async function savePost(url) {
     const parsedData = await parse(url);
     post.title = await parsedData.title;
     post.content = await parsedData.content;
+    post.timeAdded = !!timeAdded ? timeAdded: undefined
     await saveToDB(post);
   } catch (error) {
     sendLog(error);

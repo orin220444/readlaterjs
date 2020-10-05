@@ -12,8 +12,9 @@ export function parseHtml(html) {
     const post = {}
     post.link = $(this).attr('href');
     let timeAdded = $(this).attr('time_added');
-    timeAdded = Number(timeAdded)
-    post.timeAdded = DateTime.fromMillis(timeAdded);
+    timeAdded = Number(timeAdded);
+    timeAdded = DateTime.fromMillis(timeAdded)
+    post.timeAdded = timeAdded.
     posts.push(post);
     console.log(post)
   });

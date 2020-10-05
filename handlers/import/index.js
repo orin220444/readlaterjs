@@ -32,7 +32,7 @@ export const handleImport = new WizardScene('ImportScene',
 async function saveLinks(posts) {
   for (const post of posts) {
     console.log(`saving ${post.link}`);
-    await savePost(post.link);
+    await savePost(post.link, post.timeAdded);
   }
 }
 /**
