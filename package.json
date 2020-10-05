@@ -31,6 +31,9 @@
   },
   "dependencies": {
     "@postlight/mercury-parser": "github:orin220444/mercury-parser#master",
+    "@types/cheerio": "^0.22.22",
+    "@types/luxon": "^1.25.0",
+    "@types/mongoose": "^5.7.36",
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
