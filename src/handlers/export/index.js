@@ -3,7 +3,7 @@ import {promisify} from 'util';
 import {exportToHtml} from './exportToHtml.js';
 import {exportToCsv} from './exportToCsv.js';
 import {writeFile} from 'fs';
-import {sendLog} from '../../src/log.js';
+import {sendLog} from '../../helpers/index.js';
 import WizardScene from 'telegraf/scenes/wizard/index.js';
 import Markup from 'telegraf/markup.js';
 import Composer from 'telegraf/composer.js';

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {sendLog} from '../src/log.js';
+import {sendLog} from '../helpers/index.js';
 /**
  * takes url and gets real url
  * @param {string} url - url to check
