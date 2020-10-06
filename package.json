@@ -8,8 +8,8 @@
   "scripts": {
     "dev": "npm run eslint && npm run nodemon",
     "start": "node src/index.js",
-    "nodemon": "npx nodemon index.js",
-    "eslint": "npx eslint --cache --fix ."
+    "nodemon": "npx nodemon src/index.js",
+    "eslint": "npx eslint --cache --fix src"
   },
   "repository": {
     "type": "git",
