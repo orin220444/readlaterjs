@@ -6,7 +6,7 @@ export const handleAdd = async (ctx) => {
   const message = ctx.message.message_id;
   /**
 * check urls array for errors
-* @param {array} urls array of parsed urls
+* @param {array<string>} urls array of parsed urls
 */
   async function getUrl(urls) {
     if (urls !== 'no urls!') {
