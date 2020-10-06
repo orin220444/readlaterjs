@@ -1,5 +1,5 @@
 import {Post} from '../database/models.js';
-import {sendLog} from '../src/log.js';
+import {sendLog} from '../helpers/log.js';
 export const handleQuery = async (ctx) => {
   if (ctx.callbackQuery.data === 'Readed') {
     sendLog('archiving');
