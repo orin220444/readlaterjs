@@ -1,4 +1,4 @@
-import {sendLog} from '../src/log.js';
+import {sendLog} from '../helpers/index.js';
 import {parse} from './parse.js';
 import {saveToDB} from './saveToDb.js';
 import {urlCheck} from './urlCheck.js';

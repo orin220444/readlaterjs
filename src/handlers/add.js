@@ -1,6 +1,6 @@
 import {savePost} from '../post/index.js';
 import {finder, keyboard} from '../helpers/index.js';
-import {sendLog} from '../src/log.js';
+import {sendLog} from '../helpers/log.js';
 export const handleAdd = async (ctx) => {
   getUrl(finder(ctx.message));
   const message = ctx.message.message_id;
