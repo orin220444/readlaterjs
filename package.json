@@ -9,7 +9,8 @@
     "dev": "npm run eslint && npm run nodemon",
     "start": "node index.js",
     "nodemon": "npx nodemon index.js",
-    "eslint": "npx eslint --cache --fix ."
+    "eslint": "npx eslint --cache --fix .",
+    "doc":"npx jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
+    "jsdoc": "^3.6.6",
     "json-csv": "^3.0.1",
     "luxon": "^1.25.0",
     "mongoose": "^5.10.2",
