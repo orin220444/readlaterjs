@@ -5,6 +5,7 @@ import {Post} from './models.js';
  */
 async function getRandomPost() {
   try {
+    // @ts-ignore
     const post = await Post.findRandom().limit(1);
     return post[0];
   } catch (error) {
@@ -16,6 +17,7 @@ async function getRandomPost() {
  */
 async function partialSearch(request) {
   try {
+    // @ts-ignore
     const data = await Post.fuzzySearch(request);
     return data;
   } catch (error) {
