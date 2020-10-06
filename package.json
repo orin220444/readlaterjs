@@ -38,7 +38,6 @@
     "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
-    "jsdoc": "^3.6.6",
     "json-csv": "^3.0.1",
     "luxon": "^1.25.0",
     "mongoose": "^5.10.2",
@@ -52,6 +51,7 @@
     "eslint-config-google": "^0.14.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.13",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "jsdoc": "^3.6.6"
   }
 }
