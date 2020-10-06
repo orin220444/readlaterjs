@@ -1,6 +1,6 @@
 /**
  * gets random value from array
- * @param {Array} array
+ * @param {Array<any>} array
  * @return {any} random value
  */
 export function random(array) {
