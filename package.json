@@ -10,7 +10,7 @@
     "start": "node index.js",
     "nodemon": "npx nodemon src/index.js",
     "eslint": "npx eslint --cache --fix src",
-    "doc":"npx jsdoc -c jsdoc.json"
+    "doc": "npx jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
