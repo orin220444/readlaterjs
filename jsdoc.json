@@ -4,7 +4,12 @@
 "includePattern":".js$",
 "excludePattern": "(node_modules/|docs)"
 },
-"opts":{
+"plugins":["plugins/markdown"],
+"templates": {
+"cleverLinks": true,
+"monospaceLinks": true
+},
+"opts": {
 "recurse":true,
 "destination": "./docs/"
 }
