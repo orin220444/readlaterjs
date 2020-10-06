@@ -9,7 +9,7 @@
     "dev": "npm run eslint && npm run nodemon",
     "start": "node src/index.js",
     "nodemon": "npx nodemon index.js",
-    "eslint": "npx eslint --cache --fix .",
+    "eslint": "npx eslint --cache --fix",
     "doc":"npx jsdoc -c jsdoc.json"
   },
   "repository": {
