@@ -45,8 +45,8 @@ export async function save(postData) {
     });
     await post.save();
 
-    console.log(`${url} saved!`);
+    console.log(`${postData.url} saved!`);
   } catch (error) {
-    throw new Error(`error while saving to db: ${error}, ${url}`);
+    throw new Error(`error while saving to db: ${error}, ${postData.url}`);
   }
 }
