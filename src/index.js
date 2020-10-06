@@ -1,3 +1,4 @@
+// @ts-nocheck
 import 'dotenv/config.js';
 import {sendLog} from './helpers/index.js';
 import bot from './bot.js';
