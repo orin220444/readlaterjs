@@ -2,7 +2,9 @@ import Mercury from '@postlight/mercury-parser';
 /**
 * parses web page to text
 * @param {string} url url of web page to parse
-* @return {object} web page title and web page content
+* @return {Promise<{
+  title:string, content:string}>} -
+  web page title and web page content
 */
 export async function parse(url) {
   // TODO: refactor

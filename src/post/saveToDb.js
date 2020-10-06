@@ -2,7 +2,7 @@ import {Post as PostModel} from '../database/models.js';
 /**
 * saves url in the database
 * @param {Object} postData
-* @return {Promise} saved post
+* @return {Promise<void>} saved post
 */
 export async function saveToDB(postData) {
   try {
@@ -19,7 +19,7 @@ export async function saveToDB(postData) {
    * checks for duplicates
    * @param {string} url url to save to db
    *
-   * @return {boolean} is url already in database
+   * @return {Promise<boolean>} is url already in database
    */
 async function findDuplicates(url) {
   try {
@@ -33,7 +33,7 @@ async function findDuplicates(url) {
 /**
    * save to db
    * @param {Object} postData
-   * @return {Promise} saves url
+   * @return {Promise<void>} saves url
    */
 export async function save(postData) {
   try {
