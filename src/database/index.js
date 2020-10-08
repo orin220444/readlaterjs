@@ -1,7 +1,7 @@
 import {Post} from './models.js';
 /**
  * gets random post from the db
- * @return {object} random post
+ * @return {Promise<object>} random post
  */
 async function getRandomPost() {
   try {
