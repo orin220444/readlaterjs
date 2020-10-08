@@ -1,3 +1,4 @@
+/* eslint-disable no-invalid-this */
 import cheerio from 'cheerio';
 import {DateTime} from 'luxon'
 /**
