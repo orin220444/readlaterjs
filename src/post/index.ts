@@ -8,7 +8,7 @@ import {urlCheck} from './urlCheck.js';
 * @param {string} url url to save
 * @param {string} timeAdded timestamp when post was added to db
 */
-export async function savePost(url, timeAdded = undefined) {
+export async function savePost(url: string,timeAdded?:string) {
   try {
     const parsedData = await parse(url);
     /**

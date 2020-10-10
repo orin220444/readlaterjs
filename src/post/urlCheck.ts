@@ -6,7 +6,7 @@ import {sendLog} from '../helpers/index.js';
  *
  * @return {Promise} real url
  */
-export async function urlCheck(url) {
+export async function urlCheck(url: any) {
   try {
     const realUrl = await axios.get(url)
         .then(function(response) {

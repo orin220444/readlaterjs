@@ -4,6 +4,7 @@ import {sendLog} from '../helpers/index.js';
 export const handleMainten = async () => {
   const posts = await PostModel.find();
   for (const post of posts) {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'originalUrl' does not exist on type 'Doc... Remove this comment to see the full error message
     sendLog(`checking for duplicates for post ${post.originalUrl}`);
     try {
       await checkForDuplicates(post, posts);
@@ -17,8 +18,9 @@ export const handleMainten = async () => {
  * @param {object} post post to
  * @param {object} posts posts from the db
  */
-async function checkForDuplicates(post, posts) {
+async function checkForDuplicates(post: any, posts: any) {
   try {
+    // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'Post'. Did you mean 'post'?
     const post = new Post();
     const realUrl = await post.urlCheck(post.originalUrl);
     if (realUrl !== post.originalUrl) {
@@ -42,7 +44,7 @@ async function checkForDuplicates(post, posts) {
    * @param {string} url url to find
    * @return {boolean} exists or not
    */
-  function findOriginal(url) {
+  function findOriginal(url: any) {
     for (const post of posts) {
       const postURL = post.originalUrl;
       if (postURL === url) return true;

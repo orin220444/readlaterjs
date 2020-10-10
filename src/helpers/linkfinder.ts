@@ -4,7 +4,7 @@
 * @callback
 * @return {string} url from the message
 */
-function finder(message) {
+function finder(message: any) {
   if (message.entities) {
     const urls = find(message.entities, message.text);
     console.log(urls);
@@ -24,7 +24,7 @@ function finder(message) {
 * @param {string} text - message.text or message.caption
 * @return {string} url
 */
-function url(entity, text) {
+function url(entity: any, text: any) {
   return text.substr(entity.offset, entity.length);
 }
 /**
@@ -32,7 +32,7 @@ function url(entity, text) {
 * @param {object} entity - text_link entity
 * @return {string} url
 */
-function textLink(entity) {
+function textLink(entity: any) {
   return entity.url;
 }
 /**
@@ -41,7 +41,7 @@ function textLink(entity) {
 * @param {string} text - message text
 * @return {array} array of the urls
 */
-function find(entities, text) {
+function find(entities: any, text: any) {
   const urls = [];
   for (const entity of entities) {
     if (entity.type == 'text_link') {

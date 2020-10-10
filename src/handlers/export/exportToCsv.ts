@@ -1,3 +1,4 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/json-csv` if it exists or ... Remove this comment to see the full error message
 import jsonCsv from 'json-csv';
 import {promisify} from 'util';
 const buffered = promisify(jsonCsv.buffered);
@@ -6,7 +7,7 @@ const buffered = promisify(jsonCsv.buffered);
  * @param {array} posts - mongoose data in json
  * @return {string} - csv document to export
  */
-export async function exportToCsv(posts) {
+export async function exportToCsv(posts: any) {
   const options = {
     fields: [
       {

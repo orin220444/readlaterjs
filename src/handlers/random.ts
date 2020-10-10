@@ -1,8 +1,9 @@
 import {keyboard} from '../helpers/keyboard.js';
 import {sendLog} from '../helpers/log.js';
 import {getRandomPost} from '../database/index.js';
-export const handleRandom = async (ctx) => {
-  getPost(function(randomPost) {
+export const handleRandom = async (ctx: any) => {
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
+  getPost(function(randomPost: any) {
     sendLog(`Random post: ${randomPost.originalUrl}`);
     try {
       ctx.reply(

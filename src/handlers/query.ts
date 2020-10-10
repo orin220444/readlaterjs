@@ -1,6 +1,6 @@
 import {Post} from '../database/models.js';
 import {sendLog} from '../helpers/log.js';
-export const handleQuery = async (ctx) => {
+export const handleQuery = async (ctx: any) => {
   if (ctx.callbackQuery.data === 'Readed') {
     sendLog('archiving');
     await archive(ctx.callbackQuery.message.text);
@@ -31,7 +31,7 @@ export const handleQuery = async (ctx) => {
    * set asRead = true in the db to the page
    * @param {string} url - originalUrl of the web page
    */
-  async function archive(url) {
+  async function archive(url: any) {
     const post = await Post.updateOne({originalUrl: url},
         {read: true},
     );
@@ -41,7 +41,7 @@ export const handleQuery = async (ctx) => {
    * set asRead = false in the db to the page
    * @param {string} url - originalUrl of the web page
    */
-  async function unArchive(url) {
+  async function unArchive(url: any) {
     const post = await Post.updateOne({originalUrl: url},
         {read: true},
     );
@@ -51,7 +51,7 @@ export const handleQuery = async (ctx) => {
    * deletes document from the db
    * @param {string} url - OriginalUrl of document to delete
    */
-  async function deletePost(url) {
+  async function deletePost(url: any) {
     await Post.findOneAndDelete({originalUrl: url});
   }
 };
