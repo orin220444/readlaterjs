@@ -3,7 +3,7 @@ import {Post} from './models.js';
  * gets random post from the db
  * @return {Promise<object>} random post
  */
-async function getRandomPost() {
+async function getRandomPost(): Promise<object> {
   try {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'findRandom' does not exist on type 'Mode... Remove this comment to see the full error message
     const post = await Post.findRandom().limit(1);
@@ -38,7 +38,7 @@ async function getAllPosts() {
  * @param {Array} data - mongoose documents
  * @return {Array} - mongoose data in json
  * */
-function getPostsInJson(data: any) {
+function getPostsInJson(data: any): Array<any> {
   return data.map(function(item: any) {
     return item.toJSON();
   });
