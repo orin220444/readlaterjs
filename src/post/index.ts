@@ -7,7 +7,7 @@ import {urlCheck} from './urlCheck.js';
 * saves url
 * @param {string} url url to save
 */
-export async function savePost(url) {
+export async function savePost(url: any) {
   try {
     const parsedData = await parse(url);
     /**

@@ -4,11 +4,11 @@ import cheerio from 'cheerio';
  * @param {array} posts - mongoose data in json
  * @return {string} - html document to export
  */
-export function exportToHtml(posts) {
+export function exportToHtml(posts: any) {
   const startHtmlpage = startHtml();
   const $ = cheerio.load(
       startHtmlpage);
-  posts.forEach(function(post) {
+  posts.forEach(function(post: any) {
     // console.log(post.originalUrl ? post.originalUrl: post.originalURL)
     const url = post.originalUrl ? post.originalUrl: post.originalURL;
     const title = post.title ? post.title : url;

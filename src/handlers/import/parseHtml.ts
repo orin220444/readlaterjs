@@ -6,10 +6,11 @@ import {DateTime} from 'luxon';
  * @param {string} html HTML page
  * @return {Array} posts: links + time added
  */
-export function parseHtml(html) {
+export function parseHtml(html: any) {
   const $ = cheerio.load(html);
-  const posts = [];
+  const posts: any = [];
   $('a').each(function() {
+    // @ts-expect-error ts-migrate(2683) FIXME: 'this' implicitly has type 'any' because it does n... Remove this comment to see the full error message
     const timeAdded = $(this).attr('time_added');
     /** @typedef {object} ExportPost
      * @property {string} link - link of a post
@@ -17,6 +18,7 @@ export function parseHtml(html) {
      */
     /** @type {ExportPost} */
     const post = {
+      // @ts-expect-error ts-migrate(2683) FIXME: 'this' implicitly has type 'any' because it does n... Remove this comment to see the full error message
       link: $(this).attr('href'),
       timeAdded: parseDate(timeAdded),
     };
@@ -30,7 +32,7 @@ export function parseHtml(html) {
  * @param {string} timeString - parsed time from cheerio in unix
  * @return {string} date in iso format
  */
-function parseDate(timeString) {
+function parseDate(timeString: any) {
   const timeNum = Number(timeString);
   const convertedDate = DateTime.fromMillis(timeNum);
   const stringDate = convertedDate.toISODate().toString();

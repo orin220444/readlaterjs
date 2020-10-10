@@ -5,19 +5,20 @@ import {Post} from './models.js';
  */
 async function getRandomPost() {
   try {
-    // @ts-ignore
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'findRandom' does not exist on type 'Mode... Remove this comment to see the full error message
     const post = await Post.findRandom().limit(1);
     return post[0];
   } catch (error) {
+  // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'error'. Did you mean 'Error'?
   } throw new Error(`error while finding random post: ${error}`);
 }
 /**
  * searches post by a part of text
  * @param {string} request from user
  */
-async function partialSearch(request) {
+async function partialSearch(request: any) {
   try {
-    // @ts-ignore
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'fuzzySearch' does not exist on type 'Mod... Remove this comment to see the full error message
     const data = await Post.fuzzySearch(request);
     return data;
   } catch (error) {
@@ -37,8 +38,8 @@ async function getAllPosts() {
  * @param {Array} data - mongoose documents
  * @return {Array} - mongoose data in json
  * */
-function getPostsInJson(data) {
-  return data.map(function(item) {
+function getPostsInJson(data: any) {
+  return data.map(function(item: any) {
     return item.toJSON();
   });
 }
