@@ -1,4 +1,4 @@
-import axios from 'axios';
+import * as axios from 'axios';
 import {parseHtml} from './parseHtml.js';
 import {savePost} from '../../post/index.js';
 import {sendLog} from '../../helpers/index.js';
@@ -10,10 +10,8 @@ const expectFile = new Composer();
 expectFile.on('message', async (ctx: any) => {
   try {
     const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
-    const data = await axios.get(file)
-        .then(function(response) {
-          return response.data;
-        });
+    const response = await axios.get(file);
+    const data = response.data;
     saveLinks(parseHtml(data));
   } catch (error) {
     sendLog(error);

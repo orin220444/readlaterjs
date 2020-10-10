@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import luxon from 'luxon';
+import * as luxon from 'luxon';
 // @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/mongoose-random` if it exi... Remove this comment to see the full error message
 import random from 'mongoose-random';
 // @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/mongoose-fuzzy-searching` ... Remove this comment to see the full error message

@@ -10,18 +10,15 @@ import {urlCheck} from './urlCheck.js';
 */
 export async function savePost(url: string,timeAdded?:string) {
   try {
-    const parsedData = await parse(url);
-    /**
-     * Post data
-     * @public
-     * @typedef {Object} PostData
-     * @property {string} url - original url from user
-     * @property {string} realUrl - url after axios checking
-     * @property {string} title - title of the parsed page
-     * @property {string} content - html of the parsed page
-     */
+    const parsedData:object = await parse(url);
+    interface PostData {
+      url: string,
+      realUrl: string,
+      title: string,
+      content: string
+    }
     /** @type {PostData} */
-    const post = {
+    const post: PostData = {
       url: url,
       realUrl: await urlCheck(url),
       title: parsedData.title,
