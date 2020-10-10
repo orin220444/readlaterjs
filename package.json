@@ -47,11 +47,15 @@
     "telegraph-node": "^1.0.4"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "eslint": "^7.11.0",
     "eslint-config-google": "^0.14.0",
     "husky": "^4.2.5",
+    "jsdoc": "^3.6.6",
     "lint-staged": "^10.2.13",
     "nodemon": "^2.0.4",
-    "jsdoc": "^3.6.6"
+    "ts-migrate": "^0.1.7",
+    "typescript": "^4.0.3"
   }
 }
