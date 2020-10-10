@@ -6,7 +6,10 @@ extends:
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
+parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 2018
   sourceType: module
-rules: {no-invalid-this: warn}
+plugins:
+  - '@typescript-eslint'
+rules: {}
