@@ -7,14 +7,18 @@ import Mercury from '@postlight/mercury-parser';
   title:string, content:string}>} -
   web page title and web page content
 */
-export async function parse(url: any) {
+export async function parse(url: string): Promise<object> {
   // TODO: refactor
   try {
-    const page = await Mercury.parse(url, {contentType: 'text'})
-        .then((result: any) => {
-          console.log(result.content);
-          return {title: result.title, content: result.content};
-        });
+    const data:any = await Mercury.parse(url, {contentType: 'text'});
+        interface ParsedData {
+          title: string,
+          content: string
+        }
+        const page:ParsedData = {
+          title: data.title,
+          content: data.content,
+        }
     return page;
   } catch (error) {
     throw new Error(error);
