@@ -3,11 +3,10 @@ import Mercury from '@postlight/mercury-parser';
 /**
 * parses web page to text
 * @param {string} url url of web page to parse
-* @return {Promise<{
-  title:string, content:string}>} -
+* -
   web page title and web page content
 */
-export async function parse(url: string): Promise<object> {
+export async function parse(url: string) {
   // TODO: refactor
   try {
     const data:any = await Mercury.parse(url, {contentType: 'text'});

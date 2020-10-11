@@ -7,9 +7,9 @@ import {urlCheck} from './urlCheck.js';
 * saves url
 * @param {string} url url to save
 */
-export async function savePost(url: any) {
+export async function savePost(url: string) {
   try {
-    const parsedData:object = await parse(url);
+    const parsedPageData = await parse(url);
     interface PostData {
       url: string,
       realUrl: string,
@@ -20,8 +20,8 @@ export async function savePost(url: any) {
     const post: PostData = {
       url: url,
       realUrl: await urlCheck(url),
-      title: parsedData.title,
-      content: parsedData.content,
+      title: parsedPageData.title,
+      content: parsedPageData.content,
     };
     await saveToDB(post);
   } catch (error) {

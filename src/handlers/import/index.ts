@@ -1,11 +1,10 @@
-import * as axios from 'axios';
+import axios from 'axios';
 import {parseHtml} from './parseHtml.js';
 import {savePost} from '../../post/index.js';
 import {sendLog} from '../../helpers/index.js';
 // @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraf` if it exists or ... Remove this comment to see the full error message
 import WizardScene from 'telegraf/scenes/wizard/index.js';
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraf` if it exists or ... Remove this comment to see the full error message
-import Composer from 'telegraf/composer.js';
+import {Composer} from 'telegraf';
 const expectFile = new Composer();
 expectFile.on('message', async (ctx: any) => {
   try {
