@@ -1,11 +1,11 @@
+// @ts-nocheck
 import 'dotenv/config.js';
 import {sendLog} from './src/index.js';
 import bot from './bot.js';
 import Stage from 'telegraf/stage.js';
 import session from 'telegraf/session.js';
 import {
-  handleRandom,
-  /* handleAdd,*/
+  handleRandom, handleAdd,
   handleQuery, handleExport, handleSearch, handleImport, handleMainten,
 } from './handlers/index.js';
 const stage = new Stage([handleImport, handleSearch, handleExport]);
@@ -18,7 +18,7 @@ bot.command('search', (ctx) => ctx.scene.enter('SearchScene'));
 bot.command('import', (ctx) => ctx.scene.enter('ImportScene'));
 bot.command('mainten', handleMainten);
 bot.on('callback_query', handleQuery);
-// bot.on('message', handleAdd);
+bot.on('message', handleAdd);
 bot.launch().then(
     sendLog('bot started'),
 );

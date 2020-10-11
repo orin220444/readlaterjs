@@ -11,7 +11,7 @@ const createFile = promisify(writeFile);
 const formatSelector = new Composer();
 formatSelector.action('html', (ctx) => startExport('html'));
 formatSelector.action('csv', (ctx)=> startExport('csv'));
-export const handleExport = new WizardScene( (ctx) => {
+export const handleExport = new WizardScene( 'ExportScene', (ctx) => {
   const keyboard = Markup.inlineKeyboard([
     Markup.callbackButton('HTML', 'html'),
     Markup.callbackButton('CSV', 'csv'),
