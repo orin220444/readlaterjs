@@ -2,13 +2,13 @@
   "name": "readlaterbot",
   "version": "1.0.0",
   "description": "bot that saves post to read later",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "type": "module",
   "private": "true",
   "scripts": {
     "dev": "npm run eslint && npm run nodemon",
-    "start": "node index.js",
-    "nodemon": "npx nodemon src/index.js",
+    "start": "node dist/index.js",
+    "nodemon": "npx nodemon dist/index.js",
     "eslint": "npx eslint --cache --fix src",
     "doc": "npx jsdoc -c jsdoc.json"
   },
