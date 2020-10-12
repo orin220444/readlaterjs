@@ -1,4 +1,7 @@
 import Telegraf from 'telegraf';
-// @ts-expect-error ts-migrate(2345) FIXME: Type 'undefined' is not assignable to type 'string... Remove this comment to see the full error message
-const bot:any = new Telegraf(process.env.BOT_TOKEN);
+const token = process.env.BOT_TOKEN;
+if (token == undefined) {
+  throw new Error(`Token didn't exists`);
+}
+const bot = new Telegraf(token);
 export default bot;
