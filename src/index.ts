@@ -1,9 +1,8 @@
-// @ts-nocheck
 import 'dotenv/config.js';
 import {sendLog} from './helpers/index.js';
 import bot from './bot.js';
-import Stage from 'telegraf/stage.js';
-import session from 'telegraf/session.js';
+import {Stage} from 'telegraf';
+import {session} from 'telegraf';
 import {
   handleRandom,
   handleAdd,
