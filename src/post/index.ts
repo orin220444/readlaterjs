@@ -3,20 +3,22 @@ import {parse} from './parse.js';
 import {saveToDB} from './saveToDb.js';
 import {urlCheck} from './urlCheck.js';
 
+
+export interface PostData {
+  url: string,
+  realUrl: string,
+  title: string,
+  content: string
+}
 /**
 * saves url
 * @param {string} url url to save
 * @param {string} timeAdded timestamp when post was added to db
 */
-export async function savePost(url: string, timeAdded?:string) {
+export async function savePost(url: string, timeAdded?:string): Promise<void> {
   try {
     const parsedPageData = await parse(url);
-    interface PostData {
-      url: string,
-      realUrl: string,
-      title: string,
-      content: string
-    }
+
     /** @type {PostData} */
     const post: PostData = {
       url: url,

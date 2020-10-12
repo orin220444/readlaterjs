@@ -8,7 +8,7 @@ export const handleAdd = async (ctx: any) => {
 * check urls array for errors
 * @param {array<string>} urls array of parsed urls
 */
-  async function getUrl(urls: any) {
+  async function getUrl(urls: string) {
     if (urls !== 'no urls!') {
       for (const url of urls) {
         if (url !== 'message.chat.id') {
@@ -23,12 +23,12 @@ export const handleAdd = async (ctx: any) => {
 * logs to user if success saving url
 * @param {string} realUrl url to log
 */
-  async function logSuccess(realUrl: any) {
+  async function logSuccess(realUrl: string) {
     try {
       await ctx.reply(realUrl, keyboard,
           {reply_to_message_id: message});
     } catch (error) {
       sendLog(error);
     }
-  };
+  }
 };
