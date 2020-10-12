@@ -16,9 +16,9 @@ export async function parse(url: string): Promise<ParsedData> {
   try {
     const data = await Mercury.parse(url, {contentType: 'text'});
 
-        const page:ParsedData = {
-          title: data.title,
-          content: data.content,
+    const page:ParsedData = {
+      title: data.title,
+      content: data.content,
     };
     return page;
   } catch (error) {
