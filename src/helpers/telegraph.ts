@@ -1,6 +1,6 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraph-node` if it exis... Remove this comment to see the full error message
-import Telegraph from 'telegraph-node';
-const ph = new Telegraph();
-ph.createAccount('save for later bot').then((result: any) => {
+import {Telegraph} from 'telegraph-node';
+async function newAccount() {
+  const ph = new Telegraph();
+  const result = await ph.createAccount('save for later bot');
   console.log(result);
-});
+}
