@@ -1,3 +1,4 @@
+import {MongooseDocument} from 'mongoose';
 import {Post} from './models.js';
 /**
  * gets random post from the db
@@ -28,7 +29,7 @@ async function partialSearch(request: any) {
 /**
  * gets all posts from db
  */
-async function getAllPosts() {
+async function getAllPosts():Promise<Array<undefined>> {
   const data = await Post.find();
   const posts = getPostsInJson(data);
   return posts;
@@ -38,8 +39,8 @@ async function getAllPosts() {
  * @param {Array} data - mongoose documents
  * @return {Array} - mongoose data in json
  * */
-function getPostsInJson(data: any): Array<any> {
-  return data.map(function(item: any) {
+function getPostsInJson(data: Array<MongooseDocument>): Array<undefined> {
+  return data.map(function(item: MongooseDocument):undefined {
     return item.toJSON();
   });
 }
