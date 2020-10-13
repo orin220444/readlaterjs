@@ -1,4 +1,3 @@
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/postlight__mercury-parser`... Remove this comment to see the full error message
 import Mercury from '@postlight/mercury-parser';
 
 export interface ParsedData {
