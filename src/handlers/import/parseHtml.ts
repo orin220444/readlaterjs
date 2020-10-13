@@ -1,24 +1,23 @@
 /* eslint-disable no-invalid-this */
 import cheerio from 'cheerio';
 import {DateTime} from 'luxon';
+export interface ExportPost {
+  link: string|undefined,
+  timeAdded: string|undefined
+}
 /**
  * parses links from pocket export file
  * @param {string} html HTML page
  * @return {Array} posts: links + time added
  */
-export function parseHtml(html: string):Array<unknown> {
+export function parseHtml(html: string):Array<ExportPost> {
   const $ = cheerio.load(html);
-  interface ExportPost {
-    link: string,
-    timeAdded: string|undefined
-  }
+
   const posts: Array<ExportPost> = [];
-  $('a').each(function() {
-    // @ts-expect-error ts-migrate(2683) FIXME: 'this' implicitly has type 'any' because it does n... Remove this comment to see the full error message
+  $('a').each(() => {
     const timeAdded = $(this).attr('time_added');
 
     const post: ExportPost = {
-      // @ts-expect-error ts-migrate(2683) FIXME: 'this' implicitly has type 'any' because it does n... Remove this comment to see the full error message
       link: $(this).attr('href'),
       timeAdded: parseDate(timeAdded),
     };
