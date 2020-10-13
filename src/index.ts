@@ -1,7 +1,7 @@
 import 'dotenv/config.js';
 import {sendLog} from './helpers/index.js';
 import bot from './bot.js';
-import {Stage} from 'telegraf';
+import {Context, Stage} from 'telegraf';
 import {session} from 'telegraf';
 import {
   handleRandom,
@@ -13,9 +13,9 @@ const stage = new Stage([handleImport, handleSearch, handleExport]);
 bot.use(session());
 bot.use(stage.middleware());
 bot.command('random', handleRandom);
-bot.command('export', (ctx)=> ctx.scene.enter('ExportScene'));
-bot.command('search', (ctx) => ctx.scene.enter('SearchScene'));
-bot.command('import', (ctx) => ctx.scene.enter('ImportScene'));
+bot.command('export', (ctx:Context)=> ctx.scene.enter('ExportScene'));
+bot.command('search', (ctx:Context) => ctx.scene.enter('SearchScene'));
+bot.command('import', (ctx:Context) => ctx.scene.enter('ImportScene'));
 bot.command('mainten', handleMainten);
 bot.on('callback_query', handleQuery);
 // bot.on('message', handleAdd);
