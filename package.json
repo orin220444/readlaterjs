@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "bot that saves post to read later",
   "main": "dist/index.js",
-  "type": "module",
+  "type": "commonjs",
   "private": "true",
   "scripts": {
     "dev": "npm run eslint && npm run nodemon",
