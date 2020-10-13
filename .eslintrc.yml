@@ -17,4 +17,5 @@ parserOptions:
   sconfigRootDir: "./src"
 plugins:
   - '@typescript-eslint'
-rules: {}
+rules:
+  require-jsdoc: 0
