@@ -1,34 +1,36 @@
 import axios from 'axios';
-import {parseHtml} from './parseHtml.js';
+import {parseHtml, ExportPost} from './parseHtml.js';
 import {savePost} from '../../post/index.js';
 import {sendLog} from '../../helpers/index.js';
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraf` if it exists or ... Remove this comment to see the full error message
 import WizardScene from 'telegraf/scenes/wizard/index.js';
-import {Composer} from 'telegraf';
+import {Composer, Context} from 'telegraf';
 const expectFile = new Composer();
-expectFile.on('message', async (ctx: any) => {
+expectFile.on('message', async (ctx: Context) => {
   try {
-    const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
-    const response = await axios.get(file);
-    const data = response.data;
-    saveLinks(parseHtml(data));
+    if (ctx.message?.document?.file_id) {
+      const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
+      const response = await axios.get(file);
+      const data = response.data;
+      const html = parseHtml(data);
+      await saveLinks(html);
+    }
   } catch (error) {
     sendLog(error);
   }
   return ctx.wizard.next();
 });
 export const handleImport = new WizardScene('ImportScene',
-    (ctx: any) => {
+    (ctx: Context) => {
       ctx.reply('send a file');
       return ctx.wizard.next();
     },
-    expectFile, (ctx: any) => ctx.wizard.leave());
+    expectFile, (ctx: Context) => ctx.wizard.leave());
 
 /**
  * save posts in the db
  * @param {Array} posts - exported posts with timestaps and links
  */
-async function saveLinks(posts: any) {
+async function saveLinks(posts: Array<ExportPost>):Promise<void> {
   for (const post of posts) {
     console.log(`saving ${post.link}`);
     await savePost(post.link);
