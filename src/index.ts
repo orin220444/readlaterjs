@@ -1,8 +1,7 @@
 import 'dotenv/config.js';
 import {sendLog} from './helpers/index.js';
 import bot from './bot.js';
-import {Context, Stage} from 'telegraf';
-import {session} from 'telegraf';
+import {Context, Stage, session} from 'telegraf';
 import {
   handleRandom,
   handleAdd,
@@ -19,6 +18,5 @@ bot.command('import', (ctx:Context) => ctx.scene.enter('ImportScene'));
 bot.command('mainten', handleMainten);
 bot.on('callback_query', handleQuery);
 bot.on('message', handleAdd);
-bot.launch().then(
-    sendLog('bot started'),
-);
+bot.launch();
+sendLog('bot started');
