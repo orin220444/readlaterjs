@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/orin220444/readlaterbot#readme",
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "*.ts": "eslint --cache --fix"
   },
   "husky": {
     "hooks": {
