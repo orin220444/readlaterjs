@@ -24,7 +24,7 @@ export function parseHtml(html: string):Array<ExportPost> {
       };
       posts.push(post);
 		  console.log(post);
-   }
+    }
   });
   return posts;
 }
