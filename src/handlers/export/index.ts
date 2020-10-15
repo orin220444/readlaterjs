@@ -6,22 +6,20 @@ import {writeFile} from 'fs';
 import {sendLog} from '../../helpers/index.js';
 // @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraf` if it exists or ... Remove this comment to see the full error message
 import WizardScene from 'telegraf/scenes/wizard/index.js';
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraf` if it exists or ... Remove this comment to see the full error message
-import Markup from 'telegraf/markup.js';
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraf` if it exists or ... Remove this comment to see the full error message
-import Composer from 'telegraf/composer.js';
+import {Context, Markup} from 'telegraf';
+import {Composer} from 'telegraf';
 const createFile = promisify(writeFile);
 const formatSelector = new Composer();
-formatSelector.action('html', (ctx: any) => startExport('html'));
-formatSelector.action('csv', (ctx: any) => startExport('csv'));
-export const handleExport = new WizardScene( (ctx: any) => {
+formatSelector.action('html', (ctx: Context) => startExport('html'));
+formatSelector.action('csv', (ctx: Context) => startExport('csv'));
+export const handleExport = new WizardScene( (ctx: Context) => {
   const keyboard = Markup.inlineKeyboard([
     Markup.callbackButton('HTML', 'html'),
     Markup.callbackButton('CSV', 'csv'),
   ]).extra();
   ctx.reply(`In What format you want to export?`, keyboard);
   return ctx.wizard.next();
-}, formatSelector, (ctx: any) => ctx.scene.leave());
+}, formatSelector, (ctx: Context) => ctx.scene.leave());
 /**
    * send document to user
    * @param {string} fileExt - extension of file to export
