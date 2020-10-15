@@ -23,7 +23,7 @@ export function parseHtml(html: string):Array<ExportPost> {
         timeAdded: parseDate(timeAdded),
       };
       posts.push(post);
-		  console.log(post);
+      console.log(post);
     }
   });
   return posts;
