@@ -1,6 +1,7 @@
 import {Post} from '../database/models.js';
 import {sendLog} from '../helpers/log.js';
-export const handleQuery = async (ctx: any) => {
+import {Context} from 'telegraf';
+export const handleQuery = async (ctx: Context) => {
   if (ctx.callbackQuery.data === 'Readed') {
     sendLog('archiving');
     await archive(ctx.callbackQuery.message.text);
@@ -31,7 +32,7 @@ export const handleQuery = async (ctx: any) => {
    * set asRead = true in the db to the page
    * @param {string} url - originalUrl of the web page
    */
-  async function archive(url: any) {
+  async function archive(url: string) {
     const post = await Post.updateOne({originalUrl: url},
         {read: true},
     );
@@ -41,7 +42,7 @@ export const handleQuery = async (ctx: any) => {
    * set asRead = false in the db to the page
    * @param {string} url - originalUrl of the web page
    */
-  async function unArchive(url: any) {
+  async function unArchive(url: string) {
     const post = await Post.updateOne({originalUrl: url},
         {read: true},
     );
@@ -51,7 +52,7 @@ export const handleQuery = async (ctx: any) => {
    * deletes document from the db
    * @param {string} url - OriginalUrl of document to delete
    */
-  async function deletePost(url: any) {
+  async function deletePost(url: string) {
     await Post.findOneAndDelete({originalUrl: url});
   }
 };

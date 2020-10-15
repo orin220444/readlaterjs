@@ -4,7 +4,8 @@
 * @callback
 * @return {string} url from the message
 */
-function finder(message: any):Array<string>|string {
+import {Context} from 'telegraf';
+function finder(message: Context.message):Array<string>|string {
   if (message.entities) {
     const urls = find(message.entities, message.text);
     console.log(urls);
@@ -41,7 +42,7 @@ function textLink(entity: any): string {
 * @param {string} text - message text
 * @return {array} array of the urls
 */
-function find(entities: any, text: any): Array<string> {
+function find(entities: any, text: string): Array<string> {
   const urls:Array<string> = [];
   for (const entity of entities) {
     if (entity.type == 'text_link') {
