@@ -16,15 +16,15 @@ export function parseHtml(html: string):Array<ExportPost> {
   const posts: Array<ExportPost> = [];
   $('a').each(() => {
     const timeAdded = $(this).attr('time_added');
-	  const link = $(this).attr('href');
-	  if (link) {
+    const link = $(this).attr('href');
+    if (link) {
       const post: ExportPost = {
         link: link,
         timeAdded: parseDate(timeAdded),
       };
       posts.push(post);
 		  console.log(post);
-	  }
+   }
   });
   return posts;
 }
