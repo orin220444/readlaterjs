@@ -38,12 +38,13 @@ async function findDuplicates(url: string):Promise<boolean> {
    */
 export async function save(postData: PostData): Promise<void> {
   try {
-    const post = await PostModel.create({
+    const post = new PostModel({
       originalUrl: postData.realUrl,
       redirectUrl: postData.url,
       title: postData.title,
       content: postData.content,
     });
+
     await post.save();
     console.log(`${postData.url} saved!`);
   } catch (error) {
