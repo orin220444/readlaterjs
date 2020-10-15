@@ -44,7 +44,7 @@ async function checkForDuplicates(post: any, posts: any) {
    * @param {string} url url to find
    * @return {boolean} exists or not
    */
-  function findOriginal(url: any) {
+  function findOriginal(url: string) {
     for (const post of posts) {
       const postURL = post.originalUrl;
       if (postURL === url) return true;
