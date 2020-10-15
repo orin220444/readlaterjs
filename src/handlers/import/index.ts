@@ -32,6 +32,9 @@ export const handleImport = new WizardScene('ImportScene',
  */
 async function saveLinks(posts: Array<ExportPost>):Promise<void> {
   for (const post of posts) {
+    if (!post.link) {
+      throw new Error('does not exists post.link');
+    }
     console.log(`saving ${post.link}`);
     await savePost(post.link, post.timeAdded);
   }
