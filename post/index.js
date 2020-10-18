@@ -16,7 +16,9 @@ export async function savePost(url, timeAdded = undefined) {
     const parsedData = await parse(url);
     post.title = await parsedData.title;
     post.content = await parsedData.content;
-    post.timeAdded = !!timeAdded ? timeAdded: undefined;
+    if (!!timeAdded) {
+      post.timeAdded = timeAdded;
+    }
     await saveToDB(post);
   } catch (error) {
     sendLog(error);
