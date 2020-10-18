@@ -42,6 +42,7 @@ export async function save(postData) {
       redirectUrl: postData.url,
       title: postData.title,
       content: postData.content,
+      created: postData.timeAdded,
     });
     await post.save();
 
