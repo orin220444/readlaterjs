@@ -5,7 +5,7 @@ import random from 'mongoose-random';
 // @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/mongoose-fuzzy-searching` ... Remove this comment to see the full error message
 import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
 // @ts-expect-error ts-migrate(2769) FIXME: Type 'undefined' is not assignable to type 'string... Remove this comment to see the full error message
-mongoose.connect(process.env.MONGODB_URL, {
+await mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
