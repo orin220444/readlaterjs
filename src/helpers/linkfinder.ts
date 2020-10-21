@@ -5,8 +5,9 @@
 * @return {string} url from the message
 */
 import {Context} from 'telegraf';
-type Message = Context['message']
-export const finder = (message:Message):Array<string>|undefined => {
+type Message = Context['message'];
+export type ArrayUrl = Array<string>
+export const finder = (message:Message):ArrayUrl|undefined => {
   if (message) {
     if (message.entities) {
       if (message.text) {
