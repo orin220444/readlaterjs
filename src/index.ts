@@ -1,4 +1,3 @@
-// @ts-nocheck
 import 'dotenv/config.js';
 import {sendLog} from './helpers/index.js';
 import bot from './bot.js';
@@ -17,6 +16,6 @@ bot.command('search', (ctx:Context) => ctx.scene.enter('SearchScene'));
 bot.command('import', (ctx:Context) => ctx.scene.enter('ImportScene'));
 bot.command('mainten', handleMainten);
 bot.on('callback_query', handleQuery);
-// bot.on('message', handleAdd);
+bot.on('message', handleAdd);
 bot.launch();
 sendLog('bot started');
