@@ -3,6 +3,7 @@ import {Composer, Context, WizardScene} from 'telegraf';
 const searcher = new Composer();
 searcher.on('message', async (ctx: Context) => {
   console.log(ctx.message);
+  if (ctx.message?.text) {
   const data = await partialSearch(ctx.message.text);
   console.log(data);
   for (const post of data) {
