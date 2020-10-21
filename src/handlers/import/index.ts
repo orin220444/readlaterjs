@@ -36,7 +36,7 @@ async function saveLinks(posts: Array<ExportPost>):Promise<void> {
       throw new Error('does not exists post.link');
     }
     console.log(`saving ${post.link}`);
-    await savePost(post.link);
+    await savePost(post.link, post.timeAdded);
   }
 }
 /**

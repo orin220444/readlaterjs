@@ -43,6 +43,7 @@ export async function save(postData: PostData): Promise<void> {
       redirectUrl: postData.url,
       title: postData.title,
       content: postData.content,
+      created: postData.timeAdded,
     });
 
     await post.save();

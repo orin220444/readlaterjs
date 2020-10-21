@@ -8,13 +8,14 @@ export interface PostData {
   url: string,
   realUrl: string,
   title: string,
-  content: string
+  content: string,
+  timeAdded?: string,
 }
 /**
 * saves url
 * @param {string} url url to save
 */
-export async function savePost(url: string): Promise<void> {
+export async function savePost(url: string, timeAdded?:string): Promise<void> {
   try {
     const parsedPageData = await parse(url);
 
@@ -25,6 +26,9 @@ export async function savePost(url: string): Promise<void> {
       title: parsedPageData.title,
       content: parsedPageData.content,
     };
+    if (timeAdded) {
+      post.timeAdded = timeAdded;
+    }
     await saveToDB(post);
   } catch (error) {
     sendLog(error);

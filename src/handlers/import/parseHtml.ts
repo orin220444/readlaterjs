@@ -35,7 +35,7 @@ export function parseHtml(html: string):Array<ExportPost> {
  */
 function parseDate(timeString: string|undefined): string|undefined {
   const timeNum = Number(timeString);
-  const convertedDate = DateTime.fromMillis(timeNum);
+  const convertedDate = DateTime.fromSeconds(timeNum);
   const stringDate = convertedDate.toISODate().toString();
   return stringDate;
 }

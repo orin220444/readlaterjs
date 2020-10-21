@@ -35,7 +35,7 @@ const postSchema = new Schema({
   },
   created: {
     type: Date,
-    default: luxon.DateTime.local(),
+    default: luxon.DateTime.local().toString(),
   },
 });
 const userSchema = new Schema({
