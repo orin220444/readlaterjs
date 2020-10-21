@@ -11,7 +11,7 @@ export const handleAdd = async (ctx:Context):Promise<void> => {
 * check urls array for errors
 * @param {array<string>} urls array of parsed urls
 */
-  async function getUrl(urls:Array<string>):Promise<void> {
+  async function getUrl(urls:ArrayUrl):Promise<void> {
       for (const url of urls) {
         if (url !== 'message.chat.id') {
           try {
