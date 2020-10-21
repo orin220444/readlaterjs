@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import {DateTime} from 'luxon';
 import random from 'mongoose-random';
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/mongoose-fuzzy-searching` ... Remove this comment to see the full error message
 import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
 if(!process.env.MONGODB_URL){
 throw new Error('does not key Mongodb url in .env file!')
