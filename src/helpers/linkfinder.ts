@@ -5,17 +5,22 @@
 * @return {string} url from the message
 */
 import {Context} from 'telegraf';
-function finder(message: Context.message):Array<string>|string {
-  if (message.entities) {
-    const urls = find(message.entities, message.text);
-    console.log(urls);
-    return urls;
-  } else if (message.caption_entities) {
-    const urls = find(message.caption_entities, message.caption);
-    console.log(urls);
-    return urls;
-  } else {
-    return 'no urls!';
+  if (message) {
+    if (message.entities) {
+      if (message.text) {
+        const urls = find(message.entities, message.text);
+        console.log(urls);
+        return urls;
+      }
+    } else if (message.caption_entities) {
+      if (message.caption) {
+        const urls = find(message.caption_entities, message.caption);
+        console.log(urls);
+        return urls;
+      }
+    } else {
+      return 'no urls!';
+    }
   }
 }
 
