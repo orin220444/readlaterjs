@@ -28,7 +28,7 @@ export const handleImport = new WizardScene('ImportScene',
       ctx.reply('send a file');
       return ctx.wizard.next();
     },
-    expectFile, (ctx: Context) => ctx.wizard.leave());
+    expectFile, (ctx: Context) => ctx.scene.leave());
 
 /**
  * save posts in the db
