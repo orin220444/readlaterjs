@@ -4,12 +4,16 @@ import {savePost} from '../../post/index.js';
 import {sendLog} from '../../helpers/index.js';
 import {WizardScene} from 'telegraf';
 import {Composer, Context} from 'telegraf';
+import {AxiosResponse} from 'axios';
 const expectFile = new Composer();
+interface AxiosData extends AxiosResponse {
+  data:string,
+}
 expectFile.on('message', async (ctx: Context) => {
   try {
     if (ctx.message?.document?.file_id) {
       const file = await ctx.telegram.getFileLink(ctx.message.document.file_id);
-      const response = await axios.get(file);
+      const response:AxiosData = await axios.get(file);
       const data = response.data;
       const html = parseHtml(data);
       await saveLinks(html);
