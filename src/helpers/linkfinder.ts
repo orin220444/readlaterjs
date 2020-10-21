@@ -5,6 +5,8 @@
 * @return {string} url from the message
 */
 import {Context} from 'telegraf';
+type Message = Context['message']
+export const finder = (message:Message):Array<string>|undefined => {
   if (message) {
     if (message.entities) {
       if (message.text) {
@@ -18,9 +20,8 @@ import {Context} from 'telegraf';
         console.log(urls);
         return urls;
       }
-    } else {
-      return 'no urls!';
     }
+
   }
 }
 
@@ -59,8 +60,6 @@ function find(entities: any, text: string): Array<string> {
   }
   return urls;
 }
-
-export {finder};
 
 
 // TODO: delete user messages
