@@ -24,8 +24,8 @@ expectFile.on('message', async (ctx: Context) => {
   return ctx.wizard.next();
 });
 export const handleImport = new WizardScene('ImportScene',
-    (ctx: Context) => {
-      ctx.reply('send a file');
+    async (ctx: Context) => {
+      await ctx.reply('send a file');
       return ctx.wizard.next();
     },
     expectFile, (ctx: Context) => ctx.scene.leave());
