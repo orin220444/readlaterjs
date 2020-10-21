@@ -1,7 +1,5 @@
 import {partialSearch} from '../database/index.js';
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraf` if it exists or ... Remove this comment to see the full error message
-import Scene from 'telegraf/scenes/wizard/index.js';
-import {Composer, Context} from 'telegraf';
+import {Composer, Context, WizardScene} from 'telegraf';
 const searcher = new Composer();
 searcher.on('message', async (ctx: Context) => {
   console.log(ctx.message);
