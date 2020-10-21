@@ -1,5 +1,7 @@
 .env
 node_modules/
+dist/
+typings/
 log.txt
 *.csv
 .eslintcache
