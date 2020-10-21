@@ -7,11 +7,13 @@ searcher.on('message', async (ctx: Context) => {
   const data = await partialSearch(ctx.message.text);
   console.log(data);
   for (const post of data) {
-    ctx.reply(post.originalUrl);
+    await ctx.reply(post.originalUrl);
   }
   return ctx.wizard.next();
 });
 export const handleSearch = new WizardScene('SearchScene',
+    async (ctx: Context) => {
+      await ctx.reply('what do you need to find?');
       return ctx.wizard.next();
     }, searcher, (ctx: Context) => {
       ctx.wizard.leave();
