@@ -32,9 +32,6 @@
   },
   "dependencies": {
     "@postlight/mercury-parser": "github:orin220444/mercury-parser#master",
-    "@types/cheerio": "^0.22.22",
-    "@types/luxon": "^1.25.0",
-    "@types/mongoose": "^5.7.36",
     "axios": "^0.21.0",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
@@ -47,8 +44,11 @@
     "telegraph-node": "^1.0.4"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
+    "@types/cheerio": "^0.22.22",
+    "@types/luxon": "^1.25.0",
+    "@types/mongoose": "^5.7.36",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
     "eslint": "^7.12.1",
     "eslint-config-google": "^0.14.0",
     "husky": "^4.3.0",
