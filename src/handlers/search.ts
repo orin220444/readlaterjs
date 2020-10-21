@@ -10,6 +10,7 @@ searcher.on('message', async (ctx: Context) => {
     await ctx.reply(post.originalUrl);
   }
   return ctx.wizard.next();
+}
 });
 export const handleSearch = new WizardScene('SearchScene',
     async (ctx: Context) => {
