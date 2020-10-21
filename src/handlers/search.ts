@@ -12,9 +12,7 @@ searcher.on('message', async (ctx: Context) => {
   }
   return ctx.wizard.next();
 });
-export const handleSearch = new Scene('SearchScene',
-    (ctx: Context) => {
-      ctx.reply('what do you need to find?');
+export const handleSearch = new WizardScene('SearchScene',
       return ctx.wizard.next();
     }, searcher, (ctx: Context) => {
       ctx.wizard.leave();
