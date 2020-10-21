@@ -4,10 +4,7 @@ import {exportToHtml} from './exportToHtml.js';
 import {exportToCsv} from './exportToCsv.js';
 import {writeFile} from 'fs';
 import {sendLog} from '../../helpers/index.js';
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/telegraf` if it exists or ... Remove this comment to see the full error message
-import WizardScene from 'telegraf/scenes/wizard/index.js';
-import {Context, Markup} from 'telegraf';
-import {Composer} from 'telegraf';
+import {Context, Markup, WizardScene, Composer} from 'telegraf';
 const createFile = promisify(writeFile);
 const formatSelector = new Composer();
 formatSelector.action('html', (ctx: Context) => startExport('html'));
