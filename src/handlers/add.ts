@@ -4,14 +4,14 @@ import {sendLog} from '../helpers/log.js';
 import {Context} from 'telegraf';
 export const handleAdd = async (ctx:Context):Promise<void> => {
   const urls = finder(ctx.message);
+  if (urls) {
   await getUrl(urls);
   const message = ctx.message?.message_id;
   /**
 * check urls array for errors
 * @param {array<string>} urls array of parsed urls
 */
-  async function getUrl(urls: string|Array<string>):Promise<void> {
-    if (urls !== 'no urls!') {
+  async function getUrl(urls:Array<string>):Promise<void> {
       for (const url of urls) {
         if (url !== 'message.chat.id') {
           try {
@@ -22,7 +22,6 @@ export const handleAdd = async (ctx:Context):Promise<void> => {
           }
         }
       }
-    }
   }
   /**
 * logs to user if success saving url
@@ -36,4 +35,5 @@ export const handleAdd = async (ctx:Context):Promise<void> => {
       sendLog(error);
     }
   }
+}
 };
