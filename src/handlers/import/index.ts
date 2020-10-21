@@ -2,7 +2,7 @@ import axios from 'axios';
 import {parseHtml, ExportPost} from './parseHtml.js';
 import {savePost} from '../../post/index.js';
 import {sendLog} from '../../helpers/index.js';
-import WizardScene from 'telegraf/scenes/wizard/index.js';
+import {WizardScene} from 'telegraf';
 import {Composer, Context} from 'telegraf';
 const expectFile = new Composer();
 expectFile.on('message', async (ctx: Context) => {
