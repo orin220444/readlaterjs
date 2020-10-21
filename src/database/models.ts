@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
-import * as luxon from 'luxon';
-// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/mongoose-random` if it exi... Remove this comment to see the full error message
+import {DateTime} from 'luxon';
 import random from 'mongoose-random';
 // @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/mongoose-fuzzy-searching` ... Remove this comment to see the full error message
 import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
@@ -36,7 +35,7 @@ const postSchema = new Schema({
   },
   created: {
     type: Date,
-    default: luxon.DateTime.local().toString(),
+    default: DateTime.local().toString(),
   },
 });
 const userSchema = new Schema({
