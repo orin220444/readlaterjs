@@ -6,9 +6,14 @@ import {Post} from './models.js';
  */
 async function getRandomPost(): Promise<unknown> {
   try {
-    const post = await Post.findRandom().limit(1);
-    return post[0];
-  } catch (error:Error) {
+    const post = Post.count(async (err: Error, count: number):Promise<unknown>=> {
+      if (err) throw new Error(`error while finding random post: ${error.message}`);
+      const randomPost:number = Math.floor(Math.random() * count );
+      const post = await Post.findOne().skip(randomPost);
+      return post;
+    });
+    return post;
+  } catch (error) {
   // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'error'. Did you mean 'Error'?
   } throw new Error(`error while finding random post: ${error.message}`);
 }
