@@ -6,11 +6,6 @@ extends:
   - plugin:@typescript-eslint/eslint-recommended
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/recommended-requiring-type-checking
-  - plugin:'@typescript-eslint/no-floating-promises'
-  - plugin:'@typescript-eslint/no-unsafe-member-access'
-  - plugin:'@typescript-eslint/no-unsafe-call'
-  - plugin:'@typescript-eslint/no-unsafe-return'
-  - plugin:'@typescript-eslint/no-unsafe-assignment'
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
