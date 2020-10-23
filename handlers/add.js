@@ -3,7 +3,7 @@ import {finder, keyboard} from '../helpers/index.js';
 import {sendLog} from '../src/log.js';
 export const handleAdd = async (ctx) => {
   getUrl(finder(ctx.message));
-  const message = ctx.message.message_id;
+  const message = await ctx.message.message_id;
   /**
 * check urls array for errors
 * @param {array} urls array of parsed urls
