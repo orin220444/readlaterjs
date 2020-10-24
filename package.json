@@ -11,7 +11,7 @@
     "nodemon": "npx nodemon dist/index.js",
     "eslint": "npx eslint --cache --fix src",
     "doc": "npx jsdoc -c jsdoc.json",
-    "ts":"npx tsc -p tsconfig.json"
+    "ts": "npx tsc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
