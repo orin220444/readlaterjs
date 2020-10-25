@@ -22,9 +22,8 @@ export const finder = (message:Message):ArrayUrl|undefined => {
         return urls;
       }
     }
-
   }
-}
+};
 
 /**
 * gets links in the "url" entities
