@@ -5,13 +5,13 @@ import {Context} from 'telegraf';
 export const handleAdd = async (ctx:Context):Promise<void> => {
   const urls = finder(ctx.message);
   if (urls) {
-  await getUrl(urls);
-  const message = ctx.message?.message_id;
-  /**
+    await getUrl(urls);
+    const message = ctx.message?.message_id;
+    /**
 * check urls array for errors
 * @param {array<string>} urls array of parsed urls
 */
-  async function getUrl(urls:ArrayUrl):Promise<void> {
+    async function getUrl(urls:ArrayUrl):Promise<void> {
       for (const url of urls) {
         if (url !== 'message.chat.id') {
           try {
@@ -22,18 +22,18 @@ export const handleAdd = async (ctx:Context):Promise<void> => {
           }
         }
       }
-  }
-  /**
+    }
+    /**
 * logs to user if success saving url
 * @param {string} realUrl url to log
 */
-  async function logSuccess(realUrl: string): Promise<void> {
-    try {
-      await ctx.reply(realUrl, keyboard,
-          {reply_to_message_id: message});
-    } catch (error) {
-      sendLog(error);
+    async function logSuccess(realUrl: string): Promise<void> {
+      try {
+        await ctx.reply(realUrl, keyboard,
+            {reply_to_message_id: message});
+      } catch (error) {
+        sendLog(error);
+      }
     }
   }
-}
 };
