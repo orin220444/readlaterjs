@@ -4,13 +4,13 @@ const searcher = new Composer();
 searcher.on('message', async (ctx: Context) => {
   console.log(ctx.message);
   if (ctx.message?.text) {
-  const data = await partialSearch(ctx.message.text);
-  console.log(data);
-  for (const post of data) {
-    await ctx.reply(post.originalUrl);
+    const data = await partialSearch(ctx.message.text);
+    console.log(data);
+    for (const post of data) {
+      await ctx.reply(post.originalUrl);
+    }
+    return ctx.wizard.next();
   }
-  return ctx.wizard.next();
-}
 });
 export const handleSearch = new WizardScene('SearchScene',
     async (ctx: Context) => {

@@ -1,8 +1,8 @@
-import axios, {AxiosResponse}  from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {parseHtml, ExportPost} from './parseHtml.js';
 import {savePost} from '../../post/index.js';
 import {sendLog} from '../../helpers/index.js';
-import {Composer, Context, WizardScene}  from 'telegraf';
+import {Composer, Context, WizardScene} from 'telegraf';
 const expectFile = new Composer();
 interface AxiosData extends AxiosResponse {
   data:string,
