@@ -23,9 +23,9 @@ export const handleExport = async (ctx) => {
         const title = post.title ? post.title : url;
         const listName =
       (post.read === false) || (post.asReaded === false) ? '#Unread': '#links';
-        const time = `${Date.parse(post.created)}`;
+        //        const time = `${Date.parse(post.created)}`;
         $(listName).append(
-            `<li><a href="${url}" time_added="${time}">${title}</a></li>\n`,
+            `<li><a href="${url}">${title}</a></li>\n`,
         );
       });
       // TODO: remove attributes
