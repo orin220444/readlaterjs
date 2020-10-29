@@ -4,9 +4,9 @@ declare module '@postlight/mercury-parser' {
         content: string,
         author: string,
         datePublished: string,
-        leadImageUrl: string|null,
-        dek: string|null,
-        nextPageUrl: string|null,
+        leadImageUrl ? : string,
+        dek?: string
+        nextPageUrl ? : string,
         url: string,
         domain: string,
         excerpt: string,
