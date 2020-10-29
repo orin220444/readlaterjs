@@ -9,7 +9,6 @@ async function getRandomPost<T>(): Promise<T> {
     const post = await Post.findRandom().limit(1);
     return post[0];
   } catch (error:Error) {
-  // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'error'. Did you mean 'Error'?
   } throw new Error(`error while finding random post: ${error.message}`);
 }
 /**
@@ -38,7 +37,7 @@ async function getAllPosts<T>():Promise<Array<T>> {
  * @return {Array} - mongoose data in json
  * */
 function getPostsInJson<T>(data: Array<MongooseDocument>): Array<T> {
-  return data.map(function(item: MongooseDocument):undefined {
+  return data.map(function(item: MongooseDocument):Array<T> {
     return item.toJSON();
   });
 }
