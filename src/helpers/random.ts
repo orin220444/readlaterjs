@@ -4,6 +4,6 @@
  * @param {Array<any>} array
  * @return {any} random value
  */
-export function random(array: Array<unknown>): unknown {
+export function random<T>(array: Array<T>): T {
   return array[Math.floor(Math.random() * array.length)];
 }
