@@ -26,9 +26,9 @@ async function partialSearch<T, Y>(request: T):Promise<Y> {
 /**
  * gets all posts from db
  */
-async function getAllPosts<T>():Promise<Array<T>> {
+async function getAllPosts<T extends Array<Y>, Y>():Promise<Array<T>> {
   const data = await Post.find();
-  const posts = getPostsInJson(data);
+  const posts = getPostsInJson(data) as Array<T>;
   return posts;
 }
 /**
@@ -37,7 +37,7 @@ async function getAllPosts<T>():Promise<Array<T>> {
  * @return {Array} - mongoose data in json
  * */
 function getPostsInJson<T>(data: Array<MongooseDocument>): Array<T> {
-  return data.map(function(item: MongooseDocument):Array<T> {
+  return data.map(function(item: MongooseDocument):T {
     return item.toJSON();
   });
 }
