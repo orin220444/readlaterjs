@@ -3,7 +3,7 @@
 
     "target": "ESNEXT",
     "module": "ESnext",
-    "lib": ["es6"],
+    "lib": ["ESNext"],
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
