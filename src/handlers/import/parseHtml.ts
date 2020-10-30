@@ -1,9 +1,10 @@
 /* eslint-disable no-invalid-this */
 import cheerio from 'cheerio';
 import {DateTime} from 'luxon';
+import {Url} from '../../helpers/linkfinder.js';
 export interface ExportPost {
-  link: string,
-  timeAdded: string|undefined
+  link: Url,
+  timeAdded?: string
 }
 /**
  * parses links from pocket export file
@@ -33,7 +34,7 @@ export function parseHtml(html: string):Array<ExportPost> {
  * @param {string} timeString - parsed time from cheerio in unix
  * @return {string} date in iso format
  */
-function parseDate(timeString: string|undefined): string|undefined {
+function parseDate(timeString?: string): string|undefined {
   const timeNum = Number(timeString);
   const convertedDate = DateTime.fromSeconds(timeNum);
   const stringDate = convertedDate.toISODate().toString();

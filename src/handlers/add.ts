@@ -2,6 +2,7 @@ import {savePost} from '../post/index.js';
 import {finder, keyboard} from '../helpers/index.js';
 import {sendLog} from '../helpers/log.js';
 import {Context} from 'telegraf';
+import {ArrayUrl, Url} from '../helpers/linkfinder.js';
 export const handleAdd = async (ctx:Context):Promise<void> => {
   const urls = finder(ctx.message);
   if (urls) {
@@ -11,6 +12,7 @@ export const handleAdd = async (ctx:Context):Promise<void> => {
 * check urls array for errors
 * @param {array<string>} urls array of parsed urls
 */
+
     async function getUrl(urls:ArrayUrl):Promise<void> {
       for (const url of urls) {
         if (url !== 'message.chat.id') {
