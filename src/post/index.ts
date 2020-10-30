@@ -8,7 +8,8 @@ export interface PostData {
   url: string,
   realUrl: string,
   title: string,
-  content: string
+  content: string,
+  timeAdded?: string,
 }
 /**
 * saves url
