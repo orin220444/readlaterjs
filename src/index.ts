@@ -3,7 +3,8 @@ import {sendLog} from './helpers/index.js';
 import bot from './bot.js';
 import {Context, Stage, session} from 'telegraf';
 import {
-  handleRandom, handleAdd,
+  handleRandom,
+  handleAdd,
   handleQuery, handleExport, handleSearch, handleImport, handleMainten,
 } from './handlers/index.js';
 const stage = new Stage([handleImport, handleSearch, handleExport]);

@@ -4,19 +4,18 @@ import {Post} from './models.js';
  * gets random post from the db
  * @return {Promise<object>} random post
  */
-async function getRandomPost(): Promise<unknown> {
+async function getRandomPost<T>(): Promise<T> {
   try {
     const post = await Post.findRandom().limit(1);
     return post[0];
   } catch (error:Error) {
-  // @ts-expect-error ts-migrate(2552) FIXME: Cannot find name 'error'. Did you mean 'Error'?
   } throw new Error(`error while finding random post: ${error.message}`);
 }
 /**
  * searches post by a part of text
  * @param {string} request from user
  */
-async function partialSearch(request: unknown):Promise<unknown> {
+async function partialSearch<T, Y>(request: T):Promise<Y> {
   try {
     const data = await Post.fuzzySearch(request);
     return data;
@@ -27,9 +26,9 @@ async function partialSearch(request: unknown):Promise<unknown> {
 /**
  * gets all posts from db
  */
-async function getAllPosts():Promise<Array<undefined>> {
+async function getAllPosts<T extends Array<Y>, Y>():Promise<Array<T>> {
   const data = await Post.find();
-  const posts = getPostsInJson(data);
+  const posts = getPostsInJson(data) as Array<T>;
   return posts;
 }
 /**
@@ -37,8 +36,8 @@ async function getAllPosts():Promise<Array<undefined>> {
  * @param {Array} data - mongoose documents
  * @return {Array} - mongoose data in json
  * */
-function getPostsInJson(data: Array<MongooseDocument>): Array<undefined> {
-  return data.map(function(item: MongooseDocument):undefined {
+function getPostsInJson<T>(data: Array<MongooseDocument>): Array<T> {
+  return data.map(function(item: MongooseDocument):T {
     return item.toJSON();
   });
 }

@@ -11,7 +11,11 @@ export interface PostData {
   content: string,
   timeAdded?: string,
 }
-
+/**
+* saves url
+* @param {string} url url to save
+* @param {string} timeAdded timestamp when post was added to db
+*/
 export async function savePost(url: string, timeAdded?:string): Promise<void> {
   try {
     const parsedPageData = await parse(url);

@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 import {DateTime} from 'luxon';
 import random from 'mongoose-random';
 import mongooseFuzzySearching from 'mongoose-fuzzy-searching';
-const mongoUrl = process.env.MONGODB_URL
-if(!mongoUrl){
-throw new Error('does not key Mongodb url in .env file!')
+const mongoUrl = process.env.MONGODB_URL;
+if (!mongoUrl) {
+  throw new Error('does not key Mongodb url in .env file!');
 }
 await mongoose.connect(mongoUrl, {
   useNewUrlParser: true,

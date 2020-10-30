@@ -6,7 +6,8 @@
 */
 import {Context} from 'telegraf';
 type Message = Context['message'];
-export type ArrayUrl = Array<string>
+export type Url = string
+export type ArrayUrl = Array<Url>
 export const finder = (message:Message):ArrayUrl|undefined => {
   if (message) {
     if (message.entities) {
@@ -22,9 +23,8 @@ export const finder = (message:Message):ArrayUrl|undefined => {
         return urls;
       }
     }
-
   }
-}
+};
 
 /**
 * gets links in the "url" entities

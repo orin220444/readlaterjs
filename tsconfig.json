@@ -1,18 +1,19 @@
 { "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
-    "target": "ESNEXT",    
-    "module": "ESnext",   
-     "declaration": true,
-    "outDir": "../dist",
-    "rootDir": "./",   
-     "removeComments": true, 
+    "target": "ESNEXT",
+    "module": "ESnext",
+    "lib": ["ESNext"],
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": true,
     "declarationDir": "typings/",
-    "strict": false,        
-    "moduleResolution": "node", 
-    "esModuleInterop": true,   
-    "skipLibCheck": true,     
-    "forceConsistentCasingInFileNames": true 
+    "strict": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "typedocOptions": {
          "inputFiles": ["./src"],
