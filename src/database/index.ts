@@ -26,9 +26,9 @@ async function partialSearch<T, Y>(request: T):Promise<Y> {
 /**
  * gets all posts from db
  */
-async function getAllPosts<T extends Array<Y>, Y>():Promise<Array<T>> {
+async function getAllPosts():Promise<Array<unknown>> {
   const data = await Post.find();
-  const posts = getPostsInJson(data) as Array<T>;
+  const posts = getPostsInJson(data);
   return posts;
 }
 /**
