@@ -20,3 +20,4 @@ plugins:
 rules:
   require-jsdoc: 0
   no-invalid-this: 0
+  eslint-no-use-before-defining: 0
