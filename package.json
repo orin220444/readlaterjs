@@ -33,14 +33,14 @@
     "@postlight/mercury-parser": "github:orin220444/mercury-parser#master",
     "@types/cheerio": "^0.22.22",
     "@types/luxon": "^1.25.0",
-    "@types/mongoose": "^5.7.36",
+    "@types/mongoose": "^5.7.37",
     "axios": "^0.21.0",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
     "json-csv": "^3.0.1",
     "luxon": "^1.25.0",
-    "mongoose": "^5.10.11",
-    "mongoose-fuzzy-searching": "^1.3.1",
+    "mongoose": "^5.10.12",
+    "mongoose-fuzzy-searching": "^2.0.2",
     "mongoose-random": "^0.1.1",
     "telegraf": "^3.38.0",
     "telegraph-node": "^1.0.4"
@@ -49,7 +49,7 @@
     "eslint": "^7.12.1",
     "eslint-config-google": "^0.14.0",
     "husky": "^4.3.0",
-    "lint-staged": "^10.5.0",
+    "lint-staged": "^10.5.1",
     "nodemon": "^2.0.6"
   }
 }
