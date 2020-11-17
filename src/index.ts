@@ -1,6 +1,6 @@
 import 'dotenv/config.js';
 import {sendLog} from './helpers/index.js';
-import bot from './bot.js';
+import {bot} from './bot.js';
 import {Context, Stage, session} from 'telegraf';
 import {
   handleRandom,
